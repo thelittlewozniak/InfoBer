@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2047
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoBer", "InfoBer\InfoBer.csproj", "{45CFDEAE-3715-4F86-935A-F0A73F037476}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45CFDEAE-3715-4F86-935A-F0A73F037476}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45CFDEAE-3715-4F86-935A-F0A73F037476}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45CFDEAE-3715-4F86-935A-F0A73F037476}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45CFDEAE-3715-4F86-935A-F0A73F037476}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B9CB51F6-864E-4A1E-B82E-9CF85B0D683D}
+	EndGlobalSection
+EndGlobal
