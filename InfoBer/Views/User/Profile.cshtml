@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewData["Title"] = "Profile";
+    User user = ViewBag.user;
+    List<Problem> problems = ViewBag.problems;
+}
+
+<h2>Profile</h2>
+
+<div>
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th scope="row">Full name:</th>
+                <td>@user.Name @user.Surname</td>
+            </tr>
+            <tr>
+                <th scope="row">username:</th>
+                <td>@user.Username</td>
+            </tr>
+            <tr>
+                <th scope="row">Rating:</th>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    @if (user.Ratings.Count >0)
+    {
+        <h3>My Ratings:</h3>
+        <table class="table table-hover">
+            <tbody>
+                @foreach (Rating r in user.Ratings)
+                {
+                    if (r.Result > 3.5)
+                    {
+                        <tr class="table-primary">
+                            <th scope="row">Rating:<br />Commentary:</th>
+                            <td>@r.Result<br />@r.Commentary</td>
+                        </tr>
+                    }
+                    else if (r.Result <= 3.5 && r.Result >= 2.5)
+                    {
+                        <tr class="table-warning">
+                            <th scope="row">Rating:<br />Commentary:</th>
+                            <td>@r.Result<br />@r.Commentary</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr class="table-danger">
+                            <th scope="row">Rating:<br />Commentary:</th>
+                            <td>@r.Result<br />@r.Commentary</td>
+                        </tr>
+
+                    }
+                }
+            </tbody>
+        </table>
+    }
+
+    @if (problems.Count >0)
+    {
+        <h3>My problems:</h3>
+        <table class="table table-hover">
+            <tbody>
+                @foreach (Problem p in problems)
+                {
+                    if (p.Taker != null)
+                    {
+                        if (p.status == false)
+                        {
+                            <tr class="table-warning">
+                                <td>@p.ProblemTitle</td>
+                            </tr>
+                        }
+                        if (p.status == true)
+                        {
+                            <tr class="table-primary">
+                                <td>@p.ProblemTitle</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr class="table-danger">
+                            <td>@p.ProblemTitle</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    }
+</div>

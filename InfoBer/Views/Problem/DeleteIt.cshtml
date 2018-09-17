@@ -1,0 +1,61 @@
+﻿@model InfoBer.Models.Rating
+
+@{
+    ViewData["Title"] = "View";
+}
+<style>    .rating {
+        unicode-bidi: bidi-override;
+        direction: rtl;
+    }
+
+        .rating > span {
+            display: inline-block;
+            position: relative;
+            width: 1.1em;
+            font-size:200%;
+            text-align:center;
+        }
+
+            .rating > span:hover:before,
+            .rating > span:hover ~ span:before {
+                content: "\2605";
+                position: absolute;
+            }
+</style>
+<script>
+    function Point(e) {
+        var r = document.getElementById("Result").value=e;
+        console.log(r);
+    }
+</script>
+<h2>Rate your Helper</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="DeleteIt">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <div class="rating">
+                    <span onclick="Point(5)">☆</span><span onclick="Point(4)">☆</span><span onclick="Point(3)">☆</span><span onclick="Point(2)">☆</span><span onclick="Point(1)">☆</span>
+                </div>
+                <input type="hidden" id="Result" name="Result" />
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Commentary" class="control-label"></label>
+                <input asp-for="Commentary" class="form-control" />
+                <span asp-validation-for="Commentary" class="text-danger"></span>
+            </div>
+            <input type="hidden" value="@ViewBag.id" name="id" />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

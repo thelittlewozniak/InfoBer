@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewData["Title"] = "SeeProblems";
+    List<Problem> problems = ViewBag.problems;
+    int i = 0;
+}
+
+<h2>Problems</h2>
+<table class="table table-hover">
+    <caption>Click on it to have more information!</caption>
+    <thead>
+        <tr>
+            <th scope="col">Title:</th>
+            <th scope="col">School:</th>
+            <th scope="col">Departement:</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Problem p in problems)
+        {
+            if (i % 2 == 0)
+            {
+                <tr class="table-light" onclick="location.href='/Admin/SeeProblem?id=@p.Id';">
+                    <th>@p.ProblemTitle</th>
+                    <td>@p.Writer.School.Name</td>
+                    <td>@p.Writer.Departement.Name</td>
+                </tr>
+            }
+            else
+            {
+                <tr class="table-dark" onclick="location.href='/Admin/SeeProblem?id=@p.Id';">
+                    <th>@p.ProblemTitle</th>
+                    <td>@p.Writer.School.Name</td>
+                    <td>@p.Writer.Departement.Name</td>
+                </tr>
+            }
+            i++;
+        }
+
+    </tbody>
+</table>
+

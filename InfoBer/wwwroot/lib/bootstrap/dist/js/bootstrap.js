@@ -1,2377 +1,9681 @@
 /*!
- * Bootstrap v3.3.7 (http://getbootstrap.com)
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under the MIT license
+ * Bootswatch v4.1.3
+ * Homepage: https://bootswatch.com
+ * Copyright 2012-2018 Thomas Park
+ * Licensed under MIT
+ * Based on Bootstrap
+*/
+/*!
+ * Bootstrap v4.1.3 (https://getbootstrap.com/)
+ * Copyright 2011-2018 The Bootstrap Authors
+ * Copyright 2011-2018 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-
-if (typeof jQuery === 'undefined') {
-  throw new Error('Bootstrap\'s JavaScript requires jQuery')
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700,400italic");
+: root {
+    --blue: #375a7f;
+    --indigo: #6610f2;
+    --purple: #6f42c1;
+    --pink: #e83e8c;
+    --red: #E74C3C;
+    --orange: #fd7e14;
+    --yellow: #F39C12;
+    --green: #00bc8c;
+    --teal: #20c997;
+    --cyan: #3498DB;
+    --white: #fff;
+    --gray: #999;
+    --gray - dark: #303030;
+    --primary: #375a7f;
+    --secondary: #444;
+    --success: #00bc8c;
+    --info: #3498DB;
+    --warning: #F39C12;
+    --danger: #E74C3C;
+    --light: #303030;
+    --dark: #adb5bd;
+    --breakpoint - xs: 0;
+    --breakpoint - sm: 576px;
+    --breakpoint - md: 768px;
+    --breakpoint - lg: 992px;
+    --breakpoint - xl: 1200px;
+    --font - family - sans - serif: "Lato", -apple - system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans - serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --font - family - monospace: SFMono - Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-+function ($) {
-  'use strict';
-  var version = $.fn.jquery.split(' ')[0].split('.')
-  if ((version[0] < 2 && version[1] < 9) || (version[0] == 1 && version[1] == 9 && version[2] < 1) || (version[0] > 3)) {
-    throw new Error('Bootstrap\'s JavaScript requires jQuery version 1.9.1 or higher, but lower than version 4')
-  }
-}(jQuery);
+*,
+*:: before,
+*:: after {
+    -webkit - box - sizing: border - box;
+    box - sizing: border - box;
+}
 
-/* ========================================================================
- * Bootstrap: transition.js v3.3.7
- * http://getbootstrap.com/javascript/#transitions
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
+html {
+    font - family: sans - serif;
+    line - height: 1.15;
+    -webkit - text - size - adjust: 100 %;
+    -ms - text - size - adjust: 100 %;
+    -ms - overflow - style: scrollbar;
+    -webkit - tap - highlight - color: transparent;
+}
 
+@-ms - viewport {
+    width: device - width;
+}
 
-+function ($) {
-  'use strict';
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+    display: block;
+}
 
-  // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
-  // ============================================================
+body {
+    margin: 0;
+    font - family: "Lato", -apple - system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans - serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font - size: 0.9375rem;
+    font - weight: 400;
+    line - height: 1.5;
+    color: #fff;
+    text - align: left;
+    background - color: #222;
+}
 
-  function transitionEnd() {
-    var el = document.createElement('bootstrap')
+[tabindex = "-1"]: focus {
+    outline: 0!important;
+}
 
-    var transEndEventNames = {
-      WebkitTransition : 'webkitTransitionEnd',
-      MozTransition    : 'transitionend',
-      OTransition      : 'oTransitionEnd otransitionend',
-      transition       : 'transitionend'
+hr {
+    -webkit - box - sizing: content - box;
+    box - sizing: content - box;
+    height: 0;
+    overflow: visible;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin - top: 0;
+    margin - bottom: 0.5rem;
+}
+
+p {
+    margin - top: 0;
+    margin - bottom: 1rem;
+}
+
+abbr[title],
+    abbr[data - original - title] {
+    text - decoration: underline;
+    -webkit - text - decoration: underline dotted;
+    text - decoration: underline dotted;
+    cursor: help;
+    border - bottom: 0;
+}
+
+address {
+    margin - bottom: 1rem;
+    font - style: normal;
+    line - height: inherit;
+}
+
+ol,
+    ul,
+    dl {
+    margin - top: 0;
+    margin - bottom: 1rem;
+}
+
+ol ol,
+    ul ul,
+        ol ul,
+            ul ol {
+    margin - bottom: 0;
+}
+
+dt {
+    font - weight: 700;
+}
+
+dd {
+    margin - bottom: .5rem;
+    margin - left: 0;
+}
+
+blockquote {
+    margin: 0 0 1rem;
+}
+
+dfn {
+    font - style: italic;
+}
+
+b,
+    strong {
+    font - weight: bolder;
+}
+
+small {
+    font - size: 80 %;
+}
+
+sub,
+    sup {
+    position: relative;
+    font - size: 75 %;
+    line - height: 0;
+    vertical - align: baseline;
+}
+
+sub {
+    bottom: -.25em;
+}
+
+sup {
+    top: -.5em;
+}
+
+a {
+    color: #00bc8c;
+    text - decoration: none;
+    background - color: transparent;
+    -webkit - text - decoration - skip: objects;
+}
+
+a: hover {
+    color: #007053;
+    text - decoration: underline;
+}
+
+a: not([href]): not([tabindex]) {
+    color: inherit;
+    text - decoration: none;
+}
+
+a: not([href]): not([tabindex]): hover, a: not([href]): not([tabindex]): focus {
+    color: inherit;
+    text - decoration: none;
+}
+
+a: not([href]): not([tabindex]): focus {
+    outline: 0;
+}
+
+pre,
+    code,
+    kbd,
+    samp {
+    font - family: SFMono - Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font - size: 1em;
+}
+
+pre {
+    margin - top: 0;
+    margin - bottom: 1rem;
+    overflow: auto;
+    -ms - overflow - style: scrollbar;
+}
+
+figure {
+    margin: 0 0 1rem;
+}
+
+img {
+    vertical - align: middle;
+    border - style: none;
+}
+
+svg {
+    overflow: hidden;
+    vertical - align: middle;
+}
+
+table {
+    border - collapse: collapse;
+}
+
+caption {
+    padding - top: 0.75rem;
+    padding - bottom: 0.75rem;
+    color: #999;
+    text - align: left;
+    caption - side: bottom;
+}
+
+th {
+    text - align: inherit;
+}
+
+label {
+    display: inline - block;
+    margin - bottom: 0.5rem;
+}
+
+button {
+    border - radius: 0;
+}
+
+button: focus {
+    outline: 1px dotted;
+    outline: 5px auto - webkit - focus - ring - color;
+}
+
+input,
+    button,
+    select,
+    optgroup,
+    textarea {
+    margin: 0;
+    font - family: inherit;
+    font - size: inherit;
+    line - height: inherit;
+}
+
+button,
+    input {
+    overflow: visible;
+}
+
+button,
+    select {
+    text - transform: none;
+}
+
+button,
+    html[type = "button"],
+    [type = "reset"],
+    [type = "submit"] {
+    -webkit - appearance: button;
+}
+
+button:: -moz - focus - inner,
+    [type = "button"]:: -moz - focus - inner,
+        [type = "reset"]:: -moz - focus - inner,
+            [type = "submit"]:: -moz - focus - inner {
+    padding: 0;
+    border - style: none;
+}
+
+input[type = "radio"],
+    input[type = "checkbox"] {
+    -webkit - box - sizing: border - box;
+    box - sizing: border - box;
+    padding: 0;
+}
+
+input[type = "date"],
+    input[type = "time"],
+    input[type = "datetime-local"],
+    input[type = "month"] {
+    -webkit - appearance: listbox;
+}
+
+textarea {
+    overflow: auto;
+    resize: vertical;
+}
+
+fieldset {
+    min - width: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+legend {
+    display: block;
+    width: 100 %;
+    max - width: 100 %;
+    padding: 0;
+    margin - bottom: .5rem;
+    font - size: 1.5rem;
+    line - height: inherit;
+    color: inherit;
+    white - space: normal;
+}
+
+progress {
+    vertical - align: baseline;
+}
+
+[type = "number"]:: -webkit - inner - spin - button,
+    [type = "number"]:: -webkit - outer - spin - button {
+    height: auto;
+}
+
+[type = "search"] {
+    outline - offset: -2px;
+    -webkit - appearance: none;
+}
+
+[type = "search"]:: -webkit - search - cancel - button,
+    [type = "search"]:: -webkit - search - decoration {
+    -webkit - appearance: none;
+}
+
+:: -webkit - file - upload - button {
+    font: inherit;
+    -webkit - appearance: button;
+}
+
+output {
+    display: inline - block;
+}
+
+summary {
+    display: list - item;
+    cursor: pointer;
+}
+
+template {
+    display: none;
+}
+
+[hidden] {
+    display: none!important;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    margin - bottom: 0.5rem;
+    font - family: inherit;
+    font - weight: 500;
+    line - height: 1.2;
+    color: inherit;
+}
+
+h1, .h1 {
+    font - size: 3rem;
+}
+
+h2, .h2 {
+    font - size: 2.5rem;
+}
+
+h3, .h3 {
+    font - size: 2rem;
+}
+
+h4, .h4 {
+    font - size: 1.40625rem;
+}
+
+h5, .h5 {
+    font - size: 1.171875rem;
+}
+
+h6, .h6 {
+    font - size: 0.9375rem;
+}
+
+.lead {
+    font - size: 1.171875rem;
+    font - weight: 300;
+}
+
+.display - 1 {
+    font - size: 6rem;
+    font - weight: 300;
+    line - height: 1.2;
+}
+
+.display - 2 {
+    font - size: 5.5rem;
+    font - weight: 300;
+    line - height: 1.2;
+}
+
+.display - 3 {
+    font - size: 4.5rem;
+    font - weight: 300;
+    line - height: 1.2;
+}
+
+.display - 4 {
+    font - size: 3.5rem;
+    font - weight: 300;
+    line - height: 1.2;
+}
+
+hr {
+    margin - top: 1rem;
+    margin - bottom: 1rem;
+    border: 0;
+    border - top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+small,
+.small {
+    font - size: 80 %;
+    font - weight: 400;
+}
+
+mark,
+.mark {
+    padding: 0.2em;
+    background - color: #fcf8e3;
+}
+
+.list - unstyled {
+    padding - left: 0;
+    list - style: none;
+}
+
+.list - inline {
+    padding - left: 0;
+    list - style: none;
+}
+
+.list - inline - item {
+    display: inline - block;
+}
+
+.list - inline - item: not(: last - child) {
+    margin - right: 0.5rem;
+}
+
+.initialism {
+    font - size: 90 %;
+    text - transform: uppercase;
+}
+
+.blockquote {
+    margin - bottom: 1rem;
+    font - size: 1.171875rem;
+}
+
+.blockquote - footer {
+    display: block;
+    font - size: 80 %;
+    color: #999;
+}
+
+.blockquote - footer:: before {
+    content: "\2014 \00A0";
+}
+
+.img - fluid {
+    max - width: 100 %;
+    height: auto;
+}
+
+.img - thumbnail {
+    padding: 0.25rem;
+    background - color: #222;
+    border: 1px solid #dee2e6;
+    border - radius: 0.25rem;
+    max - width: 100 %;
+    height: auto;
+}
+
+.figure {
+    display: inline - block;
+}
+
+.figure - img {
+    margin - bottom: 0.5rem;
+    line - height: 1;
+}
+
+.figure - caption {
+    font - size: 90 %;
+    color: #999;
+}
+
+code {
+    font - size: 87.5 %;
+    color: #e83e8c;
+    word -break: break-word;
+}
+
+a > code {
+    color: inherit;
+}
+
+kbd {
+    padding: 0.2rem 0.4rem;
+    font - size: 87.5 %;
+    color: #fff;
+    background - color: #222;
+    border - radius: 0.2rem;
+}
+
+kbd kbd {
+    padding: 0;
+    font - size: 100 %;
+    font - weight: 700;
+}
+
+pre {
+    display: block;
+    font - size: 87.5 %;
+    color: inherit;
+}
+
+pre code {
+    font - size: inherit;
+    color: inherit;
+    word -break: normal;
+}
+
+.pre - scrollable {
+    max - height: 340px;
+    overflow - y: scroll;
+}
+
+.container {
+    width: 100 %;
+    padding - right: 15px;
+    padding - left: 15px;
+    margin - right: auto;
+    margin - left: auto;
+}
+
+@media(min - width: 576px) {
+  .container {
+        max - width: 540px;
     }
+}
 
-    for (var name in transEndEventNames) {
-      if (el.style[name] !== undefined) {
-        return { end: transEndEventNames[name] }
-      }
+@media(min - width: 768px) {
+  .container {
+        max - width: 720px;
     }
+}
 
-    return false // explicit for ie8 (  ._.)
-  }
-
-  // http://blog.alexmaccaw.com/css-transitions
-  $.fn.emulateTransitionEnd = function (duration) {
-    var called = false
-    var $el = this
-    $(this).one('bsTransitionEnd', function () { called = true })
-    var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
-    setTimeout(callback, duration)
-    return this
-  }
-
-  $(function () {
-    $.support.transition = transitionEnd()
-
-    if (!$.support.transition) return
-
-    $.event.special.bsTransitionEnd = {
-      bindType: $.support.transition.end,
-      delegateType: $.support.transition.end,
-      handle: function (e) {
-        if ($(e.target).is(this)) return e.handleObj.handler.apply(this, arguments)
-      }
+@media(min - width: 992px) {
+  .container {
+        max - width: 960px;
     }
-  })
+}
 
-}(jQuery);
-
-/* ========================================================================
- * Bootstrap: alert.js v3.3.7
- * http://getbootstrap.com/javascript/#alerts
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-
-+function ($) {
-  'use strict';
-
-  // ALERT CLASS DEFINITION
-  // ======================
-
-  var dismiss = '[data-dismiss="alert"]'
-  var Alert   = function (el) {
-    $(el).on('click', dismiss, this.close)
-  }
-
-  Alert.VERSION = '3.3.7'
-
-  Alert.TRANSITION_DURATION = 150
-
-  Alert.prototype.close = function (e) {
-    var $this    = $(this)
-    var selector = $this.attr('data-target')
-
-    if (!selector) {
-      selector = $this.attr('href')
-      selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+@media(min - width: 1200px) {
+  .container {
+        max - width: 1140px;
     }
+}
 
-    var $parent = $(selector === '#' ? [] : selector)
+.container - fluid {
+    width: 100 %;
+    padding - right: 15px;
+    padding - left: 15px;
+    margin - right: auto;
+    margin - left: auto;
+}
 
-    if (e) e.preventDefault()
+.row {
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+    -ms - flex - wrap: wrap;
+    flex - wrap: wrap;
+    margin - right: -15px;
+    margin - left: -15px;
+}
 
-    if (!$parent.length) {
-      $parent = $this.closest('.alert')
+.no - gutters {
+    margin - right: 0;
+    margin - left: 0;
+}
+
+.no - gutters > .col,
+.no - gutters > [class*= "col-"] {
+    padding - right: 0;
+    padding - left: 0;
+}
+
+.col - 1, .col - 2, .col - 3, .col - 4, .col - 5, .col - 6, .col - 7, .col - 8, .col - 9, .col - 10, .col - 11, .col - 12, .col,
+.col - auto, .col - sm - 1, .col - sm - 2, .col - sm - 3, .col - sm - 4, .col - sm - 5, .col - sm - 6, .col - sm - 7, .col - sm - 8, .col - sm - 9, .col - sm - 10, .col - sm - 11, .col - sm - 12, .col - sm,
+.col - sm - auto, .col - md - 1, .col - md - 2, .col - md - 3, .col - md - 4, .col - md - 5, .col - md - 6, .col - md - 7, .col - md - 8, .col - md - 9, .col - md - 10, .col - md - 11, .col - md - 12, .col - md,
+.col - md - auto, .col - lg - 1, .col - lg - 2, .col - lg - 3, .col - lg - 4, .col - lg - 5, .col - lg - 6, .col - lg - 7, .col - lg - 8, .col - lg - 9, .col - lg - 10, .col - lg - 11, .col - lg - 12, .col - lg,
+.col - lg - auto, .col - xl - 1, .col - xl - 2, .col - xl - 3, .col - xl - 4, .col - xl - 5, .col - xl - 6, .col - xl - 7, .col - xl - 8, .col - xl - 9, .col - xl - 10, .col - xl - 11, .col - xl - 12, .col - xl,
+.col - xl - auto {
+    position: relative;
+    width: 100 %;
+    min - height: 1px;
+    padding - right: 15px;
+    padding - left: 15px;
+}
+
+.col {
+    -ms - flex - preferred - size: 0;
+    flex - basis: 0;
+    -webkit - box - flex: 1;
+    -ms - flex - positive: 1;
+    flex - grow: 1;
+    max - width: 100 %;
+}
+
+.col - auto {
+    -webkit - box - flex: 0;
+    -ms - flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: auto;
+    max - width: none;
+}
+
+.col - 1 {
+    -webkit - box - flex: 0;
+    -ms - flex: 0 0 8.3333333333 %;
+    flex: 0 0 8.3333333333 %;
+    max - width: 8.3333333333 %;
+}
+
+.col - 2 {
+    -webkit - box - flex: 0;
+    -ms - flex: 0 0 16.6666666667 %;
+    flex: 0 0 16.6666666667 %;
+    max - width: 16.6666666667 %;
+}
+
+.col - 3 {
+    -webkit - box - flex: 0;
+    -ms - flex: 0 0 25 %;
+    flex: 0 0 25 %;
+    max - width: 25 %;
+}
+
+.col - 4 {
+    -webkit - box - flex: 0;
+    -ms - flex: 0 0 33.3333333333 %;
+    flex: 0 0 33.3333333333 %;
+    max - width: 33.3333333333 %;
+}
+
+.col - 5 {
+    -webkit - box - flex: 0;
+    -ms - flex: 0 0 41.6666666667 %;
+    flex: 0 0 41.6666666667 %;
+    max - width: 41.6666666667 %;
+}
+
+.col - 6 {
+    -webkit - box - flex: 0;
+    -ms - flex: 0 0 50 %;
+    flex: 0 0 50 %;
+    max - width: 50 %;
+}
+
+.col - 7 {
+    -webkit - box - flex: 0;
+    -ms - flex: 0 0 58.3333333333 %;
+    flex: 0 0 58.3333333333 %;
+    max - width: 58.3333333333 %;
+}
+
+.col - 8 {
+    -webkit - box - flex: 0;
+    -ms - flex: 0 0 66.6666666667 %;
+    flex: 0 0 66.6666666667 %;
+    max - width: 66.6666666667 %;
+}
+
+.col - 9 {
+    -webkit - box - flex: 0;
+    -ms - flex: 0 0 75 %;
+    flex: 0 0 75 %;
+    max - width: 75 %;
+}
+
+.col - 10 {
+    -webkit - box - flex: 0;
+    -ms - flex: 0 0 83.3333333333 %;
+    flex: 0 0 83.3333333333 %;
+    max - width: 83.3333333333 %;
+}
+
+.col - 11 {
+    -webkit - box - flex: 0;
+    -ms - flex: 0 0 91.6666666667 %;
+    flex: 0 0 91.6666666667 %;
+    max - width: 91.6666666667 %;
+}
+
+.col - 12 {
+    -webkit - box - flex: 0;
+    -ms - flex: 0 0 100 %;
+    flex: 0 0 100 %;
+    max - width: 100 %;
+}
+
+.order - first {
+    -webkit - box - ordinal - group: 0;
+    -ms - flex - order: -1;
+    order: -1;
+}
+
+.order - last {
+    -webkit - box - ordinal - group: 14;
+    -ms - flex - order: 13;
+    order: 13;
+}
+
+.order - 0 {
+    -webkit - box - ordinal - group: 1;
+    -ms - flex - order: 0;
+    order: 0;
+}
+
+.order - 1 {
+    -webkit - box - ordinal - group: 2;
+    -ms - flex - order: 1;
+    order: 1;
+}
+
+.order - 2 {
+    -webkit - box - ordinal - group: 3;
+    -ms - flex - order: 2;
+    order: 2;
+}
+
+.order - 3 {
+    -webkit - box - ordinal - group: 4;
+    -ms - flex - order: 3;
+    order: 3;
+}
+
+.order - 4 {
+    -webkit - box - ordinal - group: 5;
+    -ms - flex - order: 4;
+    order: 4;
+}
+
+.order - 5 {
+    -webkit - box - ordinal - group: 6;
+    -ms - flex - order: 5;
+    order: 5;
+}
+
+.order - 6 {
+    -webkit - box - ordinal - group: 7;
+    -ms - flex - order: 6;
+    order: 6;
+}
+
+.order - 7 {
+    -webkit - box - ordinal - group: 8;
+    -ms - flex - order: 7;
+    order: 7;
+}
+
+.order - 8 {
+    -webkit - box - ordinal - group: 9;
+    -ms - flex - order: 8;
+    order: 8;
+}
+
+.order - 9 {
+    -webkit - box - ordinal - group: 10;
+    -ms - flex - order: 9;
+    order: 9;
+}
+
+.order - 10 {
+    -webkit - box - ordinal - group: 11;
+    -ms - flex - order: 10;
+    order: 10;
+}
+
+.order - 11 {
+    -webkit - box - ordinal - group: 12;
+    -ms - flex - order: 11;
+    order: 11;
+}
+
+.order - 12 {
+    -webkit - box - ordinal - group: 13;
+    -ms - flex - order: 12;
+    order: 12;
+}
+
+.offset - 1 {
+    margin - left: 8.3333333333 %;
+}
+
+.offset - 2 {
+    margin - left: 16.6666666667 %;
+}
+
+.offset - 3 {
+    margin - left: 25 %;
+}
+
+.offset - 4 {
+    margin - left: 33.3333333333 %;
+}
+
+.offset - 5 {
+    margin - left: 41.6666666667 %;
+}
+
+.offset - 6 {
+    margin - left: 50 %;
+}
+
+.offset - 7 {
+    margin - left: 58.3333333333 %;
+}
+
+.offset - 8 {
+    margin - left: 66.6666666667 %;
+}
+
+.offset - 9 {
+    margin - left: 75 %;
+}
+
+.offset - 10 {
+    margin - left: 83.3333333333 %;
+}
+
+.offset - 11 {
+    margin - left: 91.6666666667 %;
+}
+
+@media(min - width: 576px) {
+  .col - sm {
+        -ms - flex - preferred - size: 0;
+        flex - basis: 0;
+        -webkit - box - flex: 1;
+        -ms - flex - positive: 1;
+        flex - grow: 1;
+        max - width: 100 %;
     }
-
-    $parent.trigger(e = $.Event('close.bs.alert'))
-
-    if (e.isDefaultPrevented()) return
-
-    $parent.removeClass('in')
-
-    function removeElement() {
-      // detach from parent, fire event then clean up data
-      $parent.detach().trigger('closed.bs.alert').remove()
+  .col - sm - auto {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 auto;
+        flex: 0 0 auto;
+        width: auto;
+        max - width: none;
     }
-
-    $.support.transition && $parent.hasClass('fade') ?
-      $parent
-        .one('bsTransitionEnd', removeElement)
-        .emulateTransitionEnd(Alert.TRANSITION_DURATION) :
-      removeElement()
-  }
-
-
-  // ALERT PLUGIN DEFINITION
-  // =======================
-
-  function Plugin(option) {
-    return this.each(function () {
-      var $this = $(this)
-      var data  = $this.data('bs.alert')
-
-      if (!data) $this.data('bs.alert', (data = new Alert(this)))
-      if (typeof option == 'string') data[option].call($this)
-    })
-  }
-
-  var old = $.fn.alert
-
-  $.fn.alert             = Plugin
-  $.fn.alert.Constructor = Alert
-
-
-  // ALERT NO CONFLICT
-  // =================
-
-  $.fn.alert.noConflict = function () {
-    $.fn.alert = old
-    return this
-  }
-
-
-  // ALERT DATA-API
-  // ==============
-
-  $(document).on('click.bs.alert.data-api', dismiss, Alert.prototype.close)
-
-}(jQuery);
-
-/* ========================================================================
- * Bootstrap: button.js v3.3.7
- * http://getbootstrap.com/javascript/#buttons
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-
-+function ($) {
-  'use strict';
-
-  // BUTTON PUBLIC CLASS DEFINITION
-  // ==============================
-
-  var Button = function (element, options) {
-    this.$element  = $(element)
-    this.options   = $.extend({}, Button.DEFAULTS, options)
-    this.isLoading = false
-  }
-
-  Button.VERSION  = '3.3.7'
-
-  Button.DEFAULTS = {
-    loadingText: 'loading...'
-  }
-
-  Button.prototype.setState = function (state) {
-    var d    = 'disabled'
-    var $el  = this.$element
-    var val  = $el.is('input') ? 'val' : 'html'
-    var data = $el.data()
-
-    state += 'Text'
-
-    if (data.resetText == null) $el.data('resetText', $el[val]())
-
-    // push to event loop to allow forms to submit
-    setTimeout($.proxy(function () {
-      $el[val](data[state] == null ? this.options[state] : data[state])
-
-      if (state == 'loadingText') {
-        this.isLoading = true
-        $el.addClass(d).attr(d, d).prop(d, true)
-      } else if (this.isLoading) {
-        this.isLoading = false
-        $el.removeClass(d).removeAttr(d).prop(d, false)
-      }
-    }, this), 0)
-  }
-
-  Button.prototype.toggle = function () {
-    var changed = true
-    var $parent = this.$element.closest('[data-toggle="buttons"]')
-
-    if ($parent.length) {
-      var $input = this.$element.find('input')
-      if ($input.prop('type') == 'radio') {
-        if ($input.prop('checked')) changed = false
-        $parent.find('.active').removeClass('active')
-        this.$element.addClass('active')
-      } else if ($input.prop('type') == 'checkbox') {
-        if (($input.prop('checked')) !== this.$element.hasClass('active')) changed = false
-        this.$element.toggleClass('active')
-      }
-      $input.prop('checked', this.$element.hasClass('active'))
-      if (changed) $input.trigger('change')
-    } else {
-      this.$element.attr('aria-pressed', !this.$element.hasClass('active'))
-      this.$element.toggleClass('active')
+  .col - sm - 1 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 8.3333333333 %;
+        flex: 0 0 8.3333333333 %;
+        max - width: 8.3333333333 %;
     }
-  }
-
-
-  // BUTTON PLUGIN DEFINITION
-  // ========================
-
-  function Plugin(option) {
-    return this.each(function () {
-      var $this   = $(this)
-      var data    = $this.data('bs.button')
-      var options = typeof option == 'object' && option
-
-      if (!data) $this.data('bs.button', (data = new Button(this, options)))
-
-      if (option == 'toggle') data.toggle()
-      else if (option) data.setState(option)
-    })
-  }
-
-  var old = $.fn.button
-
-  $.fn.button             = Plugin
-  $.fn.button.Constructor = Button
-
-
-  // BUTTON NO CONFLICT
-  // ==================
-
-  $.fn.button.noConflict = function () {
-    $.fn.button = old
-    return this
-  }
-
-
-  // BUTTON DATA-API
-  // ===============
-
-  $(document)
-    .on('click.bs.button.data-api', '[data-toggle^="button"]', function (e) {
-      var $btn = $(e.target).closest('.btn')
-      Plugin.call($btn, 'toggle')
-      if (!($(e.target).is('input[type="radio"], input[type="checkbox"]'))) {
-        // Prevent double click on radios, and the double selections (so cancellation) on checkboxes
-        e.preventDefault()
-        // The target component still receive the focus
-        if ($btn.is('input,button')) $btn.trigger('focus')
-        else $btn.find('input:visible,button:visible').first().trigger('focus')
-      }
-    })
-    .on('focus.bs.button.data-api blur.bs.button.data-api', '[data-toggle^="button"]', function (e) {
-      $(e.target).closest('.btn').toggleClass('focus', /^focus(in)?$/.test(e.type))
-    })
-
-}(jQuery);
-
-/* ========================================================================
- * Bootstrap: carousel.js v3.3.7
- * http://getbootstrap.com/javascript/#carousel
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-
-+function ($) {
-  'use strict';
-
-  // CAROUSEL CLASS DEFINITION
-  // =========================
-
-  var Carousel = function (element, options) {
-    this.$element    = $(element)
-    this.$indicators = this.$element.find('.carousel-indicators')
-    this.options     = options
-    this.paused      = null
-    this.sliding     = null
-    this.interval    = null
-    this.$active     = null
-    this.$items      = null
-
-    this.options.keyboard && this.$element.on('keydown.bs.carousel', $.proxy(this.keydown, this))
-
-    this.options.pause == 'hover' && !('ontouchstart' in document.documentElement) && this.$element
-      .on('mouseenter.bs.carousel', $.proxy(this.pause, this))
-      .on('mouseleave.bs.carousel', $.proxy(this.cycle, this))
-  }
-
-  Carousel.VERSION  = '3.3.7'
-
-  Carousel.TRANSITION_DURATION = 600
-
-  Carousel.DEFAULTS = {
-    interval: 5000,
-    pause: 'hover',
-    wrap: true,
-    keyboard: true
-  }
-
-  Carousel.prototype.keydown = function (e) {
-    if (/input|textarea/i.test(e.target.tagName)) return
-    switch (e.which) {
-      case 37: this.prev(); break
-      case 39: this.next(); break
-      default: return
+  .col - sm - 2 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 16.6666666667 %;
+        flex: 0 0 16.6666666667 %;
+        max - width: 16.6666666667 %;
     }
-
-    e.preventDefault()
-  }
-
-  Carousel.prototype.cycle = function (e) {
-    e || (this.paused = false)
-
-    this.interval && clearInterval(this.interval)
-
-    this.options.interval
-      && !this.paused
-      && (this.interval = setInterval($.proxy(this.next, this), this.options.interval))
-
-    return this
-  }
-
-  Carousel.prototype.getItemIndex = function (item) {
-    this.$items = item.parent().children('.item')
-    return this.$items.index(item || this.$active)
-  }
-
-  Carousel.prototype.getItemForDirection = function (direction, active) {
-    var activeIndex = this.getItemIndex(active)
-    var willWrap = (direction == 'prev' && activeIndex === 0)
-                || (direction == 'next' && activeIndex == (this.$items.length - 1))
-    if (willWrap && !this.options.wrap) return active
-    var delta = direction == 'prev' ? -1 : 1
-    var itemIndex = (activeIndex + delta) % this.$items.length
-    return this.$items.eq(itemIndex)
-  }
-
-  Carousel.prototype.to = function (pos) {
-    var that        = this
-    var activeIndex = this.getItemIndex(this.$active = this.$element.find('.item.active'))
-
-    if (pos > (this.$items.length - 1) || pos < 0) return
-
-    if (this.sliding)       return this.$element.one('slid.bs.carousel', function () { that.to(pos) }) // yes, "slid"
-    if (activeIndex == pos) return this.pause().cycle()
-
-    return this.slide(pos > activeIndex ? 'next' : 'prev', this.$items.eq(pos))
-  }
-
-  Carousel.prototype.pause = function (e) {
-    e || (this.paused = true)
-
-    if (this.$element.find('.next, .prev').length && $.support.transition) {
-      this.$element.trigger($.support.transition.end)
-      this.cycle(true)
+  .col - sm - 3 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 25 %;
+        flex: 0 0 25 %;
+        max - width: 25 %;
     }
-
-    this.interval = clearInterval(this.interval)
-
-    return this
-  }
-
-  Carousel.prototype.next = function () {
-    if (this.sliding) return
-    return this.slide('next')
-  }
-
-  Carousel.prototype.prev = function () {
-    if (this.sliding) return
-    return this.slide('prev')
-  }
-
-  Carousel.prototype.slide = function (type, next) {
-    var $active   = this.$element.find('.item.active')
-    var $next     = next || this.getItemForDirection(type, $active)
-    var isCycling = this.interval
-    var direction = type == 'next' ? 'left' : 'right'
-    var that      = this
-
-    if ($next.hasClass('active')) return (this.sliding = false)
-
-    var relatedTarget = $next[0]
-    var slideEvent = $.Event('slide.bs.carousel', {
-      relatedTarget: relatedTarget,
-      direction: direction
-    })
-    this.$element.trigger(slideEvent)
-    if (slideEvent.isDefaultPrevented()) return
-
-    this.sliding = true
-
-    isCycling && this.pause()
-
-    if (this.$indicators.length) {
-      this.$indicators.find('.active').removeClass('active')
-      var $nextIndicator = $(this.$indicators.children()[this.getItemIndex($next)])
-      $nextIndicator && $nextIndicator.addClass('active')
+  .col - sm - 4 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 33.3333333333 %;
+        flex: 0 0 33.3333333333 %;
+        max - width: 33.3333333333 %;
     }
-
-    var slidEvent = $.Event('slid.bs.carousel', { relatedTarget: relatedTarget, direction: direction }) // yes, "slid"
-    if ($.support.transition && this.$element.hasClass('slide')) {
-      $next.addClass(type)
-      $next[0].offsetWidth // force reflow
-      $active.addClass(direction)
-      $next.addClass(direction)
-      $active
-        .one('bsTransitionEnd', function () {
-          $next.removeClass([type, direction].join(' ')).addClass('active')
-          $active.removeClass(['active', direction].join(' '))
-          that.sliding = false
-          setTimeout(function () {
-            that.$element.trigger(slidEvent)
-          }, 0)
-        })
-        .emulateTransitionEnd(Carousel.TRANSITION_DURATION)
-    } else {
-      $active.removeClass('active')
-      $next.addClass('active')
-      this.sliding = false
-      this.$element.trigger(slidEvent)
+  .col - sm - 5 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 41.6666666667 %;
+        flex: 0 0 41.6666666667 %;
+        max - width: 41.6666666667 %;
     }
-
-    isCycling && this.cycle()
-
-    return this
-  }
-
-
-  // CAROUSEL PLUGIN DEFINITION
-  // ==========================
-
-  function Plugin(option) {
-    return this.each(function () {
-      var $this   = $(this)
-      var data    = $this.data('bs.carousel')
-      var options = $.extend({}, Carousel.DEFAULTS, $this.data(), typeof option == 'object' && option)
-      var action  = typeof option == 'string' ? option : options.slide
-
-      if (!data) $this.data('bs.carousel', (data = new Carousel(this, options)))
-      if (typeof option == 'number') data.to(option)
-      else if (action) data[action]()
-      else if (options.interval) data.pause().cycle()
-    })
-  }
-
-  var old = $.fn.carousel
-
-  $.fn.carousel             = Plugin
-  $.fn.carousel.Constructor = Carousel
-
-
-  // CAROUSEL NO CONFLICT
-  // ====================
-
-  $.fn.carousel.noConflict = function () {
-    $.fn.carousel = old
-    return this
-  }
-
-
-  // CAROUSEL DATA-API
-  // =================
-
-  var clickHandler = function (e) {
-    var href
-    var $this   = $(this)
-    var $target = $($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) // strip for ie7
-    if (!$target.hasClass('carousel')) return
-    var options = $.extend({}, $target.data(), $this.data())
-    var slideIndex = $this.attr('data-slide-to')
-    if (slideIndex) options.interval = false
-
-    Plugin.call($target, options)
-
-    if (slideIndex) {
-      $target.data('bs.carousel').to(slideIndex)
+  .col - sm - 6 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 50 %;
+        flex: 0 0 50 %;
+        max - width: 50 %;
     }
-
-    e.preventDefault()
-  }
-
-  $(document)
-    .on('click.bs.carousel.data-api', '[data-slide]', clickHandler)
-    .on('click.bs.carousel.data-api', '[data-slide-to]', clickHandler)
-
-  $(window).on('load', function () {
-    $('[data-ride="carousel"]').each(function () {
-      var $carousel = $(this)
-      Plugin.call($carousel, $carousel.data())
-    })
-  })
-
-}(jQuery);
-
-/* ========================================================================
- * Bootstrap: collapse.js v3.3.7
- * http://getbootstrap.com/javascript/#collapse
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-/* jshint latedef: false */
-
-+function ($) {
-  'use strict';
-
-  // COLLAPSE PUBLIC CLASS DEFINITION
-  // ================================
-
-  var Collapse = function (element, options) {
-    this.$element      = $(element)
-    this.options       = $.extend({}, Collapse.DEFAULTS, options)
-    this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
-                           '[data-toggle="collapse"][data-target="#' + element.id + '"]')
-    this.transitioning = null
-
-    if (this.options.parent) {
-      this.$parent = this.getParent()
-    } else {
-      this.addAriaAndCollapsedClass(this.$element, this.$trigger)
+  .col - sm - 7 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 58.3333333333 %;
+        flex: 0 0 58.3333333333 %;
+        max - width: 58.3333333333 %;
     }
-
-    if (this.options.toggle) this.toggle()
-  }
-
-  Collapse.VERSION  = '3.3.7'
-
-  Collapse.TRANSITION_DURATION = 350
-
-  Collapse.DEFAULTS = {
-    toggle: true
-  }
-
-  Collapse.prototype.dimension = function () {
-    var hasWidth = this.$element.hasClass('width')
-    return hasWidth ? 'width' : 'height'
-  }
-
-  Collapse.prototype.show = function () {
-    if (this.transitioning || this.$element.hasClass('in')) return
-
-    var activesData
-    var actives = this.$parent && this.$parent.children('.panel').children('.in, .collapsing')
-
-    if (actives && actives.length) {
-      activesData = actives.data('bs.collapse')
-      if (activesData && activesData.transitioning) return
+  .col - sm - 8 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 66.6666666667 %;
+        flex: 0 0 66.6666666667 %;
+        max - width: 66.6666666667 %;
     }
-
-    var startEvent = $.Event('show.bs.collapse')
-    this.$element.trigger(startEvent)
-    if (startEvent.isDefaultPrevented()) return
-
-    if (actives && actives.length) {
-      Plugin.call(actives, 'hide')
-      activesData || actives.data('bs.collapse', null)
+  .col - sm - 9 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 75 %;
+        flex: 0 0 75 %;
+        max - width: 75 %;
     }
-
-    var dimension = this.dimension()
-
-    this.$element
-      .removeClass('collapse')
-      .addClass('collapsing')[dimension](0)
-      .attr('aria-expanded', true)
-
-    this.$trigger
-      .removeClass('collapsed')
-      .attr('aria-expanded', true)
-
-    this.transitioning = 1
-
-    var complete = function () {
-      this.$element
-        .removeClass('collapsing')
-        .addClass('collapse in')[dimension]('')
-      this.transitioning = 0
-      this.$element
-        .trigger('shown.bs.collapse')
+  .col - sm - 10 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 83.3333333333 %;
+        flex: 0 0 83.3333333333 %;
+        max - width: 83.3333333333 %;
     }
-
-    if (!$.support.transition) return complete.call(this)
-
-    var scrollSize = $.camelCase(['scroll', dimension].join('-'))
-
-    this.$element
-      .one('bsTransitionEnd', $.proxy(complete, this))
-      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)[dimension](this.$element[0][scrollSize])
-  }
-
-  Collapse.prototype.hide = function () {
-    if (this.transitioning || !this.$element.hasClass('in')) return
-
-    var startEvent = $.Event('hide.bs.collapse')
-    this.$element.trigger(startEvent)
-    if (startEvent.isDefaultPrevented()) return
-
-    var dimension = this.dimension()
-
-    this.$element[dimension](this.$element[dimension]())[0].offsetHeight
-
-    this.$element
-      .addClass('collapsing')
-      .removeClass('collapse in')
-      .attr('aria-expanded', false)
-
-    this.$trigger
-      .addClass('collapsed')
-      .attr('aria-expanded', false)
-
-    this.transitioning = 1
-
-    var complete = function () {
-      this.transitioning = 0
-      this.$element
-        .removeClass('collapsing')
-        .addClass('collapse')
-        .trigger('hidden.bs.collapse')
+  .col - sm - 11 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 91.6666666667 %;
+        flex: 0 0 91.6666666667 %;
+        max - width: 91.6666666667 %;
     }
-
-    if (!$.support.transition) return complete.call(this)
-
-    this.$element
-      [dimension](0)
-      .one('bsTransitionEnd', $.proxy(complete, this))
-      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)
-  }
-
-  Collapse.prototype.toggle = function () {
-    this[this.$element.hasClass('in') ? 'hide' : 'show']()
-  }
-
-  Collapse.prototype.getParent = function () {
-    return $(this.options.parent)
-      .find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]')
-      .each($.proxy(function (i, element) {
-        var $element = $(element)
-        this.addAriaAndCollapsedClass(getTargetFromTrigger($element), $element)
-      }, this))
-      .end()
-  }
-
-  Collapse.prototype.addAriaAndCollapsedClass = function ($element, $trigger) {
-    var isOpen = $element.hasClass('in')
-
-    $element.attr('aria-expanded', isOpen)
-    $trigger
-      .toggleClass('collapsed', !isOpen)
-      .attr('aria-expanded', isOpen)
-  }
-
-  function getTargetFromTrigger($trigger) {
-    var href
-    var target = $trigger.attr('data-target')
-      || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
-
-    return $(target)
-  }
-
-
-  // COLLAPSE PLUGIN DEFINITION
-  // ==========================
-
-  function Plugin(option) {
-    return this.each(function () {
-      var $this   = $(this)
-      var data    = $this.data('bs.collapse')
-      var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
-
-      if (!data && options.toggle && /show|hide/.test(option)) options.toggle = false
-      if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
-      if (typeof option == 'string') data[option]()
-    })
-  }
-
-  var old = $.fn.collapse
-
-  $.fn.collapse             = Plugin
-  $.fn.collapse.Constructor = Collapse
-
-
-  // COLLAPSE NO CONFLICT
-  // ====================
-
-  $.fn.collapse.noConflict = function () {
-    $.fn.collapse = old
-    return this
-  }
-
-
-  // COLLAPSE DATA-API
-  // =================
-
-  $(document).on('click.bs.collapse.data-api', '[data-toggle="collapse"]', function (e) {
-    var $this   = $(this)
-
-    if (!$this.attr('data-target')) e.preventDefault()
-
-    var $target = getTargetFromTrigger($this)
-    var data    = $target.data('bs.collapse')
-    var option  = data ? 'toggle' : $this.data()
-
-    Plugin.call($target, option)
-  })
-
-}(jQuery);
-
-/* ========================================================================
- * Bootstrap: dropdown.js v3.3.7
- * http://getbootstrap.com/javascript/#dropdowns
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-
-+function ($) {
-  'use strict';
-
-  // DROPDOWN CLASS DEFINITION
-  // =========================
-
-  var backdrop = '.dropdown-backdrop'
-  var toggle   = '[data-toggle="dropdown"]'
-  var Dropdown = function (element) {
-    $(element).on('click.bs.dropdown', this.toggle)
-  }
-
-  Dropdown.VERSION = '3.3.7'
-
-  function getParent($this) {
-    var selector = $this.attr('data-target')
-
-    if (!selector) {
-      selector = $this.attr('href')
-      selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+  .col - sm - 12 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 100 %;
+        flex: 0 0 100 %;
+        max - width: 100 %;
     }
-
-    var $parent = selector && $(selector)
-
-    return $parent && $parent.length ? $parent : $this.parent()
-  }
-
-  function clearMenus(e) {
-    if (e && e.which === 3) return
-    $(backdrop).remove()
-    $(toggle).each(function () {
-      var $this         = $(this)
-      var $parent       = getParent($this)
-      var relatedTarget = { relatedTarget: this }
-
-      if (!$parent.hasClass('open')) return
-
-      if (e && e.type == 'click' && /input|textarea/i.test(e.target.tagName) && $.contains($parent[0], e.target)) return
-
-      $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
-
-      if (e.isDefaultPrevented()) return
-
-      $this.attr('aria-expanded', 'false')
-      $parent.removeClass('open').trigger($.Event('hidden.bs.dropdown', relatedTarget))
-    })
-  }
-
-  Dropdown.prototype.toggle = function (e) {
-    var $this = $(this)
-
-    if ($this.is('.disabled, :disabled')) return
-
-    var $parent  = getParent($this)
-    var isActive = $parent.hasClass('open')
-
-    clearMenus()
-
-    if (!isActive) {
-      if ('ontouchstart' in document.documentElement && !$parent.closest('.navbar-nav').length) {
-        // if mobile we use a backdrop because click events don't delegate
-        $(document.createElement('div'))
-          .addClass('dropdown-backdrop')
-          .insertAfter($(this))
-          .on('click', clearMenus)
-      }
-
-      var relatedTarget = { relatedTarget: this }
-      $parent.trigger(e = $.Event('show.bs.dropdown', relatedTarget))
-
-      if (e.isDefaultPrevented()) return
-
-      $this
-        .trigger('focus')
-        .attr('aria-expanded', 'true')
-
-      $parent
-        .toggleClass('open')
-        .trigger($.Event('shown.bs.dropdown', relatedTarget))
+  .order - sm - first {
+        -webkit - box - ordinal - group: 0;
+        -ms - flex - order: -1;
+        order: -1;
     }
-
-    return false
-  }
-
-  Dropdown.prototype.keydown = function (e) {
-    if (!/(38|40|27|32)/.test(e.which) || /input|textarea/i.test(e.target.tagName)) return
-
-    var $this = $(this)
-
-    e.preventDefault()
-    e.stopPropagation()
-
-    if ($this.is('.disabled, :disabled')) return
-
-    var $parent  = getParent($this)
-    var isActive = $parent.hasClass('open')
-
-    if (!isActive && e.which != 27 || isActive && e.which == 27) {
-      if (e.which == 27) $parent.find(toggle).trigger('focus')
-      return $this.trigger('click')
+  .order - sm - last {
+        -webkit - box - ordinal - group: 14;
+        -ms - flex - order: 13;
+        order: 13;
     }
-
-    var desc = ' li:not(.disabled):visible a'
-    var $items = $parent.find('.dropdown-menu' + desc)
-
-    if (!$items.length) return
-
-    var index = $items.index(e.target)
-
-    if (e.which == 38 && index > 0)                 index--         // up
-    if (e.which == 40 && index < $items.length - 1) index++         // down
-    if (!~index)                                    index = 0
-
-    $items.eq(index).trigger('focus')
-  }
-
-
-  // DROPDOWN PLUGIN DEFINITION
-  // ==========================
-
-  function Plugin(option) {
-    return this.each(function () {
-      var $this = $(this)
-      var data  = $this.data('bs.dropdown')
-
-      if (!data) $this.data('bs.dropdown', (data = new Dropdown(this)))
-      if (typeof option == 'string') data[option].call($this)
-    })
-  }
-
-  var old = $.fn.dropdown
-
-  $.fn.dropdown             = Plugin
-  $.fn.dropdown.Constructor = Dropdown
-
-
-  // DROPDOWN NO CONFLICT
-  // ====================
-
-  $.fn.dropdown.noConflict = function () {
-    $.fn.dropdown = old
-    return this
-  }
-
-
-  // APPLY TO STANDARD DROPDOWN ELEMENTS
-  // ===================================
-
-  $(document)
-    .on('click.bs.dropdown.data-api', clearMenus)
-    .on('click.bs.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
-    .on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle)
-    .on('keydown.bs.dropdown.data-api', toggle, Dropdown.prototype.keydown)
-    .on('keydown.bs.dropdown.data-api', '.dropdown-menu', Dropdown.prototype.keydown)
-
-}(jQuery);
-
-/* ========================================================================
- * Bootstrap: modal.js v3.3.7
- * http://getbootstrap.com/javascript/#modals
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-
-+function ($) {
-  'use strict';
-
-  // MODAL CLASS DEFINITION
-  // ======================
-
-  var Modal = function (element, options) {
-    this.options             = options
-    this.$body               = $(document.body)
-    this.$element            = $(element)
-    this.$dialog             = this.$element.find('.modal-dialog')
-    this.$backdrop           = null
-    this.isShown             = null
-    this.originalBodyPad     = null
-    this.scrollbarWidth      = 0
-    this.ignoreBackdropClick = false
-
-    if (this.options.remote) {
-      this.$element
-        .find('.modal-content')
-        .load(this.options.remote, $.proxy(function () {
-          this.$element.trigger('loaded.bs.modal')
-        }, this))
+  .order - sm - 0 {
+        -webkit - box - ordinal - group: 1;
+        -ms - flex - order: 0;
+        order: 0;
     }
-  }
-
-  Modal.VERSION  = '3.3.7'
-
-  Modal.TRANSITION_DURATION = 300
-  Modal.BACKDROP_TRANSITION_DURATION = 150
-
-  Modal.DEFAULTS = {
-    backdrop: true,
-    keyboard: true,
-    show: true
-  }
-
-  Modal.prototype.toggle = function (_relatedTarget) {
-    return this.isShown ? this.hide() : this.show(_relatedTarget)
-  }
-
-  Modal.prototype.show = function (_relatedTarget) {
-    var that = this
-    var e    = $.Event('show.bs.modal', { relatedTarget: _relatedTarget })
-
-    this.$element.trigger(e)
-
-    if (this.isShown || e.isDefaultPrevented()) return
-
-    this.isShown = true
-
-    this.checkScrollbar()
-    this.setScrollbar()
-    this.$body.addClass('modal-open')
-
-    this.escape()
-    this.resize()
-
-    this.$element.on('click.dismiss.bs.modal', '[data-dismiss="modal"]', $.proxy(this.hide, this))
-
-    this.$dialog.on('mousedown.dismiss.bs.modal', function () {
-      that.$element.one('mouseup.dismiss.bs.modal', function (e) {
-        if ($(e.target).is(that.$element)) that.ignoreBackdropClick = true
-      })
-    })
-
-    this.backdrop(function () {
-      var transition = $.support.transition && that.$element.hasClass('fade')
-
-      if (!that.$element.parent().length) {
-        that.$element.appendTo(that.$body) // don't move modals dom position
-      }
-
-      that.$element
-        .show()
-        .scrollTop(0)
-
-      that.adjustDialog()
-
-      if (transition) {
-        that.$element[0].offsetWidth // force reflow
-      }
-
-      that.$element.addClass('in')
-
-      that.enforceFocus()
-
-      var e = $.Event('shown.bs.modal', { relatedTarget: _relatedTarget })
-
-      transition ?
-        that.$dialog // wait for modal to slide in
-          .one('bsTransitionEnd', function () {
-            that.$element.trigger('focus').trigger(e)
-          })
-          .emulateTransitionEnd(Modal.TRANSITION_DURATION) :
-        that.$element.trigger('focus').trigger(e)
-    })
-  }
-
-  Modal.prototype.hide = function (e) {
-    if (e) e.preventDefault()
-
-    e = $.Event('hide.bs.modal')
-
-    this.$element.trigger(e)
-
-    if (!this.isShown || e.isDefaultPrevented()) return
-
-    this.isShown = false
-
-    this.escape()
-    this.resize()
-
-    $(document).off('focusin.bs.modal')
-
-    this.$element
-      .removeClass('in')
-      .off('click.dismiss.bs.modal')
-      .off('mouseup.dismiss.bs.modal')
-
-    this.$dialog.off('mousedown.dismiss.bs.modal')
-
-    $.support.transition && this.$element.hasClass('fade') ?
-      this.$element
-        .one('bsTransitionEnd', $.proxy(this.hideModal, this))
-        .emulateTransitionEnd(Modal.TRANSITION_DURATION) :
-      this.hideModal()
-  }
-
-  Modal.prototype.enforceFocus = function () {
-    $(document)
-      .off('focusin.bs.modal') // guard against infinite focus loop
-      .on('focusin.bs.modal', $.proxy(function (e) {
-        if (document !== e.target &&
-            this.$element[0] !== e.target &&
-            !this.$element.has(e.target).length) {
-          this.$element.trigger('focus')
-        }
-      }, this))
-  }
-
-  Modal.prototype.escape = function () {
-    if (this.isShown && this.options.keyboard) {
-      this.$element.on('keydown.dismiss.bs.modal', $.proxy(function (e) {
-        e.which == 27 && this.hide()
-      }, this))
-    } else if (!this.isShown) {
-      this.$element.off('keydown.dismiss.bs.modal')
+  .order - sm - 1 {
+        -webkit - box - ordinal - group: 2;
+        -ms - flex - order: 1;
+        order: 1;
     }
-  }
-
-  Modal.prototype.resize = function () {
-    if (this.isShown) {
-      $(window).on('resize.bs.modal', $.proxy(this.handleUpdate, this))
-    } else {
-      $(window).off('resize.bs.modal')
+  .order - sm - 2 {
+        -webkit - box - ordinal - group: 3;
+        -ms - flex - order: 2;
+        order: 2;
     }
-  }
-
-  Modal.prototype.hideModal = function () {
-    var that = this
-    this.$element.hide()
-    this.backdrop(function () {
-      that.$body.removeClass('modal-open')
-      that.resetAdjustments()
-      that.resetScrollbar()
-      that.$element.trigger('hidden.bs.modal')
-    })
-  }
-
-  Modal.prototype.removeBackdrop = function () {
-    this.$backdrop && this.$backdrop.remove()
-    this.$backdrop = null
-  }
-
-  Modal.prototype.backdrop = function (callback) {
-    var that = this
-    var animate = this.$element.hasClass('fade') ? 'fade' : ''
-
-    if (this.isShown && this.options.backdrop) {
-      var doAnimate = $.support.transition && animate
-
-      this.$backdrop = $(document.createElement('div'))
-        .addClass('modal-backdrop ' + animate)
-        .appendTo(this.$body)
-
-      this.$element.on('click.dismiss.bs.modal', $.proxy(function (e) {
-        if (this.ignoreBackdropClick) {
-          this.ignoreBackdropClick = false
-          return
-        }
-        if (e.target !== e.currentTarget) return
-        this.options.backdrop == 'static'
-          ? this.$element[0].focus()
-          : this.hide()
-      }, this))
-
-      if (doAnimate) this.$backdrop[0].offsetWidth // force reflow
-
-      this.$backdrop.addClass('in')
-
-      if (!callback) return
-
-      doAnimate ?
-        this.$backdrop
-          .one('bsTransitionEnd', callback)
-          .emulateTransitionEnd(Modal.BACKDROP_TRANSITION_DURATION) :
-        callback()
-
-    } else if (!this.isShown && this.$backdrop) {
-      this.$backdrop.removeClass('in')
-
-      var callbackRemove = function () {
-        that.removeBackdrop()
-        callback && callback()
-      }
-      $.support.transition && this.$element.hasClass('fade') ?
-        this.$backdrop
-          .one('bsTransitionEnd', callbackRemove)
-          .emulateTransitionEnd(Modal.BACKDROP_TRANSITION_DURATION) :
-        callbackRemove()
-
-    } else if (callback) {
-      callback()
+  .order - sm - 3 {
+        -webkit - box - ordinal - group: 4;
+        -ms - flex - order: 3;
+        order: 3;
     }
-  }
-
-  // these following methods are used to handle overflowing modals
-
-  Modal.prototype.handleUpdate = function () {
-    this.adjustDialog()
-  }
-
-  Modal.prototype.adjustDialog = function () {
-    var modalIsOverflowing = this.$element[0].scrollHeight > document.documentElement.clientHeight
-
-    this.$element.css({
-      paddingLeft:  !this.bodyIsOverflowing && modalIsOverflowing ? this.scrollbarWidth : '',
-      paddingRight: this.bodyIsOverflowing && !modalIsOverflowing ? this.scrollbarWidth : ''
-    })
-  }
-
-  Modal.prototype.resetAdjustments = function () {
-    this.$element.css({
-      paddingLeft: '',
-      paddingRight: ''
-    })
-  }
-
-  Modal.prototype.checkScrollbar = function () {
-    var fullWindowWidth = window.innerWidth
-    if (!fullWindowWidth) { // workaround for missing window.innerWidth in IE8
-      var documentElementRect = document.documentElement.getBoundingClientRect()
-      fullWindowWidth = documentElementRect.right - Math.abs(documentElementRect.left)
+  .order - sm - 4 {
+        -webkit - box - ordinal - group: 5;
+        -ms - flex - order: 4;
+        order: 4;
     }
-    this.bodyIsOverflowing = document.body.clientWidth < fullWindowWidth
-    this.scrollbarWidth = this.measureScrollbar()
-  }
-
-  Modal.prototype.setScrollbar = function () {
-    var bodyPad = parseInt((this.$body.css('padding-right') || 0), 10)
-    this.originalBodyPad = document.body.style.paddingRight || ''
-    if (this.bodyIsOverflowing) this.$body.css('padding-right', bodyPad + this.scrollbarWidth)
-  }
-
-  Modal.prototype.resetScrollbar = function () {
-    this.$body.css('padding-right', this.originalBodyPad)
-  }
-
-  Modal.prototype.measureScrollbar = function () { // thx walsh
-    var scrollDiv = document.createElement('div')
-    scrollDiv.className = 'modal-scrollbar-measure'
-    this.$body.append(scrollDiv)
-    var scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth
-    this.$body[0].removeChild(scrollDiv)
-    return scrollbarWidth
-  }
-
-
-  // MODAL PLUGIN DEFINITION
-  // =======================
-
-  function Plugin(option, _relatedTarget) {
-    return this.each(function () {
-      var $this   = $(this)
-      var data    = $this.data('bs.modal')
-      var options = $.extend({}, Modal.DEFAULTS, $this.data(), typeof option == 'object' && option)
-
-      if (!data) $this.data('bs.modal', (data = new Modal(this, options)))
-      if (typeof option == 'string') data[option](_relatedTarget)
-      else if (options.show) data.show(_relatedTarget)
-    })
-  }
-
-  var old = $.fn.modal
-
-  $.fn.modal             = Plugin
-  $.fn.modal.Constructor = Modal
-
-
-  // MODAL NO CONFLICT
-  // =================
-
-  $.fn.modal.noConflict = function () {
-    $.fn.modal = old
-    return this
-  }
-
-
-  // MODAL DATA-API
-  // ==============
-
-  $(document).on('click.bs.modal.data-api', '[data-toggle="modal"]', function (e) {
-    var $this   = $(this)
-    var href    = $this.attr('href')
-    var $target = $($this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, ''))) // strip for ie7
-    var option  = $target.data('bs.modal') ? 'toggle' : $.extend({ remote: !/#/.test(href) && href }, $target.data(), $this.data())
-
-    if ($this.is('a')) e.preventDefault()
-
-    $target.one('show.bs.modal', function (showEvent) {
-      if (showEvent.isDefaultPrevented()) return // only register focus restorer if modal will actually get shown
-      $target.one('hidden.bs.modal', function () {
-        $this.is(':visible') && $this.trigger('focus')
-      })
-    })
-    Plugin.call($target, option, this)
-  })
-
-}(jQuery);
-
-/* ========================================================================
- * Bootstrap: tooltip.js v3.3.7
- * http://getbootstrap.com/javascript/#tooltip
- * Inspired by the original jQuery.tipsy by Jason Frame
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-
-+function ($) {
-  'use strict';
-
-  // TOOLTIP PUBLIC CLASS DEFINITION
-  // ===============================
-
-  var Tooltip = function (element, options) {
-    this.type       = null
-    this.options    = null
-    this.enabled    = null
-    this.timeout    = null
-    this.hoverState = null
-    this.$element   = null
-    this.inState    = null
-
-    this.init('tooltip', element, options)
-  }
-
-  Tooltip.VERSION  = '3.3.7'
-
-  Tooltip.TRANSITION_DURATION = 150
-
-  Tooltip.DEFAULTS = {
-    animation: true,
-    placement: 'top',
-    selector: false,
-    template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
-    trigger: 'hover focus',
-    title: '',
-    delay: 0,
-    html: false,
-    container: false,
-    viewport: {
-      selector: 'body',
-      padding: 0
+  .order - sm - 5 {
+        -webkit - box - ordinal - group: 6;
+        -ms - flex - order: 5;
+        order: 5;
     }
-  }
-
-  Tooltip.prototype.init = function (type, element, options) {
-    this.enabled   = true
-    this.type      = type
-    this.$element  = $(element)
-    this.options   = this.getOptions(options)
-    this.$viewport = this.options.viewport && $($.isFunction(this.options.viewport) ? this.options.viewport.call(this, this.$element) : (this.options.viewport.selector || this.options.viewport))
-    this.inState   = { click: false, hover: false, focus: false }
-
-    if (this.$element[0] instanceof document.constructor && !this.options.selector) {
-      throw new Error('`selector` option must be specified when initializing ' + this.type + ' on the window.document object!')
+  .order - sm - 6 {
+        -webkit - box - ordinal - group: 7;
+        -ms - flex - order: 6;
+        order: 6;
     }
-
-    var triggers = this.options.trigger.split(' ')
-
-    for (var i = triggers.length; i--;) {
-      var trigger = triggers[i]
-
-      if (trigger == 'click') {
-        this.$element.on('click.' + this.type, this.options.selector, $.proxy(this.toggle, this))
-      } else if (trigger != 'manual') {
-        var eventIn  = trigger == 'hover' ? 'mouseenter' : 'focusin'
-        var eventOut = trigger == 'hover' ? 'mouseleave' : 'focusout'
-
-        this.$element.on(eventIn  + '.' + this.type, this.options.selector, $.proxy(this.enter, this))
-        this.$element.on(eventOut + '.' + this.type, this.options.selector, $.proxy(this.leave, this))
-      }
+  .order - sm - 7 {
+        -webkit - box - ordinal - group: 8;
+        -ms - flex - order: 7;
+        order: 7;
     }
-
-    this.options.selector ?
-      (this._options = $.extend({}, this.options, { trigger: 'manual', selector: '' })) :
-      this.fixTitle()
-  }
-
-  Tooltip.prototype.getDefaults = function () {
-    return Tooltip.DEFAULTS
-  }
-
-  Tooltip.prototype.getOptions = function (options) {
-    options = $.extend({}, this.getDefaults(), this.$element.data(), options)
-
-    if (options.delay && typeof options.delay == 'number') {
-      options.delay = {
-        show: options.delay,
-        hide: options.delay
-      }
+  .order - sm - 8 {
+        -webkit - box - ordinal - group: 9;
+        -ms - flex - order: 8;
+        order: 8;
     }
-
-    return options
-  }
-
-  Tooltip.prototype.getDelegateOptions = function () {
-    var options  = {}
-    var defaults = this.getDefaults()
-
-    this._options && $.each(this._options, function (key, value) {
-      if (defaults[key] != value) options[key] = value
-    })
-
-    return options
-  }
-
-  Tooltip.prototype.enter = function (obj) {
-    var self = obj instanceof this.constructor ?
-      obj : $(obj.currentTarget).data('bs.' + this.type)
-
-    if (!self) {
-      self = new this.constructor(obj.currentTarget, this.getDelegateOptions())
-      $(obj.currentTarget).data('bs.' + this.type, self)
+  .order - sm - 9 {
+        -webkit - box - ordinal - group: 10;
+        -ms - flex - order: 9;
+        order: 9;
     }
-
-    if (obj instanceof $.Event) {
-      self.inState[obj.type == 'focusin' ? 'focus' : 'hover'] = true
+  .order - sm - 10 {
+        -webkit - box - ordinal - group: 11;
+        -ms - flex - order: 10;
+        order: 10;
     }
-
-    if (self.tip().hasClass('in') || self.hoverState == 'in') {
-      self.hoverState = 'in'
-      return
+  .order - sm - 11 {
+        -webkit - box - ordinal - group: 12;
+        -ms - flex - order: 11;
+        order: 11;
     }
-
-    clearTimeout(self.timeout)
-
-    self.hoverState = 'in'
-
-    if (!self.options.delay || !self.options.delay.show) return self.show()
-
-    self.timeout = setTimeout(function () {
-      if (self.hoverState == 'in') self.show()
-    }, self.options.delay.show)
-  }
-
-  Tooltip.prototype.isInStateTrue = function () {
-    for (var key in this.inState) {
-      if (this.inState[key]) return true
+  .order - sm - 12 {
+        -webkit - box - ordinal - group: 13;
+        -ms - flex - order: 12;
+        order: 12;
     }
-
-    return false
-  }
-
-  Tooltip.prototype.leave = function (obj) {
-    var self = obj instanceof this.constructor ?
-      obj : $(obj.currentTarget).data('bs.' + this.type)
-
-    if (!self) {
-      self = new this.constructor(obj.currentTarget, this.getDelegateOptions())
-      $(obj.currentTarget).data('bs.' + this.type, self)
+  .offset - sm - 0 {
+        margin - left: 0;
     }
-
-    if (obj instanceof $.Event) {
-      self.inState[obj.type == 'focusout' ? 'focus' : 'hover'] = false
+  .offset - sm - 1 {
+        margin - left: 8.3333333333 %;
     }
-
-    if (self.isInStateTrue()) return
-
-    clearTimeout(self.timeout)
-
-    self.hoverState = 'out'
-
-    if (!self.options.delay || !self.options.delay.hide) return self.hide()
-
-    self.timeout = setTimeout(function () {
-      if (self.hoverState == 'out') self.hide()
-    }, self.options.delay.hide)
-  }
-
-  Tooltip.prototype.show = function () {
-    var e = $.Event('show.bs.' + this.type)
-
-    if (this.hasContent() && this.enabled) {
-      this.$element.trigger(e)
-
-      var inDom = $.contains(this.$element[0].ownerDocument.documentElement, this.$element[0])
-      if (e.isDefaultPrevented() || !inDom) return
-      var that = this
-
-      var $tip = this.tip()
-
-      var tipId = this.getUID(this.type)
-
-      this.setContent()
-      $tip.attr('id', tipId)
-      this.$element.attr('aria-describedby', tipId)
-
-      if (this.options.animation) $tip.addClass('fade')
-
-      var placement = typeof this.options.placement == 'function' ?
-        this.options.placement.call(this, $tip[0], this.$element[0]) :
-        this.options.placement
-
-      var autoToken = /\s?auto?\s?/i
-      var autoPlace = autoToken.test(placement)
-      if (autoPlace) placement = placement.replace(autoToken, '') || 'top'
-
-      $tip
-        .detach()
-        .css({ top: 0, left: 0, display: 'block' })
-        .addClass(placement)
-        .data('bs.' + this.type, this)
-
-      this.options.container ? $tip.appendTo(this.options.container) : $tip.insertAfter(this.$element)
-      this.$element.trigger('inserted.bs.' + this.type)
-
-      var pos          = this.getPosition()
-      var actualWidth  = $tip[0].offsetWidth
-      var actualHeight = $tip[0].offsetHeight
-
-      if (autoPlace) {
-        var orgPlacement = placement
-        var viewportDim = this.getPosition(this.$viewport)
-
-        placement = placement == 'bottom' && pos.bottom + actualHeight > viewportDim.bottom ? 'top'    :
-                    placement == 'top'    && pos.top    - actualHeight < viewportDim.top    ? 'bottom' :
-                    placement == 'right'  && pos.right  + actualWidth  > viewportDim.width  ? 'left'   :
-                    placement == 'left'   && pos.left   - actualWidth  < viewportDim.left   ? 'right'  :
-                    placement
-
-        $tip
-          .removeClass(orgPlacement)
-          .addClass(placement)
-      }
-
-      var calculatedOffset = this.getCalculatedOffset(placement, pos, actualWidth, actualHeight)
-
-      this.applyPlacement(calculatedOffset, placement)
-
-      var complete = function () {
-        var prevHoverState = that.hoverState
-        that.$element.trigger('shown.bs.' + that.type)
-        that.hoverState = null
-
-        if (prevHoverState == 'out') that.leave(that)
-      }
-
-      $.support.transition && this.$tip.hasClass('fade') ?
-        $tip
-          .one('bsTransitionEnd', complete)
-          .emulateTransitionEnd(Tooltip.TRANSITION_DURATION) :
-        complete()
+  .offset - sm - 2 {
+        margin - left: 16.6666666667 %;
     }
-  }
-
-  Tooltip.prototype.applyPlacement = function (offset, placement) {
-    var $tip   = this.tip()
-    var width  = $tip[0].offsetWidth
-    var height = $tip[0].offsetHeight
-
-    // manually read margins because getBoundingClientRect includes difference
-    var marginTop = parseInt($tip.css('margin-top'), 10)
-    var marginLeft = parseInt($tip.css('margin-left'), 10)
-
-    // we must check for NaN for ie 8/9
-    if (isNaN(marginTop))  marginTop  = 0
-    if (isNaN(marginLeft)) marginLeft = 0
-
-    offset.top  += marginTop
-    offset.left += marginLeft
-
-    // $.fn.offset doesn't round pixel values
-    // so we use setOffset directly with our own function B-0
-    $.offset.setOffset($tip[0], $.extend({
-      using: function (props) {
-        $tip.css({
-          top: Math.round(props.top),
-          left: Math.round(props.left)
-        })
-      }
-    }, offset), 0)
-
-    $tip.addClass('in')
-
-    // check to see if placing tip in new offset caused the tip to resize itself
-    var actualWidth  = $tip[0].offsetWidth
-    var actualHeight = $tip[0].offsetHeight
-
-    if (placement == 'top' && actualHeight != height) {
-      offset.top = offset.top + height - actualHeight
+  .offset - sm - 3 {
+        margin - left: 25 %;
     }
-
-    var delta = this.getViewportAdjustedDelta(placement, offset, actualWidth, actualHeight)
-
-    if (delta.left) offset.left += delta.left
-    else offset.top += delta.top
-
-    var isVertical          = /top|bottom/.test(placement)
-    var arrowDelta          = isVertical ? delta.left * 2 - width + actualWidth : delta.top * 2 - height + actualHeight
-    var arrowOffsetPosition = isVertical ? 'offsetWidth' : 'offsetHeight'
-
-    $tip.offset(offset)
-    this.replaceArrow(arrowDelta, $tip[0][arrowOffsetPosition], isVertical)
-  }
-
-  Tooltip.prototype.replaceArrow = function (delta, dimension, isVertical) {
-    this.arrow()
-      .css(isVertical ? 'left' : 'top', 50 * (1 - delta / dimension) + '%')
-      .css(isVertical ? 'top' : 'left', '')
-  }
-
-  Tooltip.prototype.setContent = function () {
-    var $tip  = this.tip()
-    var title = this.getTitle()
-
-    $tip.find('.tooltip-inner')[this.options.html ? 'html' : 'text'](title)
-    $tip.removeClass('fade in top bottom left right')
-  }
-
-  Tooltip.prototype.hide = function (callback) {
-    var that = this
-    var $tip = $(this.$tip)
-    var e    = $.Event('hide.bs.' + this.type)
-
-    function complete() {
-      if (that.hoverState != 'in') $tip.detach()
-      if (that.$element) { // TODO: Check whether guarding this code with this `if` is really necessary.
-        that.$element
-          .removeAttr('aria-describedby')
-          .trigger('hidden.bs.' + that.type)
-      }
-      callback && callback()
+  .offset - sm - 4 {
+        margin - left: 33.3333333333 %;
     }
-
-    this.$element.trigger(e)
-
-    if (e.isDefaultPrevented()) return
-
-    $tip.removeClass('in')
-
-    $.support.transition && $tip.hasClass('fade') ?
-      $tip
-        .one('bsTransitionEnd', complete)
-        .emulateTransitionEnd(Tooltip.TRANSITION_DURATION) :
-      complete()
-
-    this.hoverState = null
-
-    return this
-  }
-
-  Tooltip.prototype.fixTitle = function () {
-    var $e = this.$element
-    if ($e.attr('title') || typeof $e.attr('data-original-title') != 'string') {
-      $e.attr('data-original-title', $e.attr('title') || '').attr('title', '')
+  .offset - sm - 5 {
+        margin - left: 41.6666666667 %;
     }
-  }
-
-  Tooltip.prototype.hasContent = function () {
-    return this.getTitle()
-  }
-
-  Tooltip.prototype.getPosition = function ($element) {
-    $element   = $element || this.$element
-
-    var el     = $element[0]
-    var isBody = el.tagName == 'BODY'
-
-    var elRect    = el.getBoundingClientRect()
-    if (elRect.width == null) {
-      // width and height are missing in IE8, so compute them manually; see https://github.com/twbs/bootstrap/issues/14093
-      elRect = $.extend({}, elRect, { width: elRect.right - elRect.left, height: elRect.bottom - elRect.top })
+  .offset - sm - 6 {
+        margin - left: 50 %;
     }
-    var isSvg = window.SVGElement && el instanceof window.SVGElement
-    // Avoid using $.offset() on SVGs since it gives incorrect results in jQuery 3.
-    // See https://github.com/twbs/bootstrap/issues/20280
-    var elOffset  = isBody ? { top: 0, left: 0 } : (isSvg ? null : $element.offset())
-    var scroll    = { scroll: isBody ? document.documentElement.scrollTop || document.body.scrollTop : $element.scrollTop() }
-    var outerDims = isBody ? { width: $(window).width(), height: $(window).height() } : null
-
-    return $.extend({}, elRect, scroll, outerDims, elOffset)
-  }
-
-  Tooltip.prototype.getCalculatedOffset = function (placement, pos, actualWidth, actualHeight) {
-    return placement == 'bottom' ? { top: pos.top + pos.height,   left: pos.left + pos.width / 2 - actualWidth / 2 } :
-           placement == 'top'    ? { top: pos.top - actualHeight, left: pos.left + pos.width / 2 - actualWidth / 2 } :
-           placement == 'left'   ? { top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left - actualWidth } :
-        /* placement == 'right' */ { top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left + pos.width }
-
-  }
-
-  Tooltip.prototype.getViewportAdjustedDelta = function (placement, pos, actualWidth, actualHeight) {
-    var delta = { top: 0, left: 0 }
-    if (!this.$viewport) return delta
-
-    var viewportPadding = this.options.viewport && this.options.viewport.padding || 0
-    var viewportDimensions = this.getPosition(this.$viewport)
-
-    if (/right|left/.test(placement)) {
-      var topEdgeOffset    = pos.top - viewportPadding - viewportDimensions.scroll
-      var bottomEdgeOffset = pos.top + viewportPadding - viewportDimensions.scroll + actualHeight
-      if (topEdgeOffset < viewportDimensions.top) { // top overflow
-        delta.top = viewportDimensions.top - topEdgeOffset
-      } else if (bottomEdgeOffset > viewportDimensions.top + viewportDimensions.height) { // bottom overflow
-        delta.top = viewportDimensions.top + viewportDimensions.height - bottomEdgeOffset
-      }
-    } else {
-      var leftEdgeOffset  = pos.left - viewportPadding
-      var rightEdgeOffset = pos.left + viewportPadding + actualWidth
-      if (leftEdgeOffset < viewportDimensions.left) { // left overflow
-        delta.left = viewportDimensions.left - leftEdgeOffset
-      } else if (rightEdgeOffset > viewportDimensions.right) { // right overflow
-        delta.left = viewportDimensions.left + viewportDimensions.width - rightEdgeOffset
-      }
+  .offset - sm - 7 {
+        margin - left: 58.3333333333 %;
     }
-
-    return delta
-  }
-
-  Tooltip.prototype.getTitle = function () {
-    var title
-    var $e = this.$element
-    var o  = this.options
-
-    title = $e.attr('data-original-title')
-      || (typeof o.title == 'function' ? o.title.call($e[0]) :  o.title)
-
-    return title
-  }
-
-  Tooltip.prototype.getUID = function (prefix) {
-    do prefix += ~~(Math.random() * 1000000)
-    while (document.getElementById(prefix))
-    return prefix
-  }
-
-  Tooltip.prototype.tip = function () {
-    if (!this.$tip) {
-      this.$tip = $(this.options.template)
-      if (this.$tip.length != 1) {
-        throw new Error(this.type + ' `template` option must consist of exactly 1 top-level element!')
-      }
+  .offset - sm - 8 {
+        margin - left: 66.6666666667 %;
     }
-    return this.$tip
-  }
-
-  Tooltip.prototype.arrow = function () {
-    return (this.$arrow = this.$arrow || this.tip().find('.tooltip-arrow'))
-  }
-
-  Tooltip.prototype.enable = function () {
-    this.enabled = true
-  }
-
-  Tooltip.prototype.disable = function () {
-    this.enabled = false
-  }
-
-  Tooltip.prototype.toggleEnabled = function () {
-    this.enabled = !this.enabled
-  }
-
-  Tooltip.prototype.toggle = function (e) {
-    var self = this
-    if (e) {
-      self = $(e.currentTarget).data('bs.' + this.type)
-      if (!self) {
-        self = new this.constructor(e.currentTarget, this.getDelegateOptions())
-        $(e.currentTarget).data('bs.' + this.type, self)
-      }
+  .offset - sm - 9 {
+        margin - left: 75 %;
     }
-
-    if (e) {
-      self.inState.click = !self.inState.click
-      if (self.isInStateTrue()) self.enter(self)
-      else self.leave(self)
-    } else {
-      self.tip().hasClass('in') ? self.leave(self) : self.enter(self)
+  .offset - sm - 10 {
+        margin - left: 83.3333333333 %;
     }
-  }
-
-  Tooltip.prototype.destroy = function () {
-    var that = this
-    clearTimeout(this.timeout)
-    this.hide(function () {
-      that.$element.off('.' + that.type).removeData('bs.' + that.type)
-      if (that.$tip) {
-        that.$tip.detach()
-      }
-      that.$tip = null
-      that.$arrow = null
-      that.$viewport = null
-      that.$element = null
-    })
-  }
-
-
-  // TOOLTIP PLUGIN DEFINITION
-  // =========================
-
-  function Plugin(option) {
-    return this.each(function () {
-      var $this   = $(this)
-      var data    = $this.data('bs.tooltip')
-      var options = typeof option == 'object' && option
-
-      if (!data && /destroy|hide/.test(option)) return
-      if (!data) $this.data('bs.tooltip', (data = new Tooltip(this, options)))
-      if (typeof option == 'string') data[option]()
-    })
-  }
-
-  var old = $.fn.tooltip
-
-  $.fn.tooltip             = Plugin
-  $.fn.tooltip.Constructor = Tooltip
-
-
-  // TOOLTIP NO CONFLICT
-  // ===================
-
-  $.fn.tooltip.noConflict = function () {
-    $.fn.tooltip = old
-    return this
-  }
-
-}(jQuery);
-
-/* ========================================================================
- * Bootstrap: popover.js v3.3.7
- * http://getbootstrap.com/javascript/#popovers
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-
-+function ($) {
-  'use strict';
-
-  // POPOVER PUBLIC CLASS DEFINITION
-  // ===============================
-
-  var Popover = function (element, options) {
-    this.init('popover', element, options)
-  }
-
-  if (!$.fn.tooltip) throw new Error('Popover requires tooltip.js')
-
-  Popover.VERSION  = '3.3.7'
-
-  Popover.DEFAULTS = $.extend({}, $.fn.tooltip.Constructor.DEFAULTS, {
-    placement: 'right',
-    trigger: 'click',
-    content: '',
-    template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
-  })
-
-
-  // NOTE: POPOVER EXTENDS tooltip.js
-  // ================================
-
-  Popover.prototype = $.extend({}, $.fn.tooltip.Constructor.prototype)
-
-  Popover.prototype.constructor = Popover
-
-  Popover.prototype.getDefaults = function () {
-    return Popover.DEFAULTS
-  }
-
-  Popover.prototype.setContent = function () {
-    var $tip    = this.tip()
-    var title   = this.getTitle()
-    var content = this.getContent()
-
-    $tip.find('.popover-title')[this.options.html ? 'html' : 'text'](title)
-    $tip.find('.popover-content').children().detach().end()[ // we use append for html objects to maintain js events
-      this.options.html ? (typeof content == 'string' ? 'html' : 'append') : 'text'
-    ](content)
-
-    $tip.removeClass('fade top bottom left right in')
-
-    // IE8 doesn't accept hiding via the `:empty` pseudo selector, we have to do
-    // this manually by checking the contents.
-    if (!$tip.find('.popover-title').html()) $tip.find('.popover-title').hide()
-  }
-
-  Popover.prototype.hasContent = function () {
-    return this.getTitle() || this.getContent()
-  }
-
-  Popover.prototype.getContent = function () {
-    var $e = this.$element
-    var o  = this.options
-
-    return $e.attr('data-content')
-      || (typeof o.content == 'function' ?
-            o.content.call($e[0]) :
-            o.content)
-  }
-
-  Popover.prototype.arrow = function () {
-    return (this.$arrow = this.$arrow || this.tip().find('.arrow'))
-  }
-
-
-  // POPOVER PLUGIN DEFINITION
-  // =========================
-
-  function Plugin(option) {
-    return this.each(function () {
-      var $this   = $(this)
-      var data    = $this.data('bs.popover')
-      var options = typeof option == 'object' && option
-
-      if (!data && /destroy|hide/.test(option)) return
-      if (!data) $this.data('bs.popover', (data = new Popover(this, options)))
-      if (typeof option == 'string') data[option]()
-    })
-  }
-
-  var old = $.fn.popover
-
-  $.fn.popover             = Plugin
-  $.fn.popover.Constructor = Popover
-
-
-  // POPOVER NO CONFLICT
-  // ===================
-
-  $.fn.popover.noConflict = function () {
-    $.fn.popover = old
-    return this
-  }
-
-}(jQuery);
-
-/* ========================================================================
- * Bootstrap: scrollspy.js v3.3.7
- * http://getbootstrap.com/javascript/#scrollspy
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-
-+function ($) {
-  'use strict';
-
-  // SCROLLSPY CLASS DEFINITION
-  // ==========================
-
-  function ScrollSpy(element, options) {
-    this.$body          = $(document.body)
-    this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
-    this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
-    this.selector       = (this.options.target || '') + ' .nav li > a'
-    this.offsets        = []
-    this.targets        = []
-    this.activeTarget   = null
-    this.scrollHeight   = 0
-
-    this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
-    this.refresh()
-    this.process()
-  }
-
-  ScrollSpy.VERSION  = '3.3.7'
-
-  ScrollSpy.DEFAULTS = {
-    offset: 10
-  }
-
-  ScrollSpy.prototype.getScrollHeight = function () {
-    return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight)
-  }
-
-  ScrollSpy.prototype.refresh = function () {
-    var that          = this
-    var offsetMethod  = 'offset'
-    var offsetBase    = 0
-
-    this.offsets      = []
-    this.targets      = []
-    this.scrollHeight = this.getScrollHeight()
-
-    if (!$.isWindow(this.$scrollElement[0])) {
-      offsetMethod = 'position'
-      offsetBase   = this.$scrollElement.scrollTop()
+  .offset - sm - 11 {
+        margin - left: 91.6666666667 %;
     }
+}
 
-    this.$body
-      .find(this.selector)
-      .map(function () {
-        var $el   = $(this)
-        var href  = $el.data('target') || $el.attr('href')
-        var $href = /^#./.test(href) && $(href)
-
-        return ($href
-          && $href.length
-          && $href.is(':visible')
-          && [[$href[offsetMethod]().top + offsetBase, href]]) || null
-      })
-      .sort(function (a, b) { return a[0] - b[0] })
-      .each(function () {
-        that.offsets.push(this[0])
-        that.targets.push(this[1])
-      })
-  }
-
-  ScrollSpy.prototype.process = function () {
-    var scrollTop    = this.$scrollElement.scrollTop() + this.options.offset
-    var scrollHeight = this.getScrollHeight()
-    var maxScroll    = this.options.offset + scrollHeight - this.$scrollElement.height()
-    var offsets      = this.offsets
-    var targets      = this.targets
-    var activeTarget = this.activeTarget
-    var i
-
-    if (this.scrollHeight != scrollHeight) {
-      this.refresh()
+@media(min - width: 768px) {
+  .col - md {
+        -ms - flex - preferred - size: 0;
+        flex - basis: 0;
+        -webkit - box - flex: 1;
+        -ms - flex - positive: 1;
+        flex - grow: 1;
+        max - width: 100 %;
     }
-
-    if (scrollTop >= maxScroll) {
-      return activeTarget != (i = targets[targets.length - 1]) && this.activate(i)
+  .col - md - auto {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 auto;
+        flex: 0 0 auto;
+        width: auto;
+        max - width: none;
     }
-
-    if (activeTarget && scrollTop < offsets[0]) {
-      this.activeTarget = null
-      return this.clear()
+  .col - md - 1 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 8.3333333333 %;
+        flex: 0 0 8.3333333333 %;
+        max - width: 8.3333333333 %;
     }
-
-    for (i = offsets.length; i--;) {
-      activeTarget != targets[i]
-        && scrollTop >= offsets[i]
-        && (offsets[i + 1] === undefined || scrollTop < offsets[i + 1])
-        && this.activate(targets[i])
+  .col - md - 2 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 16.6666666667 %;
+        flex: 0 0 16.6666666667 %;
+        max - width: 16.6666666667 %;
     }
-  }
-
-  ScrollSpy.prototype.activate = function (target) {
-    this.activeTarget = target
-
-    this.clear()
-
-    var selector = this.selector +
-      '[data-target="' + target + '"],' +
-      this.selector + '[href="' + target + '"]'
-
-    var active = $(selector)
-      .parents('li')
-      .addClass('active')
-
-    if (active.parent('.dropdown-menu').length) {
-      active = active
-        .closest('li.dropdown')
-        .addClass('active')
+  .col - md - 3 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 25 %;
+        flex: 0 0 25 %;
+        max - width: 25 %;
     }
-
-    active.trigger('activate.bs.scrollspy')
-  }
-
-  ScrollSpy.prototype.clear = function () {
-    $(this.selector)
-      .parentsUntil(this.options.target, '.active')
-      .removeClass('active')
-  }
-
-
-  // SCROLLSPY PLUGIN DEFINITION
-  // ===========================
-
-  function Plugin(option) {
-    return this.each(function () {
-      var $this   = $(this)
-      var data    = $this.data('bs.scrollspy')
-      var options = typeof option == 'object' && option
-
-      if (!data) $this.data('bs.scrollspy', (data = new ScrollSpy(this, options)))
-      if (typeof option == 'string') data[option]()
-    })
-  }
-
-  var old = $.fn.scrollspy
-
-  $.fn.scrollspy             = Plugin
-  $.fn.scrollspy.Constructor = ScrollSpy
-
-
-  // SCROLLSPY NO CONFLICT
-  // =====================
-
-  $.fn.scrollspy.noConflict = function () {
-    $.fn.scrollspy = old
-    return this
-  }
-
-
-  // SCROLLSPY DATA-API
-  // ==================
-
-  $(window).on('load.bs.scrollspy.data-api', function () {
-    $('[data-spy="scroll"]').each(function () {
-      var $spy = $(this)
-      Plugin.call($spy, $spy.data())
-    })
-  })
-
-}(jQuery);
-
-/* ========================================================================
- * Bootstrap: tab.js v3.3.7
- * http://getbootstrap.com/javascript/#tabs
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-
-+function ($) {
-  'use strict';
-
-  // TAB CLASS DEFINITION
-  // ====================
-
-  var Tab = function (element) {
-    // jscs:disable requireDollarBeforejQueryAssignment
-    this.element = $(element)
-    // jscs:enable requireDollarBeforejQueryAssignment
-  }
-
-  Tab.VERSION = '3.3.7'
-
-  Tab.TRANSITION_DURATION = 150
-
-  Tab.prototype.show = function () {
-    var $this    = this.element
-    var $ul      = $this.closest('ul:not(.dropdown-menu)')
-    var selector = $this.data('target')
-
-    if (!selector) {
-      selector = $this.attr('href')
-      selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+  .col - md - 4 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 33.3333333333 %;
+        flex: 0 0 33.3333333333 %;
+        max - width: 33.3333333333 %;
     }
-
-    if ($this.parent('li').hasClass('active')) return
-
-    var $previous = $ul.find('.active:last a')
-    var hideEvent = $.Event('hide.bs.tab', {
-      relatedTarget: $this[0]
-    })
-    var showEvent = $.Event('show.bs.tab', {
-      relatedTarget: $previous[0]
-    })
-
-    $previous.trigger(hideEvent)
-    $this.trigger(showEvent)
-
-    if (showEvent.isDefaultPrevented() || hideEvent.isDefaultPrevented()) return
-
-    var $target = $(selector)
-
-    this.activate($this.closest('li'), $ul)
-    this.activate($target, $target.parent(), function () {
-      $previous.trigger({
-        type: 'hidden.bs.tab',
-        relatedTarget: $this[0]
-      })
-      $this.trigger({
-        type: 'shown.bs.tab',
-        relatedTarget: $previous[0]
-      })
-    })
-  }
-
-  Tab.prototype.activate = function (element, container, callback) {
-    var $active    = container.find('> .active')
-    var transition = callback
-      && $.support.transition
-      && ($active.length && $active.hasClass('fade') || !!container.find('> .fade').length)
-
-    function next() {
-      $active
-        .removeClass('active')
-        .find('> .dropdown-menu > .active')
-          .removeClass('active')
-        .end()
-        .find('[data-toggle="tab"]')
-          .attr('aria-expanded', false)
-
-      element
-        .addClass('active')
-        .find('[data-toggle="tab"]')
-          .attr('aria-expanded', true)
-
-      if (transition) {
-        element[0].offsetWidth // reflow for transition
-        element.addClass('in')
-      } else {
-        element.removeClass('fade')
-      }
-
-      if (element.parent('.dropdown-menu').length) {
-        element
-          .closest('li.dropdown')
-            .addClass('active')
-          .end()
-          .find('[data-toggle="tab"]')
-            .attr('aria-expanded', true)
-      }
-
-      callback && callback()
+  .col - md - 5 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 41.6666666667 %;
+        flex: 0 0 41.6666666667 %;
+        max - width: 41.6666666667 %;
     }
-
-    $active.length && transition ?
-      $active
-        .one('bsTransitionEnd', next)
-        .emulateTransitionEnd(Tab.TRANSITION_DURATION) :
-      next()
-
-    $active.removeClass('in')
-  }
-
-
-  // TAB PLUGIN DEFINITION
-  // =====================
-
-  function Plugin(option) {
-    return this.each(function () {
-      var $this = $(this)
-      var data  = $this.data('bs.tab')
-
-      if (!data) $this.data('bs.tab', (data = new Tab(this)))
-      if (typeof option == 'string') data[option]()
-    })
-  }
-
-  var old = $.fn.tab
-
-  $.fn.tab             = Plugin
-  $.fn.tab.Constructor = Tab
-
-
-  // TAB NO CONFLICT
-  // ===============
-
-  $.fn.tab.noConflict = function () {
-    $.fn.tab = old
-    return this
-  }
-
-
-  // TAB DATA-API
-  // ============
-
-  var clickHandler = function (e) {
-    e.preventDefault()
-    Plugin.call($(this), 'show')
-  }
-
-  $(document)
-    .on('click.bs.tab.data-api', '[data-toggle="tab"]', clickHandler)
-    .on('click.bs.tab.data-api', '[data-toggle="pill"]', clickHandler)
-
-}(jQuery);
-
-/* ========================================================================
- * Bootstrap: affix.js v3.3.7
- * http://getbootstrap.com/javascript/#affix
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-
-+function ($) {
-  'use strict';
-
-  // AFFIX CLASS DEFINITION
-  // ======================
-
-  var Affix = function (element, options) {
-    this.options = $.extend({}, Affix.DEFAULTS, options)
-
-    this.$target = $(this.options.target)
-      .on('scroll.bs.affix.data-api', $.proxy(this.checkPosition, this))
-      .on('click.bs.affix.data-api',  $.proxy(this.checkPositionWithEventLoop, this))
-
-    this.$element     = $(element)
-    this.affixed      = null
-    this.unpin        = null
-    this.pinnedOffset = null
-
-    this.checkPosition()
-  }
-
-  Affix.VERSION  = '3.3.7'
-
-  Affix.RESET    = 'affix affix-top affix-bottom'
-
-  Affix.DEFAULTS = {
-    offset: 0,
-    target: window
-  }
-
-  Affix.prototype.getState = function (scrollHeight, height, offsetTop, offsetBottom) {
-    var scrollTop    = this.$target.scrollTop()
-    var position     = this.$element.offset()
-    var targetHeight = this.$target.height()
-
-    if (offsetTop != null && this.affixed == 'top') return scrollTop < offsetTop ? 'top' : false
-
-    if (this.affixed == 'bottom') {
-      if (offsetTop != null) return (scrollTop + this.unpin <= position.top) ? false : 'bottom'
-      return (scrollTop + targetHeight <= scrollHeight - offsetBottom) ? false : 'bottom'
+  .col - md - 6 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 50 %;
+        flex: 0 0 50 %;
+        max - width: 50 %;
     }
-
-    var initializing   = this.affixed == null
-    var colliderTop    = initializing ? scrollTop : position.top
-    var colliderHeight = initializing ? targetHeight : height
-
-    if (offsetTop != null && scrollTop <= offsetTop) return 'top'
-    if (offsetBottom != null && (colliderTop + colliderHeight >= scrollHeight - offsetBottom)) return 'bottom'
-
-    return false
-  }
-
-  Affix.prototype.getPinnedOffset = function () {
-    if (this.pinnedOffset) return this.pinnedOffset
-    this.$element.removeClass(Affix.RESET).addClass('affix')
-    var scrollTop = this.$target.scrollTop()
-    var position  = this.$element.offset()
-    return (this.pinnedOffset = position.top - scrollTop)
-  }
-
-  Affix.prototype.checkPositionWithEventLoop = function () {
-    setTimeout($.proxy(this.checkPosition, this), 1)
-  }
-
-  Affix.prototype.checkPosition = function () {
-    if (!this.$element.is(':visible')) return
-
-    var height       = this.$element.height()
-    var offset       = this.options.offset
-    var offsetTop    = offset.top
-    var offsetBottom = offset.bottom
-    var scrollHeight = Math.max($(document).height(), $(document.body).height())
-
-    if (typeof offset != 'object')         offsetBottom = offsetTop = offset
-    if (typeof offsetTop == 'function')    offsetTop    = offset.top(this.$element)
-    if (typeof offsetBottom == 'function') offsetBottom = offset.bottom(this.$element)
-
-    var affix = this.getState(scrollHeight, height, offsetTop, offsetBottom)
-
-    if (this.affixed != affix) {
-      if (this.unpin != null) this.$element.css('top', '')
-
-      var affixType = 'affix' + (affix ? '-' + affix : '')
-      var e         = $.Event(affixType + '.bs.affix')
-
-      this.$element.trigger(e)
-
-      if (e.isDefaultPrevented()) return
-
-      this.affixed = affix
-      this.unpin = affix == 'bottom' ? this.getPinnedOffset() : null
-
-      this.$element
-        .removeClass(Affix.RESET)
-        .addClass(affixType)
-        .trigger(affixType.replace('affix', 'affixed') + '.bs.affix')
+  .col - md - 7 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 58.3333333333 %;
+        flex: 0 0 58.3333333333 %;
+        max - width: 58.3333333333 %;
     }
-
-    if (affix == 'bottom') {
-      this.$element.offset({
-        top: scrollHeight - height - offsetBottom
-      })
+  .col - md - 8 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 66.6666666667 %;
+        flex: 0 0 66.6666666667 %;
+        max - width: 66.6666666667 %;
     }
-  }
+  .col - md - 9 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 75 %;
+        flex: 0 0 75 %;
+        max - width: 75 %;
+    }
+  .col - md - 10 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 83.3333333333 %;
+        flex: 0 0 83.3333333333 %;
+        max - width: 83.3333333333 %;
+    }
+  .col - md - 11 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 91.6666666667 %;
+        flex: 0 0 91.6666666667 %;
+        max - width: 91.6666666667 %;
+    }
+  .col - md - 12 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 100 %;
+        flex: 0 0 100 %;
+        max - width: 100 %;
+    }
+  .order - md - first {
+        -webkit - box - ordinal - group: 0;
+        -ms - flex - order: -1;
+        order: -1;
+    }
+  .order - md - last {
+        -webkit - box - ordinal - group: 14;
+        -ms - flex - order: 13;
+        order: 13;
+    }
+  .order - md - 0 {
+        -webkit - box - ordinal - group: 1;
+        -ms - flex - order: 0;
+        order: 0;
+    }
+  .order - md - 1 {
+        -webkit - box - ordinal - group: 2;
+        -ms - flex - order: 1;
+        order: 1;
+    }
+  .order - md - 2 {
+        -webkit - box - ordinal - group: 3;
+        -ms - flex - order: 2;
+        order: 2;
+    }
+  .order - md - 3 {
+        -webkit - box - ordinal - group: 4;
+        -ms - flex - order: 3;
+        order: 3;
+    }
+  .order - md - 4 {
+        -webkit - box - ordinal - group: 5;
+        -ms - flex - order: 4;
+        order: 4;
+    }
+  .order - md - 5 {
+        -webkit - box - ordinal - group: 6;
+        -ms - flex - order: 5;
+        order: 5;
+    }
+  .order - md - 6 {
+        -webkit - box - ordinal - group: 7;
+        -ms - flex - order: 6;
+        order: 6;
+    }
+  .order - md - 7 {
+        -webkit - box - ordinal - group: 8;
+        -ms - flex - order: 7;
+        order: 7;
+    }
+  .order - md - 8 {
+        -webkit - box - ordinal - group: 9;
+        -ms - flex - order: 8;
+        order: 8;
+    }
+  .order - md - 9 {
+        -webkit - box - ordinal - group: 10;
+        -ms - flex - order: 9;
+        order: 9;
+    }
+  .order - md - 10 {
+        -webkit - box - ordinal - group: 11;
+        -ms - flex - order: 10;
+        order: 10;
+    }
+  .order - md - 11 {
+        -webkit - box - ordinal - group: 12;
+        -ms - flex - order: 11;
+        order: 11;
+    }
+  .order - md - 12 {
+        -webkit - box - ordinal - group: 13;
+        -ms - flex - order: 12;
+        order: 12;
+    }
+  .offset - md - 0 {
+        margin - left: 0;
+    }
+  .offset - md - 1 {
+        margin - left: 8.3333333333 %;
+    }
+  .offset - md - 2 {
+        margin - left: 16.6666666667 %;
+    }
+  .offset - md - 3 {
+        margin - left: 25 %;
+    }
+  .offset - md - 4 {
+        margin - left: 33.3333333333 %;
+    }
+  .offset - md - 5 {
+        margin - left: 41.6666666667 %;
+    }
+  .offset - md - 6 {
+        margin - left: 50 %;
+    }
+  .offset - md - 7 {
+        margin - left: 58.3333333333 %;
+    }
+  .offset - md - 8 {
+        margin - left: 66.6666666667 %;
+    }
+  .offset - md - 9 {
+        margin - left: 75 %;
+    }
+  .offset - md - 10 {
+        margin - left: 83.3333333333 %;
+    }
+  .offset - md - 11 {
+        margin - left: 91.6666666667 %;
+    }
+}
 
+@media(min - width: 992px) {
+  .col - lg {
+        -ms - flex - preferred - size: 0;
+        flex - basis: 0;
+        -webkit - box - flex: 1;
+        -ms - flex - positive: 1;
+        flex - grow: 1;
+        max - width: 100 %;
+    }
+  .col - lg - auto {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 auto;
+        flex: 0 0 auto;
+        width: auto;
+        max - width: none;
+    }
+  .col - lg - 1 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 8.3333333333 %;
+        flex: 0 0 8.3333333333 %;
+        max - width: 8.3333333333 %;
+    }
+  .col - lg - 2 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 16.6666666667 %;
+        flex: 0 0 16.6666666667 %;
+        max - width: 16.6666666667 %;
+    }
+  .col - lg - 3 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 25 %;
+        flex: 0 0 25 %;
+        max - width: 25 %;
+    }
+  .col - lg - 4 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 33.3333333333 %;
+        flex: 0 0 33.3333333333 %;
+        max - width: 33.3333333333 %;
+    }
+  .col - lg - 5 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 41.6666666667 %;
+        flex: 0 0 41.6666666667 %;
+        max - width: 41.6666666667 %;
+    }
+  .col - lg - 6 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 50 %;
+        flex: 0 0 50 %;
+        max - width: 50 %;
+    }
+  .col - lg - 7 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 58.3333333333 %;
+        flex: 0 0 58.3333333333 %;
+        max - width: 58.3333333333 %;
+    }
+  .col - lg - 8 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 66.6666666667 %;
+        flex: 0 0 66.6666666667 %;
+        max - width: 66.6666666667 %;
+    }
+  .col - lg - 9 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 75 %;
+        flex: 0 0 75 %;
+        max - width: 75 %;
+    }
+  .col - lg - 10 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 83.3333333333 %;
+        flex: 0 0 83.3333333333 %;
+        max - width: 83.3333333333 %;
+    }
+  .col - lg - 11 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 91.6666666667 %;
+        flex: 0 0 91.6666666667 %;
+        max - width: 91.6666666667 %;
+    }
+  .col - lg - 12 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 100 %;
+        flex: 0 0 100 %;
+        max - width: 100 %;
+    }
+  .order - lg - first {
+        -webkit - box - ordinal - group: 0;
+        -ms - flex - order: -1;
+        order: -1;
+    }
+  .order - lg - last {
+        -webkit - box - ordinal - group: 14;
+        -ms - flex - order: 13;
+        order: 13;
+    }
+  .order - lg - 0 {
+        -webkit - box - ordinal - group: 1;
+        -ms - flex - order: 0;
+        order: 0;
+    }
+  .order - lg - 1 {
+        -webkit - box - ordinal - group: 2;
+        -ms - flex - order: 1;
+        order: 1;
+    }
+  .order - lg - 2 {
+        -webkit - box - ordinal - group: 3;
+        -ms - flex - order: 2;
+        order: 2;
+    }
+  .order - lg - 3 {
+        -webkit - box - ordinal - group: 4;
+        -ms - flex - order: 3;
+        order: 3;
+    }
+  .order - lg - 4 {
+        -webkit - box - ordinal - group: 5;
+        -ms - flex - order: 4;
+        order: 4;
+    }
+  .order - lg - 5 {
+        -webkit - box - ordinal - group: 6;
+        -ms - flex - order: 5;
+        order: 5;
+    }
+  .order - lg - 6 {
+        -webkit - box - ordinal - group: 7;
+        -ms - flex - order: 6;
+        order: 6;
+    }
+  .order - lg - 7 {
+        -webkit - box - ordinal - group: 8;
+        -ms - flex - order: 7;
+        order: 7;
+    }
+  .order - lg - 8 {
+        -webkit - box - ordinal - group: 9;
+        -ms - flex - order: 8;
+        order: 8;
+    }
+  .order - lg - 9 {
+        -webkit - box - ordinal - group: 10;
+        -ms - flex - order: 9;
+        order: 9;
+    }
+  .order - lg - 10 {
+        -webkit - box - ordinal - group: 11;
+        -ms - flex - order: 10;
+        order: 10;
+    }
+  .order - lg - 11 {
+        -webkit - box - ordinal - group: 12;
+        -ms - flex - order: 11;
+        order: 11;
+    }
+  .order - lg - 12 {
+        -webkit - box - ordinal - group: 13;
+        -ms - flex - order: 12;
+        order: 12;
+    }
+  .offset - lg - 0 {
+        margin - left: 0;
+    }
+  .offset - lg - 1 {
+        margin - left: 8.3333333333 %;
+    }
+  .offset - lg - 2 {
+        margin - left: 16.6666666667 %;
+    }
+  .offset - lg - 3 {
+        margin - left: 25 %;
+    }
+  .offset - lg - 4 {
+        margin - left: 33.3333333333 %;
+    }
+  .offset - lg - 5 {
+        margin - left: 41.6666666667 %;
+    }
+  .offset - lg - 6 {
+        margin - left: 50 %;
+    }
+  .offset - lg - 7 {
+        margin - left: 58.3333333333 %;
+    }
+  .offset - lg - 8 {
+        margin - left: 66.6666666667 %;
+    }
+  .offset - lg - 9 {
+        margin - left: 75 %;
+    }
+  .offset - lg - 10 {
+        margin - left: 83.3333333333 %;
+    }
+  .offset - lg - 11 {
+        margin - left: 91.6666666667 %;
+    }
+}
 
-  // AFFIX PLUGIN DEFINITION
-  // =======================
+@media(min - width: 1200px) {
+  .col - xl {
+        -ms - flex - preferred - size: 0;
+        flex - basis: 0;
+        -webkit - box - flex: 1;
+        -ms - flex - positive: 1;
+        flex - grow: 1;
+        max - width: 100 %;
+    }
+  .col - xl - auto {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 auto;
+        flex: 0 0 auto;
+        width: auto;
+        max - width: none;
+    }
+  .col - xl - 1 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 8.3333333333 %;
+        flex: 0 0 8.3333333333 %;
+        max - width: 8.3333333333 %;
+    }
+  .col - xl - 2 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 16.6666666667 %;
+        flex: 0 0 16.6666666667 %;
+        max - width: 16.6666666667 %;
+    }
+  .col - xl - 3 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 25 %;
+        flex: 0 0 25 %;
+        max - width: 25 %;
+    }
+  .col - xl - 4 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 33.3333333333 %;
+        flex: 0 0 33.3333333333 %;
+        max - width: 33.3333333333 %;
+    }
+  .col - xl - 5 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 41.6666666667 %;
+        flex: 0 0 41.6666666667 %;
+        max - width: 41.6666666667 %;
+    }
+  .col - xl - 6 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 50 %;
+        flex: 0 0 50 %;
+        max - width: 50 %;
+    }
+  .col - xl - 7 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 58.3333333333 %;
+        flex: 0 0 58.3333333333 %;
+        max - width: 58.3333333333 %;
+    }
+  .col - xl - 8 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 66.6666666667 %;
+        flex: 0 0 66.6666666667 %;
+        max - width: 66.6666666667 %;
+    }
+  .col - xl - 9 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 75 %;
+        flex: 0 0 75 %;
+        max - width: 75 %;
+    }
+  .col - xl - 10 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 83.3333333333 %;
+        flex: 0 0 83.3333333333 %;
+        max - width: 83.3333333333 %;
+    }
+  .col - xl - 11 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 91.6666666667 %;
+        flex: 0 0 91.6666666667 %;
+        max - width: 91.6666666667 %;
+    }
+  .col - xl - 12 {
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 100 %;
+        flex: 0 0 100 %;
+        max - width: 100 %;
+    }
+  .order - xl - first {
+        -webkit - box - ordinal - group: 0;
+        -ms - flex - order: -1;
+        order: -1;
+    }
+  .order - xl - last {
+        -webkit - box - ordinal - group: 14;
+        -ms - flex - order: 13;
+        order: 13;
+    }
+  .order - xl - 0 {
+        -webkit - box - ordinal - group: 1;
+        -ms - flex - order: 0;
+        order: 0;
+    }
+  .order - xl - 1 {
+        -webkit - box - ordinal - group: 2;
+        -ms - flex - order: 1;
+        order: 1;
+    }
+  .order - xl - 2 {
+        -webkit - box - ordinal - group: 3;
+        -ms - flex - order: 2;
+        order: 2;
+    }
+  .order - xl - 3 {
+        -webkit - box - ordinal - group: 4;
+        -ms - flex - order: 3;
+        order: 3;
+    }
+  .order - xl - 4 {
+        -webkit - box - ordinal - group: 5;
+        -ms - flex - order: 4;
+        order: 4;
+    }
+  .order - xl - 5 {
+        -webkit - box - ordinal - group: 6;
+        -ms - flex - order: 5;
+        order: 5;
+    }
+  .order - xl - 6 {
+        -webkit - box - ordinal - group: 7;
+        -ms - flex - order: 6;
+        order: 6;
+    }
+  .order - xl - 7 {
+        -webkit - box - ordinal - group: 8;
+        -ms - flex - order: 7;
+        order: 7;
+    }
+  .order - xl - 8 {
+        -webkit - box - ordinal - group: 9;
+        -ms - flex - order: 8;
+        order: 8;
+    }
+  .order - xl - 9 {
+        -webkit - box - ordinal - group: 10;
+        -ms - flex - order: 9;
+        order: 9;
+    }
+  .order - xl - 10 {
+        -webkit - box - ordinal - group: 11;
+        -ms - flex - order: 10;
+        order: 10;
+    }
+  .order - xl - 11 {
+        -webkit - box - ordinal - group: 12;
+        -ms - flex - order: 11;
+        order: 11;
+    }
+  .order - xl - 12 {
+        -webkit - box - ordinal - group: 13;
+        -ms - flex - order: 12;
+        order: 12;
+    }
+  .offset - xl - 0 {
+        margin - left: 0;
+    }
+  .offset - xl - 1 {
+        margin - left: 8.3333333333 %;
+    }
+  .offset - xl - 2 {
+        margin - left: 16.6666666667 %;
+    }
+  .offset - xl - 3 {
+        margin - left: 25 %;
+    }
+  .offset - xl - 4 {
+        margin - left: 33.3333333333 %;
+    }
+  .offset - xl - 5 {
+        margin - left: 41.6666666667 %;
+    }
+  .offset - xl - 6 {
+        margin - left: 50 %;
+    }
+  .offset - xl - 7 {
+        margin - left: 58.3333333333 %;
+    }
+  .offset - xl - 8 {
+        margin - left: 66.6666666667 %;
+    }
+  .offset - xl - 9 {
+        margin - left: 75 %;
+    }
+  .offset - xl - 10 {
+        margin - left: 83.3333333333 %;
+    }
+  .offset - xl - 11 {
+        margin - left: 91.6666666667 %;
+    }
+}
 
-  function Plugin(option) {
-    return this.each(function () {
-      var $this   = $(this)
-      var data    = $this.data('bs.affix')
-      var options = typeof option == 'object' && option
+.table {
+    width: 100 %;
+    margin - bottom: 1rem;
+    background - color: transparent;
+}
 
-      if (!data) $this.data('bs.affix', (data = new Affix(this, options)))
-      if (typeof option == 'string') data[option]()
-    })
-  }
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical - align: top;
+    border - top: 1px solid #444;
+}
 
-  var old = $.fn.affix
+.table thead th {
+    vertical - align: bottom;
+    border - bottom: 2px solid #444;
+}
 
-  $.fn.affix             = Plugin
-  $.fn.affix.Constructor = Affix
+.table tbody + tbody {
+    border - top: 2px solid #444;
+}
 
+.table.table {
+    background - color: #222;
+}
 
-  // AFFIX NO CONFLICT
-  // =================
+.table - sm th,
+.table - sm td {
+    padding: 0.3rem;
+}
 
-  $.fn.affix.noConflict = function () {
-    $.fn.affix = old
-    return this
-  }
+.table - bordered {
+    border: 1px solid #444;
+}
 
+.table - bordered th,
+.table - bordered td {
+    border: 1px solid #444;
+}
 
-  // AFFIX DATA-API
-  // ==============
+.table - bordered thead th,
+.table - bordered thead td {
+    border - bottom - width: 2px;
+}
 
-  $(window).on('load', function () {
-    $('[data-spy="affix"]').each(function () {
-      var $spy = $(this)
-      var data = $spy.data()
+.table - borderless th,
+.table - borderless td,
+.table - borderless thead th,
+.table - borderless tbody + tbody {
+    border: 0;
+}
 
-      data.offset = data.offset || {}
+.table - striped tbody tr: nth - of - type(odd) {
+    background - color: #303030;
+}
 
-      if (data.offsetBottom != null) data.offset.bottom = data.offsetBottom
-      if (data.offsetTop    != null) data.offset.top    = data.offsetTop
+.table - hover tbody tr: hover {
+    background - color: rgba(0, 0, 0, 0.075);
+}
 
-      Plugin.call($spy, data)
-    })
-  })
+.table - primary,
+.table - primary > th,
+.table - primary > td {
+    background - color: #c7d1db;
+}
 
-}(jQuery);
+.table - hover.table - primary: hover {
+    background - color: #b7c4d1;
+}
+
+.table - hover.table - primary: hover > td,
+.table - hover.table - primary: hover > th {
+    background - color: #b7c4d1;
+}
+
+.table - secondary,
+.table - secondary > th,
+.table - secondary > td {
+    background - color: #cbcbcb;
+}
+
+.table - hover.table - secondary: hover {
+    background - color: #bebebe;
+}
+
+.table - hover.table - secondary: hover > td,
+.table - hover.table - secondary: hover > th {
+    background - color: #bebebe;
+}
+
+.table - success,
+.table - success > th,
+.table - success > td {
+    background - color: #b8ecdf;
+}
+
+.table - hover.table - success: hover {
+    background - color: #a4e7d6;
+}
+
+.table - hover.table - success: hover > td,
+.table - hover.table - success: hover > th {
+    background - color: #a4e7d6;
+}
+
+.table - info,
+.table - info > th,
+.table - info > td {
+    background - color: #c6e2f5;
+}
+
+.table - hover.table - info: hover {
+    background - color: #b0d7f1;
+}
+
+.table - hover.table - info: hover > td,
+.table - hover.table - info: hover > th {
+    background - color: #b0d7f1;
+}
+
+.table - warning,
+.table - warning > th,
+.table - warning > td {
+    background - color: #fce3bd;
+}
+
+.table - hover.table - warning: hover {
+    background - color: #fbd9a5;
+}
+
+.table - hover.table - warning: hover > td,
+.table - hover.table - warning: hover > th {
+    background - color: #fbd9a5;
+}
+
+.table - danger,
+.table - danger > th,
+.table - danger > td {
+    background - color: #f8cdc8;
+}
+
+.table - hover.table - danger: hover {
+    background - color: #f5b8b1;
+}
+
+.table - hover.table - danger: hover > td,
+.table - hover.table - danger: hover > th {
+    background - color: #f5b8b1;
+}
+
+.table - light,
+.table - light > th,
+.table - light > td {
+    background - color: #c5c5c5;
+}
+
+.table - hover.table - light: hover {
+    background - color: #b8b8b8;
+}
+
+.table - hover.table - light: hover > td,
+.table - hover.table - light: hover > th {
+    background - color: #b8b8b8;
+}
+
+.table - dark,
+.table - dark > th,
+.table - dark > td {
+    background - color: #e8eaed;
+}
+
+.table - hover.table - dark: hover {
+    background - color: #dadde2;
+}
+
+.table - hover.table - dark: hover > td,
+.table - hover.table - dark: hover > th {
+    background - color: #dadde2;
+}
+
+.table - active,
+.table - active > th,
+.table - active > td {
+    background - color: rgba(0, 0, 0, 0.075);
+}
+
+.table - hover.table - active: hover {
+    background - color: rgba(0, 0, 0, 0.075);
+}
+
+.table - hover.table - active: hover > td,
+.table - hover.table - active: hover > th {
+    background - color: rgba(0, 0, 0, 0.075);
+}
+
+.table.thead - dark th {
+    color: #222;
+    background - color: #adb5bd;
+    border - color: #98a2ac;
+}
+
+.table.thead - light th {
+    color: #444;
+    background - color: #ebebeb;
+    border - color: #444;
+}
+
+.table - dark {
+    color: #222;
+    background - color: #adb5bd;
+}
+
+.table - dark th,
+.table - dark td,
+.table - dark thead th {
+    border - color: #98a2ac;
+}
+
+.table - dark.table - bordered {
+    border: 0;
+}
+
+.table - dark.table - striped tbody tr: nth - of - type(odd) {
+    background - color: rgba(255, 255, 255, 0.05);
+}
+
+.table - dark.table - hover tbody tr: hover {
+    background - color: rgba(255, 255, 255, 0.075);
+}
+
+@media(max - width: 575.98px) {
+  .table - responsive - sm {
+        display: block;
+        width: 100 %;
+        overflow - x: auto;
+        -webkit - overflow - scrolling: touch;
+        -ms - overflow - style: -ms - autohiding - scrollbar;
+    }
+  .table - responsive - sm > .table - bordered {
+        border: 0;
+    }
+}
+
+@media(max - width: 767.98px) {
+  .table - responsive - md {
+        display: block;
+        width: 100 %;
+        overflow - x: auto;
+        -webkit - overflow - scrolling: touch;
+        -ms - overflow - style: -ms - autohiding - scrollbar;
+    }
+  .table - responsive - md > .table - bordered {
+        border: 0;
+    }
+}
+
+@media(max - width: 991.98px) {
+  .table - responsive - lg {
+        display: block;
+        width: 100 %;
+        overflow - x: auto;
+        -webkit - overflow - scrolling: touch;
+        -ms - overflow - style: -ms - autohiding - scrollbar;
+    }
+  .table - responsive - lg > .table - bordered {
+        border: 0;
+    }
+}
+
+@media(max - width: 1199.98px) {
+  .table - responsive - xl {
+        display: block;
+        width: 100 %;
+        overflow - x: auto;
+        -webkit - overflow - scrolling: touch;
+        -ms - overflow - style: -ms - autohiding - scrollbar;
+    }
+  .table - responsive - xl > .table - bordered {
+        border: 0;
+    }
+}
+
+.table - responsive {
+    display: block;
+    width: 100 %;
+    overflow - x: auto;
+    -webkit - overflow - scrolling: touch;
+    -ms - overflow - style: -ms - autohiding - scrollbar;
+}
+
+.table - responsive > .table - bordered {
+    border: 0;
+}
+
+.form - control {
+    display: block;
+    width: 100 %;
+    height: calc(2.15625rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font - size: 0.9375rem;
+    line - height: 1.5;
+    color: #444;
+    background - color: #fff;
+    background - clip: padding - box;
+    border: 1px solid transparent;
+    border - radius: 0.25rem;
+    -webkit - transition: border - color 0.15s ease -in -out, -webkit - box - shadow 0.15s ease -in -out;
+    transition: border - color 0.15s ease -in -out, -webkit - box - shadow 0.15s ease -in -out;
+    transition: border - color 0.15s ease -in -out, box - shadow 0.15s ease -in -out;
+    transition: border - color 0.15s ease -in -out, box - shadow 0.15s ease -in -out, -webkit - box - shadow 0.15s ease -in -out;
+}
+
+@media screen and(prefers - reduced - motion: reduce) {
+  .form - control {
+        -webkit - transition: none;
+        transition: none;
+    }
+}
+
+.form - control:: -ms - expand {
+    background - color: transparent;
+    border: 0;
+}
+
+.form - control: focus {
+    color: #444;
+    background - color: #fff;
+    border - color: #739ac2;
+    outline: 0;
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(55, 90, 127, 0.25);
+    box - shadow: 0 0 0 0.2rem rgba(55, 90, 127, 0.25);
+}
+
+.form - control:: -webkit - input - placeholder {
+    color: #999;
+    opacity: 1;
+}
+
+.form - control: -ms - input - placeholder {
+    color: #999;
+    opacity: 1;
+}
+
+.form - control:: -ms - input - placeholder {
+    color: #999;
+    opacity: 1;
+}
+
+.form - control:: placeholder {
+    color: #999;
+    opacity: 1;
+}
+
+.form - control: disabled, .form - control[readonly] {
+    background - color: #ebebeb;
+    opacity: 1;
+}
+
+select.form - control: focus:: -ms - value {
+    color: #444;
+    background - color: #fff;
+}
+
+.form - control - file,
+.form - control - range {
+    display: block;
+    width: 100 %;
+}
+
+.col - form - label {
+    padding - top: calc(0.375rem + 1px);
+    padding - bottom: calc(0.375rem + 1px);
+    margin - bottom: 0;
+    font - size: inherit;
+    line - height: 1.5;
+}
+
+.col - form - label - lg {
+    padding - top: calc(0.5rem + 1px);
+    padding - bottom: calc(0.5rem + 1px);
+    font - size: 1.171875rem;
+    line - height: 1.5;
+}
+
+.col - form - label - sm {
+    padding - top: calc(0.25rem + 1px);
+    padding - bottom: calc(0.25rem + 1px);
+    font - size: 0.8203125rem;
+    line - height: 1.5;
+}
+
+.form - control - plaintext {
+    display: block;
+    width: 100 %;
+    padding - top: 0.375rem;
+    padding - bottom: 0.375rem;
+    margin - bottom: 0;
+    line - height: 1.5;
+    color: #fff;
+    background - color: transparent;
+    border: solid transparent;
+    border - width: 1px 0;
+}
+
+.form - control - plaintext.form - control - sm, .form - control - plaintext.form - control - lg {
+    padding - right: 0;
+    padding - left: 0;
+}
+
+.form - control - sm {
+    height: calc(1.73046875rem + 2px);
+    padding: 0.25rem 0.5rem;
+    font - size: 0.8203125rem;
+    line - height: 1.5;
+    border - radius: 0.2rem;
+}
+
+.form - control - lg {
+    height: calc(2.7578125rem + 2px);
+    padding: 0.5rem 1rem;
+    font - size: 1.171875rem;
+    line - height: 1.5;
+    border - radius: 0.3rem;
+}
+
+select.form - control[size], select.form - control[multiple] {
+    height: auto;
+}
+
+textarea.form - control {
+    height: auto;
+}
+
+.form - group {
+    margin - bottom: 1rem;
+}
+
+.form - text {
+    display: block;
+    margin - top: 0.25rem;
+}
+
+.form - row {
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+    -ms - flex - wrap: wrap;
+    flex - wrap: wrap;
+    margin - right: -5px;
+    margin - left: -5px;
+}
+
+.form - row > .col,
+.form - row > [class*= "col-"] {
+    padding - right: 5px;
+    padding - left: 5px;
+}
+
+.form - check {
+    position: relative;
+    display: block;
+    padding - left: 1.25rem;
+}
+
+.form - check - input {
+    position: absolute;
+    margin - top: 0.3rem;
+    margin - left: -1.25rem;
+}
+
+.form - check - input: disabled ~ .form - check - label {
+    color: #999;
+}
+
+.form - check - label {
+    margin - bottom: 0;
+}
+
+.form - check - inline {
+    display: -webkit - inline - box;
+    display: -ms - inline - flexbox;
+    display: inline - flex;
+    -webkit - box - align: center;
+    -ms - flex - align: center;
+    align - items: center;
+    padding - left: 0;
+    margin - right: 0.75rem;
+}
+
+.form - check - inline.form - check - input {
+    position: static;
+    margin - top: 0;
+    margin - right: 0.3125rem;
+    margin - left: 0;
+}
+
+.valid - feedback {
+    display: none;
+    width: 100 %;
+    margin - top: 0.25rem;
+    font - size: 80 %;
+    color: #00bc8c;
+}
+
+.valid - tooltip {
+    position: absolute;
+    top: 100 %;
+    z - index: 5;
+    display: none;
+    max - width: 100 %;
+    padding: 0.25rem 0.5rem;
+    margin - top: .1rem;
+    font - size: 0.8203125rem;
+    line - height: 1.5;
+    color: #fff;
+    background - color: rgba(0, 188, 140, 0.9);
+    border - radius: 0.25rem;
+}
+
+.was - validated.form - control: valid, .form - control.is - valid, .was - validated
+    .custom - select: valid,
+.custom - select.is - valid {
+    border - color: #00bc8c;
+}
+
+.was - validated.form - control: valid: focus, .form - control.is - valid: focus, .was - validated
+    .custom - select: valid: focus,
+.custom - select.is - valid: focus {
+    border - color: #00bc8c;
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(0, 188, 140, 0.25);
+    box - shadow: 0 0 0 0.2rem rgba(0, 188, 140, 0.25);
+}
+
+.was - validated.form - control: valid ~ .valid - feedback,
+.was - validated.form - control: valid ~ .valid - tooltip, .form - control.is - valid ~ .valid - feedback,
+.form - control.is - valid ~ .valid - tooltip, .was - validated
+    .custom - select: valid ~ .valid - feedback,
+.was - validated
+            .custom - select: valid ~ .valid - tooltip,
+.custom - select.is - valid ~ .valid - feedback,
+.custom - select.is - valid ~ .valid - tooltip {
+    display: block;
+}
+
+.was - validated.form - control - file: valid ~ .valid - feedback,
+.was - validated.form - control - file: valid ~ .valid - tooltip, .form - control - file.is - valid ~ .valid - feedback,
+.form - control - file.is - valid ~ .valid - tooltip {
+    display: block;
+}
+
+.was - validated.form - check - input: valid ~ .form - check - label, .form - check - input.is - valid ~ .form - check - label {
+    color: #00bc8c;
+}
+
+.was - validated.form - check - input: valid ~ .valid - feedback,
+.was - validated.form - check - input: valid ~ .valid - tooltip, .form - check - input.is - valid ~ .valid - feedback,
+.form - check - input.is - valid ~ .valid - tooltip {
+    display: block;
+}
+
+.was - validated.custom - control - input: valid ~ .custom - control - label, .custom - control - input.is - valid ~ .custom - control - label {
+    color: #00bc8c;
+}
+
+.was - validated.custom - control - input: valid ~ .custom - control - label:: before, .custom - control - input.is - valid ~ .custom - control - label:: before {
+    background - color: #3dffcd;
+}
+
+.was - validated.custom - control - input: valid ~ .valid - feedback,
+.was - validated.custom - control - input: valid ~ .valid - tooltip, .custom - control - input.is - valid ~ .valid - feedback,
+.custom - control - input.is - valid ~ .valid - tooltip {
+    display: block;
+}
+
+.was - validated.custom - control - input: valid: checked ~ .custom - control - label:: before, .custom - control - input.is - valid: checked ~ .custom - control - label:: before {
+    background - color: #00efb2;
+}
+
+.was - validated.custom - control - input: valid: focus ~ .custom - control - label:: before, .custom - control - input.is - valid: focus ~ .custom - control - label:: before {
+    -webkit - box - shadow: 0 0 0 1px #222, 0 0 0 0.2rem rgba(0, 188, 140, 0.25);
+    box - shadow: 0 0 0 1px #222, 0 0 0 0.2rem rgba(0, 188, 140, 0.25);
+}
+
+.was - validated.custom - file - input: valid ~ .custom - file - label, .custom - file - input.is - valid ~ .custom - file - label {
+    border - color: #00bc8c;
+}
+
+.was - validated.custom - file - input: valid ~ .custom - file - label:: after, .custom - file - input.is - valid ~ .custom - file - label:: after {
+    border - color: inherit;
+}
+
+.was - validated.custom - file - input: valid ~ .valid - feedback,
+.was - validated.custom - file - input: valid ~ .valid - tooltip, .custom - file - input.is - valid ~ .valid - feedback,
+.custom - file - input.is - valid ~ .valid - tooltip {
+    display: block;
+}
+
+.was - validated.custom - file - input: valid: focus ~ .custom - file - label, .custom - file - input.is - valid: focus ~ .custom - file - label {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(0, 188, 140, 0.25);
+    box - shadow: 0 0 0 0.2rem rgba(0, 188, 140, 0.25);
+}
+
+.invalid - feedback {
+    display: none;
+    width: 100 %;
+    margin - top: 0.25rem;
+    font - size: 80 %;
+    color: #E74C3C;
+}
+
+.invalid - tooltip {
+    position: absolute;
+    top: 100 %;
+    z - index: 5;
+    display: none;
+    max - width: 100 %;
+    padding: 0.25rem 0.5rem;
+    margin - top: .1rem;
+    font - size: 0.8203125rem;
+    line - height: 1.5;
+    color: #fff;
+    background - color: rgba(231, 76, 60, 0.9);
+    border - radius: 0.25rem;
+}
+
+.was - validated.form - control: invalid, .form - control.is - invalid, .was - validated
+    .custom - select: invalid,
+.custom - select.is - invalid {
+    border - color: #E74C3C;
+}
+
+.was - validated.form - control: invalid: focus, .form - control.is - invalid: focus, .was - validated
+    .custom - select: invalid: focus,
+.custom - select.is - invalid: focus {
+    border - color: #E74C3C;
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.25);
+    box - shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.25);
+}
+
+.was - validated.form - control: invalid ~ .invalid - feedback,
+.was - validated.form - control: invalid ~ .invalid - tooltip, .form - control.is - invalid ~ .invalid - feedback,
+.form - control.is - invalid ~ .invalid - tooltip, .was - validated
+    .custom - select: invalid ~ .invalid - feedback,
+.was - validated
+            .custom - select: invalid ~ .invalid - tooltip,
+.custom - select.is - invalid ~ .invalid - feedback,
+.custom - select.is - invalid ~ .invalid - tooltip {
+    display: block;
+}
+
+.was - validated.form - control - file: invalid ~ .invalid - feedback,
+.was - validated.form - control - file: invalid ~ .invalid - tooltip, .form - control - file.is - invalid ~ .invalid - feedback,
+.form - control - file.is - invalid ~ .invalid - tooltip {
+    display: block;
+}
+
+.was - validated.form - check - input: invalid ~ .form - check - label, .form - check - input.is - invalid ~ .form - check - label {
+    color: #E74C3C;
+}
+
+.was - validated.form - check - input: invalid ~ .invalid - feedback,
+.was - validated.form - check - input: invalid ~ .invalid - tooltip, .form - check - input.is - invalid ~ .invalid - feedback,
+.form - check - input.is - invalid ~ .invalid - tooltip {
+    display: block;
+}
+
+.was - validated.custom - control - input: invalid ~ .custom - control - label, .custom - control - input.is - invalid ~ .custom - control - label {
+    color: #E74C3C;
+}
+
+.was - validated.custom - control - input: invalid ~ .custom - control - label:: before, .custom - control - input.is - invalid ~ .custom - control - label:: before {
+    background - color: #f5b4ae;
+}
+
+.was - validated.custom - control - input: invalid ~ .invalid - feedback,
+.was - validated.custom - control - input: invalid ~ .invalid - tooltip, .custom - control - input.is - invalid ~ .invalid - feedback,
+.custom - control - input.is - invalid ~ .invalid - tooltip {
+    display: block;
+}
+
+.was - validated.custom - control - input: invalid: checked ~ .custom - control - label:: before, .custom - control - input.is - invalid: checked ~ .custom - control - label:: before {
+    background - color: #ed7669;
+}
+
+.was - validated.custom - control - input: invalid: focus ~ .custom - control - label:: before, .custom - control - input.is - invalid: focus ~ .custom - control - label:: before {
+    -webkit - box - shadow: 0 0 0 1px #222, 0 0 0 0.2rem rgba(231, 76, 60, 0.25);
+    box - shadow: 0 0 0 1px #222, 0 0 0 0.2rem rgba(231, 76, 60, 0.25);
+}
+
+.was - validated.custom - file - input: invalid ~ .custom - file - label, .custom - file - input.is - invalid ~ .custom - file - label {
+    border - color: #E74C3C;
+}
+
+.was - validated.custom - file - input: invalid ~ .custom - file - label:: after, .custom - file - input.is - invalid ~ .custom - file - label:: after {
+    border - color: inherit;
+}
+
+.was - validated.custom - file - input: invalid ~ .invalid - feedback,
+.was - validated.custom - file - input: invalid ~ .invalid - tooltip, .custom - file - input.is - invalid ~ .invalid - feedback,
+.custom - file - input.is - invalid ~ .invalid - tooltip {
+    display: block;
+}
+
+.was - validated.custom - file - input: invalid: focus ~ .custom - file - label, .custom - file - input.is - invalid: focus ~ .custom - file - label {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.25);
+    box - shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.25);
+}
+
+.form - inline {
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+    -webkit - box - orient: horizontal;
+    -webkit - box - direction: normal;
+    -ms - flex - flow: row wrap;
+    flex - flow: row wrap;
+    -webkit - box - align: center;
+    -ms - flex - align: center;
+    align - items: center;
+}
+
+.form - inline.form - check {
+    width: 100 %;
+}
+
+@media(min - width: 576px) {
+  .form - inline label {
+        display: -webkit - box;
+        display: -ms - flexbox;
+        display: flex;
+        -webkit - box - align: center;
+        -ms - flex - align: center;
+        align - items: center;
+        -webkit - box - pack: center;
+        -ms - flex - pack: center;
+        justify - content: center;
+        margin - bottom: 0;
+    }
+  .form - inline.form - group {
+        display: -webkit - box;
+        display: -ms - flexbox;
+        display: flex;
+        -webkit - box - flex: 0;
+        -ms - flex: 0 0 auto;
+        flex: 0 0 auto;
+        -webkit - box - orient: horizontal;
+        -webkit - box - direction: normal;
+        -ms - flex - flow: row wrap;
+        flex - flow: row wrap;
+        -webkit - box - align: center;
+        -ms - flex - align: center;
+        align - items: center;
+        margin - bottom: 0;
+    }
+  .form - inline.form - control {
+        display: inline - block;
+        width: auto;
+        vertical - align: middle;
+    }
+  .form - inline.form - control - plaintext {
+        display: inline - block;
+    }
+  .form - inline.input - group,
+  .form - inline.custom - select {
+        width: auto;
+    }
+  .form - inline.form - check {
+        display: -webkit - box;
+        display: -ms - flexbox;
+        display: flex;
+        -webkit - box - align: center;
+        -ms - flex - align: center;
+        align - items: center;
+        -webkit - box - pack: center;
+        -ms - flex - pack: center;
+        justify - content: center;
+        width: auto;
+        padding - left: 0;
+    }
+  .form - inline.form - check - input {
+        position: relative;
+        margin - top: 0;
+        margin - right: 0.25rem;
+        margin - left: 0;
+    }
+  .form - inline.custom - control {
+        -webkit - box - align: center;
+        -ms - flex - align: center;
+        align - items: center;
+        -webkit - box - pack: center;
+        -ms - flex - pack: center;
+        justify - content: center;
+    }
+  .form - inline.custom - control - label {
+        margin - bottom: 0;
+    }
+}
+
+.btn {
+    display: inline - block;
+    font - weight: 400;
+    text - align: center;
+    white - space: nowrap;
+    vertical - align: middle;
+    -webkit - user - select: none;
+    -moz - user - select: none;
+    -ms - user - select: none;
+    user - select: none;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font - size: 0.9375rem;
+    line - height: 1.5;
+    border - radius: 0.25rem;
+    -webkit - transition: color 0.15s ease -in -out, background - color 0.15s ease -in -out, border - color 0.15s ease -in -out, -webkit - box - shadow 0.15s ease -in -out;
+    transition: color 0.15s ease -in -out, background - color 0.15s ease -in -out, border - color 0.15s ease -in -out, -webkit - box - shadow 0.15s ease -in -out;
+    transition: color 0.15s ease -in -out, background - color 0.15s ease -in -out, border - color 0.15s ease -in -out, box - shadow 0.15s ease -in -out;
+    transition: color 0.15s ease -in -out, background - color 0.15s ease -in -out, border - color 0.15s ease -in -out, box - shadow 0.15s ease -in -out, -webkit - box - shadow 0.15s ease -in -out;
+}
+
+@media screen and(prefers - reduced - motion: reduce) {
+  .btn {
+        -webkit - transition: none;
+        transition: none;
+    }
+}
+
+.btn: hover, .btn: focus {
+    text - decoration: none;
+}
+
+.btn: focus, .btn.focus {
+    outline: 0;
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(55, 90, 127, 0.25);
+    box - shadow: 0 0 0 0.2rem rgba(55, 90, 127, 0.25);
+}
+
+.btn.disabled, .btn: disabled {
+    opacity: 0.65;
+}
+
+.btn: not(: disabled): not(.disabled) {
+    cursor: pointer;
+}
+
+a.btn.disabled,
+    fieldset: disabled a.btn {
+    pointer - events: none;
+}
+
+.btn - primary {
+    color: #fff;
+    background - color: #375a7f;
+    border - color: #375a7f;
+}
+
+.btn - primary: hover {
+    color: #fff;
+    background - color: #2b4764;
+    border - color: #28415b;
+}
+
+.btn - primary: focus, .btn - primary.focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(55, 90, 127, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(55, 90, 127, 0.5);
+}
+
+.btn - primary.disabled, .btn - primary: disabled {
+    color: #fff;
+    background - color: #375a7f;
+    border - color: #375a7f;
+}
+
+.btn - primary: not(: disabled): not(.disabled): active, .btn - primary: not(: disabled): not(.disabled).active,
+.show > .btn - primary.dropdown - toggle {
+    color: #fff;
+    background - color: #28415b;
+    border - color: #243a53;
+}
+
+.btn - primary: not(: disabled): not(.disabled): active: focus, .btn - primary: not(: disabled): not(.disabled).active: focus,
+.show > .btn - primary.dropdown - toggle: focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(55, 90, 127, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(55, 90, 127, 0.5);
+}
+
+.btn - secondary {
+    color: #fff;
+    background - color: #444;
+    border - color: #444;
+}
+
+.btn - secondary: hover {
+    color: #fff;
+    background - color: #313131;
+    border - color: #2b2a2a;
+}
+
+.btn - secondary: focus, .btn - secondary.focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(68, 68, 68, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(68, 68, 68, 0.5);
+}
+
+.btn - secondary.disabled, .btn - secondary: disabled {
+    color: #fff;
+    background - color: #444;
+    border - color: #444;
+}
+
+.btn - secondary: not(: disabled): not(.disabled): active, .btn - secondary: not(: disabled): not(.disabled).active,
+.show > .btn - secondary.dropdown - toggle {
+    color: #fff;
+    background - color: #2b2a2a;
+    border - color: #242424;
+}
+
+.btn - secondary: not(: disabled): not(.disabled): active: focus, .btn - secondary: not(: disabled): not(.disabled).active: focus,
+.show > .btn - secondary.dropdown - toggle: focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(68, 68, 68, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(68, 68, 68, 0.5);
+}
+
+.btn - success {
+    color: #fff;
+    background - color: #00bc8c;
+    border - color: #00bc8c;
+}
+
+.btn - success: hover {
+    color: #fff;
+    background - color: #009670;
+    border - color: #008966;
+}
+
+.btn - success: focus, .btn - success.focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(0, 188, 140, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(0, 188, 140, 0.5);
+}
+
+.btn - success.disabled, .btn - success: disabled {
+    color: #fff;
+    background - color: #00bc8c;
+    border - color: #00bc8c;
+}
+
+.btn - success: not(: disabled): not(.disabled): active, .btn - success: not(: disabled): not(.disabled).active,
+.show > .btn - success.dropdown - toggle {
+    color: #fff;
+    background - color: #008966;
+    border - color: #007c5d;
+}
+
+.btn - success: not(: disabled): not(.disabled): active: focus, .btn - success: not(: disabled): not(.disabled).active: focus,
+.show > .btn - success.dropdown - toggle: focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(0, 188, 140, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(0, 188, 140, 0.5);
+}
+
+.btn - info {
+    color: #fff;
+    background - color: #3498DB;
+    border - color: #3498DB;
+}
+
+.btn - info: hover {
+    color: #fff;
+    background - color: #2384c6;
+    border - color: #217dbb;
+}
+
+.btn - info: focus, .btn - info.focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.5);
+}
+
+.btn - info.disabled, .btn - info: disabled {
+    color: #fff;
+    background - color: #3498DB;
+    border - color: #3498DB;
+}
+
+.btn - info: not(: disabled): not(.disabled): active, .btn - info: not(: disabled): not(.disabled).active,
+.show > .btn - info.dropdown - toggle {
+    color: #fff;
+    background - color: #217dbb;
+    border - color: #1f76b0;
+}
+
+.btn - info: not(: disabled): not(.disabled): active: focus, .btn - info: not(: disabled): not(.disabled).active: focus,
+.show > .btn - info.dropdown - toggle: focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.5);
+}
+
+.btn - warning {
+    color: #fff;
+    background - color: #F39C12;
+    border - color: #F39C12;
+}
+
+.btn - warning: hover {
+    color: #fff;
+    background - color: #d4860b;
+    border - color: #c87f0a;
+}
+
+.btn - warning: focus, .btn - warning.focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(243, 156, 18, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(243, 156, 18, 0.5);
+}
+
+.btn - warning.disabled, .btn - warning: disabled {
+    color: #fff;
+    background - color: #F39C12;
+    border - color: #F39C12;
+}
+
+.btn - warning: not(: disabled): not(.disabled): active, .btn - warning: not(: disabled): not(.disabled).active,
+.show > .btn - warning.dropdown - toggle {
+    color: #fff;
+    background - color: #c87f0a;
+    border - color: #bc770a;
+}
+
+.btn - warning: not(: disabled): not(.disabled): active: focus, .btn - warning: not(: disabled): not(.disabled).active: focus,
+.show > .btn - warning.dropdown - toggle: focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(243, 156, 18, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(243, 156, 18, 0.5);
+}
+
+.btn - danger {
+    color: #fff;
+    background - color: #E74C3C;
+    border - color: #E74C3C;
+}
+
+.btn - danger: hover {
+    color: #fff;
+    background - color: #e12e1c;
+    border - color: #d62c1a;
+}
+
+.btn - danger: focus, .btn - danger.focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.5);
+}
+
+.btn - danger.disabled, .btn - danger: disabled {
+    color: #fff;
+    background - color: #E74C3C;
+    border - color: #E74C3C;
+}
+
+.btn - danger: not(: disabled): not(.disabled): active, .btn - danger: not(: disabled): not(.disabled).active,
+.show > .btn - danger.dropdown - toggle {
+    color: #fff;
+    background - color: #d62c1a;
+    border - color: #ca2a19;
+}
+
+.btn - danger: not(: disabled): not(.disabled): active: focus, .btn - danger: not(: disabled): not(.disabled).active: focus,
+.show > .btn - danger.dropdown - toggle: focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.5);
+}
+
+.btn - light {
+    color: #fff;
+    background - color: #303030;
+    border - color: #303030;
+}
+
+.btn - light: hover {
+    color: #fff;
+    background - color: #1d1d1d;
+    border - color: #171616;
+}
+
+.btn - light: focus, .btn - light.focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(48, 48, 48, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(48, 48, 48, 0.5);
+}
+
+.btn - light.disabled, .btn - light: disabled {
+    color: #fff;
+    background - color: #303030;
+    border - color: #303030;
+}
+
+.btn - light: not(: disabled): not(.disabled): active, .btn - light: not(: disabled): not(.disabled).active,
+.show > .btn - light.dropdown - toggle {
+    color: #fff;
+    background - color: #171616;
+    border - color: #101010;
+}
+
+.btn - light: not(: disabled): not(.disabled): active: focus, .btn - light: not(: disabled): not(.disabled).active: focus,
+.show > .btn - light.dropdown - toggle: focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(48, 48, 48, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(48, 48, 48, 0.5);
+}
+
+.btn - dark {
+    color: #222;
+    background - color: #adb5bd;
+    border - color: #adb5bd;
+}
+
+.btn - dark: hover {
+    color: #fff;
+    background - color: #98a2ac;
+    border - color: #919ca6;
+}
+
+.btn - dark: focus, .btn - dark.focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(173, 181, 189, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(173, 181, 189, 0.5);
+}
+
+.btn - dark.disabled, .btn - dark: disabled {
+    color: #222;
+    background - color: #adb5bd;
+    border - color: #adb5bd;
+}
+
+.btn - dark: not(: disabled): not(.disabled): active, .btn - dark: not(: disabled): not(.disabled).active,
+.show > .btn - dark.dropdown - toggle {
+    color: #fff;
+    background - color: #919ca6;
+    border - color: #8a95a1;
+}
+
+.btn - dark: not(: disabled): not(.disabled): active: focus, .btn - dark: not(: disabled): not(.disabled).active: focus,
+.show > .btn - dark.dropdown - toggle: focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(173, 181, 189, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(173, 181, 189, 0.5);
+}
+
+.btn - outline - primary {
+    color: #375a7f;
+    background - color: transparent;
+    background - image: none;
+    border - color: #375a7f;
+}
+
+.btn - outline - primary: hover {
+    color: #fff;
+    background - color: #375a7f;
+    border - color: #375a7f;
+}
+
+.btn - outline - primary: focus, .btn - outline - primary.focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(55, 90, 127, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(55, 90, 127, 0.5);
+}
+
+.btn - outline - primary.disabled, .btn - outline - primary: disabled {
+    color: #375a7f;
+    background - color: transparent;
+}
+
+.btn - outline - primary: not(: disabled): not(.disabled): active, .btn - outline - primary: not(: disabled): not(.disabled).active,
+.show > .btn - outline - primary.dropdown - toggle {
+    color: #fff;
+    background - color: #375a7f;
+    border - color: #375a7f;
+}
+
+.btn - outline - primary: not(: disabled): not(.disabled): active: focus, .btn - outline - primary: not(: disabled): not(.disabled).active: focus,
+.show > .btn - outline - primary.dropdown - toggle: focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(55, 90, 127, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(55, 90, 127, 0.5);
+}
+
+.btn - outline - secondary {
+    color: #444;
+    background - color: transparent;
+    background - image: none;
+    border - color: #444;
+}
+
+.btn - outline - secondary: hover {
+    color: #fff;
+    background - color: #444;
+    border - color: #444;
+}
+
+.btn - outline - secondary: focus, .btn - outline - secondary.focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(68, 68, 68, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(68, 68, 68, 0.5);
+}
+
+.btn - outline - secondary.disabled, .btn - outline - secondary: disabled {
+    color: #444;
+    background - color: transparent;
+}
+
+.btn - outline - secondary: not(: disabled): not(.disabled): active, .btn - outline - secondary: not(: disabled): not(.disabled).active,
+.show > .btn - outline - secondary.dropdown - toggle {
+    color: #fff;
+    background - color: #444;
+    border - color: #444;
+}
+
+.btn - outline - secondary: not(: disabled): not(.disabled): active: focus, .btn - outline - secondary: not(: disabled): not(.disabled).active: focus,
+.show > .btn - outline - secondary.dropdown - toggle: focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(68, 68, 68, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(68, 68, 68, 0.5);
+}
+
+.btn - outline - success {
+    color: #00bc8c;
+    background - color: transparent;
+    background - image: none;
+    border - color: #00bc8c;
+}
+
+.btn - outline - success: hover {
+    color: #fff;
+    background - color: #00bc8c;
+    border - color: #00bc8c;
+}
+
+.btn - outline - success: focus, .btn - outline - success.focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(0, 188, 140, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(0, 188, 140, 0.5);
+}
+
+.btn - outline - success.disabled, .btn - outline - success: disabled {
+    color: #00bc8c;
+    background - color: transparent;
+}
+
+.btn - outline - success: not(: disabled): not(.disabled): active, .btn - outline - success: not(: disabled): not(.disabled).active,
+.show > .btn - outline - success.dropdown - toggle {
+    color: #fff;
+    background - color: #00bc8c;
+    border - color: #00bc8c;
+}
+
+.btn - outline - success: not(: disabled): not(.disabled): active: focus, .btn - outline - success: not(: disabled): not(.disabled).active: focus,
+.show > .btn - outline - success.dropdown - toggle: focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(0, 188, 140, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(0, 188, 140, 0.5);
+}
+
+.btn - outline - info {
+    color: #3498DB;
+    background - color: transparent;
+    background - image: none;
+    border - color: #3498DB;
+}
+
+.btn - outline - info: hover {
+    color: #fff;
+    background - color: #3498DB;
+    border - color: #3498DB;
+}
+
+.btn - outline - info: focus, .btn - outline - info.focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.5);
+}
+
+.btn - outline - info.disabled, .btn - outline - info: disabled {
+    color: #3498DB;
+    background - color: transparent;
+}
+
+.btn - outline - info: not(: disabled): not(.disabled): active, .btn - outline - info: not(: disabled): not(.disabled).active,
+.show > .btn - outline - info.dropdown - toggle {
+    color: #fff;
+    background - color: #3498DB;
+    border - color: #3498DB;
+}
+
+.btn - outline - info: not(: disabled): not(.disabled): active: focus, .btn - outline - info: not(: disabled): not(.disabled).active: focus,
+.show > .btn - outline - info.dropdown - toggle: focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.5);
+}
+
+.btn - outline - warning {
+    color: #F39C12;
+    background - color: transparent;
+    background - image: none;
+    border - color: #F39C12;
+}
+
+.btn - outline - warning: hover {
+    color: #fff;
+    background - color: #F39C12;
+    border - color: #F39C12;
+}
+
+.btn - outline - warning: focus, .btn - outline - warning.focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(243, 156, 18, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(243, 156, 18, 0.5);
+}
+
+.btn - outline - warning.disabled, .btn - outline - warning: disabled {
+    color: #F39C12;
+    background - color: transparent;
+}
+
+.btn - outline - warning: not(: disabled): not(.disabled): active, .btn - outline - warning: not(: disabled): not(.disabled).active,
+.show > .btn - outline - warning.dropdown - toggle {
+    color: #fff;
+    background - color: #F39C12;
+    border - color: #F39C12;
+}
+
+.btn - outline - warning: not(: disabled): not(.disabled): active: focus, .btn - outline - warning: not(: disabled): not(.disabled).active: focus,
+.show > .btn - outline - warning.dropdown - toggle: focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(243, 156, 18, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(243, 156, 18, 0.5);
+}
+
+.btn - outline - danger {
+    color: #E74C3C;
+    background - color: transparent;
+    background - image: none;
+    border - color: #E74C3C;
+}
+
+.btn - outline - danger: hover {
+    color: #fff;
+    background - color: #E74C3C;
+    border - color: #E74C3C;
+}
+
+.btn - outline - danger: focus, .btn - outline - danger.focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.5);
+}
+
+.btn - outline - danger.disabled, .btn - outline - danger: disabled {
+    color: #E74C3C;
+    background - color: transparent;
+}
+
+.btn - outline - danger: not(: disabled): not(.disabled): active, .btn - outline - danger: not(: disabled): not(.disabled).active,
+.show > .btn - outline - danger.dropdown - toggle {
+    color: #fff;
+    background - color: #E74C3C;
+    border - color: #E74C3C;
+}
+
+.btn - outline - danger: not(: disabled): not(.disabled): active: focus, .btn - outline - danger: not(: disabled): not(.disabled).active: focus,
+.show > .btn - outline - danger.dropdown - toggle: focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.5);
+}
+
+.btn - outline - light {
+    color: #303030;
+    background - color: transparent;
+    background - image: none;
+    border - color: #303030;
+}
+
+.btn - outline - light: hover {
+    color: #fff;
+    background - color: #303030;
+    border - color: #303030;
+}
+
+.btn - outline - light: focus, .btn - outline - light.focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(48, 48, 48, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(48, 48, 48, 0.5);
+}
+
+.btn - outline - light.disabled, .btn - outline - light: disabled {
+    color: #303030;
+    background - color: transparent;
+}
+
+.btn - outline - light: not(: disabled): not(.disabled): active, .btn - outline - light: not(: disabled): not(.disabled).active,
+.show > .btn - outline - light.dropdown - toggle {
+    color: #fff;
+    background - color: #303030;
+    border - color: #303030;
+}
+
+.btn - outline - light: not(: disabled): not(.disabled): active: focus, .btn - outline - light: not(: disabled): not(.disabled).active: focus,
+.show > .btn - outline - light.dropdown - toggle: focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(48, 48, 48, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(48, 48, 48, 0.5);
+}
+
+.btn - outline - dark {
+    color: #adb5bd;
+    background - color: transparent;
+    background - image: none;
+    border - color: #adb5bd;
+}
+
+.btn - outline - dark: hover {
+    color: #222;
+    background - color: #adb5bd;
+    border - color: #adb5bd;
+}
+
+.btn - outline - dark: focus, .btn - outline - dark.focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(173, 181, 189, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(173, 181, 189, 0.5);
+}
+
+.btn - outline - dark.disabled, .btn - outline - dark: disabled {
+    color: #adb5bd;
+    background - color: transparent;
+}
+
+.btn - outline - dark: not(: disabled): not(.disabled): active, .btn - outline - dark: not(: disabled): not(.disabled).active,
+.show > .btn - outline - dark.dropdown - toggle {
+    color: #222;
+    background - color: #adb5bd;
+    border - color: #adb5bd;
+}
+
+.btn - outline - dark: not(: disabled): not(.disabled): active: focus, .btn - outline - dark: not(: disabled): not(.disabled).active: focus,
+.show > .btn - outline - dark.dropdown - toggle: focus {
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(173, 181, 189, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(173, 181, 189, 0.5);
+}
+
+.btn - link {
+    font - weight: 400;
+    color: #00bc8c;
+    background - color: transparent;
+}
+
+.btn - link: hover {
+    color: #007053;
+    text - decoration: underline;
+    background - color: transparent;
+    border - color: transparent;
+}
+
+.btn - link: focus, .btn - link.focus {
+    text - decoration: underline;
+    border - color: transparent;
+    -webkit - box - shadow: none;
+    box - shadow: none;
+}
+
+.btn - link: disabled, .btn - link.disabled {
+    color: #999;
+    pointer - events: none;
+}
+
+.btn - lg, .btn - group - lg > .btn {
+    padding: 0.5rem 1rem;
+    font - size: 1.171875rem;
+    line - height: 1.5;
+    border - radius: 0.3rem;
+}
+
+.btn - sm, .btn - group - sm > .btn {
+    padding: 0.25rem 0.5rem;
+    font - size: 0.8203125rem;
+    line - height: 1.5;
+    border - radius: 0.2rem;
+}
+
+.btn - block {
+    display: block;
+    width: 100 %;
+}
+
+.btn - block + .btn - block {
+    margin - top: 0.5rem;
+}
+
+input[type = "submit"].btn - block,
+    input[type = "reset"].btn - block,
+    input[type = "button"].btn - block {
+    width: 100 %;
+}
+
+.fade {
+    -webkit - transition: opacity 0.15s linear;
+    transition: opacity 0.15s linear;
+}
+
+@media screen and(prefers - reduced - motion: reduce) {
+  .fade {
+        -webkit - transition: none;
+        transition: none;
+    }
+}
+
+.fade: not(.show) {
+    opacity: 0;
+}
+
+.collapse: not(.show) {
+    display: none;
+}
+
+.collapsing {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    -webkit - transition: height 0.35s ease;
+    transition: height 0.35s ease;
+}
+
+@media screen and(prefers - reduced - motion: reduce) {
+  .collapsing {
+        -webkit - transition: none;
+        transition: none;
+    }
+}
+
+.dropup,
+.dropright,
+.dropdown,
+.dropleft {
+    position: relative;
+}
+
+.dropdown - toggle:: after {
+    display: inline - block;
+    width: 0;
+    height: 0;
+    margin - left: 0.255em;
+    vertical - align: 0.255em;
+    content: "";
+    border - top: 0.3em solid;
+    border - right: 0.3em solid transparent;
+    border - bottom: 0;
+    border - left: 0.3em solid transparent;
+}
+
+.dropdown - toggle: empty:: after {
+    margin - left: 0;
+}
+
+.dropdown - menu {
+    position: absolute;
+    top: 100 %;
+    left: 0;
+    z - index: 1000;
+    display: none;
+    float: left;
+    min - width: 10rem;
+    padding: 0.5rem 0;
+    margin: 0.125rem 0 0;
+    font - size: 0.9375rem;
+    color: #fff;
+    text - align: left;
+    list - style: none;
+    background - color: #222;
+    background - clip: padding - box;
+    border: 1px solid #444;
+    border - radius: 0.25rem;
+}
+
+.dropdown - menu - right {
+    right: 0;
+    left: auto;
+}
+
+.dropup.dropdown - menu {
+    top: auto;
+    bottom: 100 %;
+    margin - top: 0;
+    margin - bottom: 0.125rem;
+}
+
+.dropup.dropdown - toggle:: after {
+    display: inline - block;
+    width: 0;
+    height: 0;
+    margin - left: 0.255em;
+    vertical - align: 0.255em;
+    content: "";
+    border - top: 0;
+    border - right: 0.3em solid transparent;
+    border - bottom: 0.3em solid;
+    border - left: 0.3em solid transparent;
+}
+
+.dropup.dropdown - toggle: empty:: after {
+    margin - left: 0;
+}
+
+.dropright.dropdown - menu {
+    top: 0;
+    right: auto;
+    left: 100 %;
+    margin - top: 0;
+    margin - left: 0.125rem;
+}
+
+.dropright.dropdown - toggle:: after {
+    display: inline - block;
+    width: 0;
+    height: 0;
+    margin - left: 0.255em;
+    vertical - align: 0.255em;
+    content: "";
+    border - top: 0.3em solid transparent;
+    border - right: 0;
+    border - bottom: 0.3em solid transparent;
+    border - left: 0.3em solid;
+}
+
+.dropright.dropdown - toggle: empty:: after {
+    margin - left: 0;
+}
+
+.dropright.dropdown - toggle:: after {
+    vertical - align: 0;
+}
+
+.dropleft.dropdown - menu {
+    top: 0;
+    right: 100 %;
+    left: auto;
+    margin - top: 0;
+    margin - right: 0.125rem;
+}
+
+.dropleft.dropdown - toggle:: after {
+    display: inline - block;
+    width: 0;
+    height: 0;
+    margin - left: 0.255em;
+    vertical - align: 0.255em;
+    content: "";
+}
+
+.dropleft.dropdown - toggle:: after {
+    display: none;
+}
+
+.dropleft.dropdown - toggle:: before {
+    display: inline - block;
+    width: 0;
+    height: 0;
+    margin - right: 0.255em;
+    vertical - align: 0.255em;
+    content: "";
+    border - top: 0.3em solid transparent;
+    border - right: 0.3em solid;
+    border - bottom: 0.3em solid transparent;
+}
+
+.dropleft.dropdown - toggle: empty:: after {
+    margin - left: 0;
+}
+
+.dropleft.dropdown - toggle:: before {
+    vertical - align: 0;
+}
+
+.dropdown - menu[x - placement^="top"], .dropdown - menu[x - placement^="right"], .dropdown - menu[x - placement^="bottom"], .dropdown - menu[x - placement^="left"] {
+    right: auto;
+    bottom: auto;
+}
+
+.dropdown - divider {
+    height: 0;
+    margin: 0.5rem 0;
+    overflow: hidden;
+    border - top: 1px solid #444;
+}
+
+.dropdown - item {
+    display: block;
+    width: 100 %;
+    padding: 0.25rem 1.5rem;
+    clear: both;
+    font - weight: 400;
+    color: #fff;
+    text - align: inherit;
+    white - space: nowrap;
+    background - color: transparent;
+    border: 0;
+}
+
+.dropdown - item: hover, .dropdown - item: focus {
+    color: #fff;
+    text - decoration: none;
+    background - color: #375a7f;
+}
+
+.dropdown - item.active, .dropdown - item: active {
+    color: #fff;
+    text - decoration: none;
+    background - color: #375a7f;
+}
+
+.dropdown - item.disabled, .dropdown - item: disabled {
+    color: #999;
+    background - color: transparent;
+}
+
+.dropdown - menu.show {
+    display: block;
+}
+
+.dropdown - header {
+    display: block;
+    padding: 0.5rem 1.5rem;
+    margin - bottom: 0;
+    font - size: 0.8203125rem;
+    color: #999;
+    white - space: nowrap;
+}
+
+.dropdown - item - text {
+    display: block;
+    padding: 0.25rem 1.5rem;
+    color: #fff;
+}
+
+.btn - group,
+.btn - group - vertical {
+    position: relative;
+    display: -webkit - inline - box;
+    display: -ms - inline - flexbox;
+    display: inline - flex;
+    vertical - align: middle;
+}
+
+.btn - group > .btn,
+.btn - group - vertical > .btn {
+    position: relative;
+    -webkit - box - flex: 0;
+    -ms - flex: 0 1 auto;
+    flex: 0 1 auto;
+}
+
+.btn - group > .btn: hover,
+.btn - group - vertical > .btn: hover {
+    z - index: 1;
+}
+
+.btn - group > .btn: focus, .btn - group > .btn: active, .btn - group > .btn.active,
+.btn - group - vertical > .btn: focus,
+.btn - group - vertical > .btn: active,
+.btn - group - vertical > .btn.active {
+    z - index: 1;
+}
+
+.btn - group.btn + .btn,
+.btn - group.btn + .btn - group,
+.btn - group.btn - group + .btn,
+.btn - group.btn - group + .btn - group,
+.btn - group - vertical.btn + .btn,
+.btn - group - vertical.btn + .btn - group,
+.btn - group - vertical.btn - group + .btn,
+.btn - group - vertical.btn - group + .btn - group {
+    margin - left: -1px;
+}
+
+.btn - toolbar {
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+    -ms - flex - wrap: wrap;
+    flex - wrap: wrap;
+    -webkit - box - pack: start;
+    -ms - flex - pack: start;
+    justify - content: flex - start;
+}
+
+.btn - toolbar.input - group {
+    width: auto;
+}
+
+.btn - group > .btn: first - child {
+    margin - left: 0;
+}
+
+.btn - group > .btn: not(: last - child): not(.dropdown - toggle),
+.btn - group > .btn - group: not(: last - child) > .btn {
+    border - top - right - radius: 0;
+    border - bottom - right - radius: 0;
+}
+
+.btn - group > .btn: not(: first - child),
+.btn - group > .btn - group: not(: first - child) > .btn {
+    border - top - left - radius: 0;
+    border - bottom - left - radius: 0;
+}
+
+.dropdown - toggle - split {
+    padding - right: 0.5625rem;
+    padding - left: 0.5625rem;
+}
+
+.dropdown - toggle - split:: after,
+.dropup.dropdown - toggle - split:: after,
+.dropright.dropdown - toggle - split:: after {
+    margin - left: 0;
+}
+
+.dropleft.dropdown - toggle - split:: before {
+    margin - right: 0;
+}
+
+.btn - sm + .dropdown - toggle - split, .btn - group - sm > .btn + .dropdown - toggle - split {
+    padding - right: 0.375rem;
+    padding - left: 0.375rem;
+}
+
+.btn - lg + .dropdown - toggle - split, .btn - group - lg > .btn + .dropdown - toggle - split {
+    padding - right: 0.75rem;
+    padding - left: 0.75rem;
+}
+
+.btn - group - vertical {
+    -webkit - box - orient: vertical;
+    -webkit - box - direction: normal;
+    -ms - flex - direction: column;
+    flex - direction: column;
+    -webkit - box - align: start;
+    -ms - flex - align: start;
+    align - items: flex - start;
+    -webkit - box - pack: center;
+    -ms - flex - pack: center;
+    justify - content: center;
+}
+
+.btn - group - vertical.btn,
+.btn - group - vertical.btn - group {
+    width: 100 %;
+}
+
+.btn - group - vertical > .btn + .btn,
+.btn - group - vertical > .btn + .btn - group,
+.btn - group - vertical > .btn - group + .btn,
+.btn - group - vertical > .btn - group + .btn - group {
+    margin - top: -1px;
+    margin - left: 0;
+}
+
+.btn - group - vertical > .btn: not(: last - child): not(.dropdown - toggle),
+.btn - group - vertical > .btn - group: not(: last - child) > .btn {
+    border - bottom - right - radius: 0;
+    border - bottom - left - radius: 0;
+}
+
+.btn - group - vertical > .btn: not(: first - child),
+.btn - group - vertical > .btn - group: not(: first - child) > .btn {
+    border - top - left - radius: 0;
+    border - top - right - radius: 0;
+}
+
+.btn - group - toggle > .btn,
+.btn - group - toggle > .btn - group > .btn {
+    margin - bottom: 0;
+}
+
+.btn - group - toggle > .btn input[type = "radio"],
+.btn - group - toggle > .btn input[type = "checkbox"],
+.btn - group - toggle > .btn - group > .btn input[type = "radio"],
+.btn - group - toggle > .btn - group > .btn input[type = "checkbox"] {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    pointer - events: none;
+}
+
+.input - group {
+    position: relative;
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+    -ms - flex - wrap: wrap;
+    flex - wrap: wrap;
+    -webkit - box - align: stretch;
+    -ms - flex - align: stretch;
+    align - items: stretch;
+    width: 100 %;
+}
+
+.input - group > .form - control,
+.input - group > .custom - select,
+.input - group > .custom - file {
+    position: relative;
+    -webkit - box - flex: 1;
+    -ms - flex: 1 1 auto;
+    flex: 1 1 auto;
+    width: 1 %;
+    margin - bottom: 0;
+}
+
+.input - group > .form - control + .form - control,
+.input - group > .form - control + .custom - select,
+.input - group > .form - control + .custom - file,
+.input - group > .custom - select + .form - control,
+.input - group > .custom - select + .custom - select,
+.input - group > .custom - select + .custom - file,
+.input - group > .custom - file + .form - control,
+.input - group > .custom - file + .custom - select,
+.input - group > .custom - file + .custom - file {
+    margin - left: -1px;
+}
+
+.input - group > .form - control: focus,
+.input - group > .custom - select: focus,
+.input - group > .custom - file.custom - file - input: focus ~ .custom - file - label {
+    z - index: 3;
+}
+
+.input - group > .custom - file.custom - file - input: focus {
+    z - index: 4;
+}
+
+.input - group > .form - control: not(: last - child),
+.input - group > .custom - select: not(: last - child) {
+    border - top - right - radius: 0;
+    border - bottom - right - radius: 0;
+}
+
+.input - group > .form - control: not(: first - child),
+.input - group > .custom - select: not(: first - child) {
+    border - top - left - radius: 0;
+    border - bottom - left - radius: 0;
+}
+
+.input - group > .custom - file {
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+    -webkit - box - align: center;
+    -ms - flex - align: center;
+    align - items: center;
+}
+
+.input - group > .custom - file: not(: last - child).custom - file - label,
+.input - group > .custom - file: not(: last - child).custom - file - label:: after {
+    border - top - right - radius: 0;
+    border - bottom - right - radius: 0;
+}
+
+.input - group > .custom - file: not(: first - child).custom - file - label {
+    border - top - left - radius: 0;
+    border - bottom - left - radius: 0;
+}
+
+.input - group - prepend,
+.input - group - append {
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+}
+
+.input - group - prepend.btn,
+.input - group - append.btn {
+    position: relative;
+    z - index: 2;
+}
+
+.input - group - prepend.btn + .btn,
+.input - group - prepend.btn + .input - group - text,
+.input - group - prepend.input - group - text + .input - group - text,
+.input - group - prepend.input - group - text + .btn,
+.input - group - append.btn + .btn,
+.input - group - append.btn + .input - group - text,
+.input - group - append.input - group - text + .input - group - text,
+.input - group - append.input - group - text + .btn {
+    margin - left: -1px;
+}
+
+.input - group - prepend {
+    margin - right: -1px;
+}
+
+.input - group - append {
+    margin - left: -1px;
+}
+
+.input - group - text {
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+    -webkit - box - align: center;
+    -ms - flex - align: center;
+    align - items: center;
+    padding: 0.375rem 0.75rem;
+    margin - bottom: 0;
+    font - size: 0.9375rem;
+    font - weight: 400;
+    line - height: 1.5;
+    color: #adb5bd;
+    text - align: center;
+    white - space: nowrap;
+    background - color: #444;
+    border: 1px solid transparent;
+    border - radius: 0.25rem;
+}
+
+.input - group - text input[type = "radio"],
+.input - group - text input[type = "checkbox"] {
+    margin - top: 0;
+}
+
+.input - group - lg > .form - control,
+.input - group - lg > .input - group - prepend > .input - group - text,
+.input - group - lg > .input - group - append > .input - group - text,
+.input - group - lg > .input - group - prepend > .btn,
+.input - group - lg > .input - group - append > .btn {
+    height: calc(2.7578125rem + 2px);
+    padding: 0.5rem 1rem;
+    font - size: 1.171875rem;
+    line - height: 1.5;
+    border - radius: 0.3rem;
+}
+
+.input - group - sm > .form - control,
+.input - group - sm > .input - group - prepend > .input - group - text,
+.input - group - sm > .input - group - append > .input - group - text,
+.input - group - sm > .input - group - prepend > .btn,
+.input - group - sm > .input - group - append > .btn {
+    height: calc(1.73046875rem + 2px);
+    padding: 0.25rem 0.5rem;
+    font - size: 0.8203125rem;
+    line - height: 1.5;
+    border - radius: 0.2rem;
+}
+
+.input - group > .input - group - prepend > .btn,
+.input - group > .input - group - prepend > .input - group - text,
+.input - group > .input - group - append: not(: last - child) > .btn,
+.input - group > .input - group - append: not(: last - child) > .input - group - text,
+.input - group > .input - group - append: last - child > .btn: not(: last - child): not(.dropdown - toggle),
+.input - group > .input - group - append: last - child > .input - group - text: not(: last - child) {
+    border - top - right - radius: 0;
+    border - bottom - right - radius: 0;
+}
+
+.input - group > .input - group - append > .btn,
+.input - group > .input - group - append > .input - group - text,
+.input - group > .input - group - prepend: not(: first - child) > .btn,
+.input - group > .input - group - prepend: not(: first - child) > .input - group - text,
+.input - group > .input - group - prepend: first - child > .btn: not(: first - child),
+.input - group > .input - group - prepend: first - child > .input - group - text: not(: first - child) {
+    border - top - left - radius: 0;
+    border - bottom - left - radius: 0;
+}
+
+.custom - control {
+    position: relative;
+    display: block;
+    min - height: 1.40625rem;
+    padding - left: 1.5rem;
+}
+
+.custom - control - inline {
+    display: -webkit - inline - box;
+    display: -ms - inline - flexbox;
+    display: inline - flex;
+    margin - right: 1rem;
+}
+
+.custom - control - input {
+    position: absolute;
+    z - index: -1;
+    opacity: 0;
+}
+
+.custom - control - input: checked ~ .custom - control - label:: before {
+    color: #fff;
+    background - color: #375a7f;
+}
+
+.custom - control - input: focus ~ .custom - control - label:: before {
+    -webkit - box - shadow: 0 0 0 1px #222, 0 0 0 0.2rem rgba(55, 90, 127, 0.25);
+    box - shadow: 0 0 0 1px #222, 0 0 0 0.2rem rgba(55, 90, 127, 0.25);
+}
+
+.custom - control - input: active ~ .custom - control - label:: before {
+    color: #fff;
+    background - color: #97b3d2;
+}
+
+.custom - control - input: disabled ~ .custom - control - label {
+    color: #999;
+}
+
+.custom - control - input: disabled ~ .custom - control - label:: before {
+    background - color: #ebebeb;
+}
+
+.custom - control - label {
+    position: relative;
+    margin - bottom: 0;
+}
+
+.custom - control - label:: before {
+    position: absolute;
+    top: 0.203125rem;
+    left: -1.5rem;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    pointer - events: none;
+    content: "";
+    -webkit - user - select: none;
+    -moz - user - select: none;
+    -ms - user - select: none;
+    user - select: none;
+    background - color: #dee2e6;
+}
+
+.custom - control - label:: after {
+    position: absolute;
+    top: 0.203125rem;
+    left: -1.5rem;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    content: "";
+    background - repeat: no - repeat;
+    background - position: center center;
+    background - size: 50 % 50 %;
+}
+
+.custom - checkbox.custom - control - label:: before {
+    border - radius: 0.25rem;
+}
+
+.custom - checkbox.custom - control - input: checked ~ .custom - control - label:: before {
+    background - color: #375a7f;
+}
+
+.custom - checkbox.custom - control - input: checked ~ .custom - control - label:: after {
+    background - image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E");
+}
+
+.custom - checkbox.custom - control - input: indeterminate ~ .custom - control - label:: before {
+    background - color: #375a7f;
+}
+
+.custom - checkbox.custom - control - input: indeterminate ~ .custom - control - label:: after {
+    background - image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 4'%3E%3Cpath stroke='%23fff' d='M0 2h4'/%3E%3C/svg%3E");
+}
+
+.custom - checkbox.custom - control - input: disabled: checked ~ .custom - control - label:: before {
+    background - color: rgba(55, 90, 127, 0.5);
+}
+
+.custom - checkbox.custom - control - input: disabled: indeterminate ~ .custom - control - label:: before {
+    background - color: rgba(55, 90, 127, 0.5);
+}
+
+.custom - radio.custom - control - label:: before {
+    border - radius: 50 %;
+}
+
+.custom - radio.custom - control - input: checked ~ .custom - control - label:: before {
+    background - color: #375a7f;
+}
+
+.custom - radio.custom - control - input: checked ~ .custom - control - label:: after {
+    background - image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='3' fill='%23fff'/%3E%3C/svg%3E");
+}
+
+.custom - radio.custom - control - input: disabled: checked ~ .custom - control - label:: before {
+    background - color: rgba(55, 90, 127, 0.5);
+}
+
+.custom - select {
+    display: inline - block;
+    width: 100 %;
+    height: calc(2.15625rem + 2px);
+    padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+    line - height: 1.5;
+    color: #444;
+    vertical - align: middle;
+    background: #fff url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23303030' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") no - repeat right 0.75rem center;
+    background - size: 8px 10px;
+    border: 1px solid transparent;
+    border - radius: 0.25rem;
+    -webkit - appearance: none;
+    -moz - appearance: none;
+    appearance: none;
+}
+
+.custom - select: focus {
+    border - color: #739ac2;
+    outline: 0;
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(115, 154, 194, 0.5);
+    box - shadow: 0 0 0 0.2rem rgba(115, 154, 194, 0.5);
+}
+
+.custom - select: focus:: -ms - value {
+    color: #444;
+    background - color: #fff;
+}
+
+.custom - select[multiple], .custom - select[size]: not([size = "1"]) {
+    height: auto;
+    padding - right: 0.75rem;
+    background - image: none;
+}
+
+.custom - select: disabled {
+    color: #999;
+    background - color: #ebebeb;
+}
+
+.custom - select:: -ms - expand {
+    opacity: 0;
+}
+
+.custom - select - sm {
+    height: calc(1.73046875rem + 2px);
+    padding - top: 0.375rem;
+    padding - bottom: 0.375rem;
+    font - size: 75 %;
+}
+
+.custom - select - lg {
+    height: calc(2.7578125rem + 2px);
+    padding - top: 0.375rem;
+    padding - bottom: 0.375rem;
+    font - size: 125 %;
+}
+
+.custom - file {
+    position: relative;
+    display: inline - block;
+    width: 100 %;
+    height: calc(2.15625rem + 2px);
+    margin - bottom: 0;
+}
+
+.custom - file - input {
+    position: relative;
+    z - index: 2;
+    width: 100 %;
+    height: calc(2.15625rem + 2px);
+    margin: 0;
+    opacity: 0;
+}
+
+.custom - file - input: focus ~ .custom - file - label {
+    border - color: #739ac2;
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(55, 90, 127, 0.25);
+    box - shadow: 0 0 0 0.2rem rgba(55, 90, 127, 0.25);
+}
+
+.custom - file - input: focus ~ .custom - file - label:: after {
+    border - color: #739ac2;
+}
+
+.custom - file - input: disabled ~ .custom - file - label {
+    background - color: #ebebeb;
+}
+
+.custom - file - input: lang(en) ~ .custom - file - label:: after {
+    content: "Browse";
+}
+
+.custom - file - label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z - index: 1;
+    height: calc(2.15625rem + 2px);
+    padding: 0.375rem 0.75rem;
+    line - height: 1.5;
+    color: #adb5bd;
+    background - color: #fff;
+    border: 1px solid #444;
+    border - radius: 0.25rem;
+}
+
+.custom - file - label:: after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z - index: 3;
+    display: block;
+    height: 2.15625rem;
+    padding: 0.375rem 0.75rem;
+    line - height: 1.5;
+    color: #adb5bd;
+    content: "Browse";
+    background - color: #444;
+    border - left: 1px solid #444;
+    border - radius: 0 0.25rem 0.25rem 0;
+}
+
+.custom - range {
+    width: 100 %;
+    padding - left: 0;
+    background - color: transparent;
+    -webkit - appearance: none;
+    -moz - appearance: none;
+    appearance: none;
+}
+
+.custom - range: focus {
+    outline: none;
+}
+
+.custom - range: focus:: -webkit - slider - thumb {
+    -webkit - box - shadow: 0 0 0 1px #222, 0 0 0 0.2rem rgba(55, 90, 127, 0.25);
+    box - shadow: 0 0 0 1px #222, 0 0 0 0.2rem rgba(55, 90, 127, 0.25);
+}
+
+.custom - range: focus:: -moz - range - thumb {
+    box - shadow: 0 0 0 1px #222, 0 0 0 0.2rem rgba(55, 90, 127, 0.25);
+}
+
+.custom - range: focus:: -ms - thumb {
+    box - shadow: 0 0 0 1px #222, 0 0 0 0.2rem rgba(55, 90, 127, 0.25);
+}
+
+.custom - range:: -moz - focus - outer {
+    border: 0;
+}
+
+.custom - range:: -webkit - slider - thumb {
+    width: 1rem;
+    height: 1rem;
+    margin - top: -0.25rem;
+    background - color: #375a7f;
+    border: 0;
+    border - radius: 1rem;
+    -webkit - transition: background - color 0.15s ease -in -out, border - color 0.15s ease -in -out, -webkit - box - shadow 0.15s ease -in -out;
+    transition: background - color 0.15s ease -in -out, border - color 0.15s ease -in -out, -webkit - box - shadow 0.15s ease -in -out;
+    transition: background - color 0.15s ease -in -out, border - color 0.15s ease -in -out, box - shadow 0.15s ease -in -out;
+    transition: background - color 0.15s ease -in -out, border - color 0.15s ease -in -out, box - shadow 0.15s ease -in -out, -webkit - box - shadow 0.15s ease -in -out;
+    -webkit - appearance: none;
+    appearance: none;
+}
+
+@media screen and(prefers - reduced - motion: reduce) {
+  .custom - range:: -webkit - slider - thumb {
+        -webkit - transition: none;
+        transition: none;
+    }
+}
+
+.custom - range:: -webkit - slider - thumb: active {
+    background - color: #97b3d2;
+}
+
+.custom - range:: -webkit - slider - runnable - track {
+    width: 100 %;
+    height: 0.5rem;
+    color: transparent;
+    cursor: pointer;
+    background - color: #dee2e6;
+    border - color: transparent;
+    border - radius: 1rem;
+}
+
+.custom - range:: -moz - range - thumb {
+    width: 1rem;
+    height: 1rem;
+    background - color: #375a7f;
+    border: 0;
+    border - radius: 1rem;
+    -webkit - transition: background - color 0.15s ease -in -out, border - color 0.15s ease -in -out, -webkit - box - shadow 0.15s ease -in -out;
+    transition: background - color 0.15s ease -in -out, border - color 0.15s ease -in -out, -webkit - box - shadow 0.15s ease -in -out;
+    transition: background - color 0.15s ease -in -out, border - color 0.15s ease -in -out, box - shadow 0.15s ease -in -out;
+    transition: background - color 0.15s ease -in -out, border - color 0.15s ease -in -out, box - shadow 0.15s ease -in -out, -webkit - box - shadow 0.15s ease -in -out;
+    -moz - appearance: none;
+    appearance: none;
+}
+
+@media screen and(prefers - reduced - motion: reduce) {
+  .custom - range:: -moz - range - thumb {
+        -webkit - transition: none;
+        transition: none;
+    }
+}
+
+.custom - range:: -moz - range - thumb: active {
+    background - color: #97b3d2;
+}
+
+.custom - range:: -moz - range - track {
+    width: 100 %;
+    height: 0.5rem;
+    color: transparent;
+    cursor: pointer;
+    background - color: #dee2e6;
+    border - color: transparent;
+    border - radius: 1rem;
+}
+
+.custom - range:: -ms - thumb {
+    width: 1rem;
+    height: 1rem;
+    margin - top: 0;
+    margin - right: 0.2rem;
+    margin - left: 0.2rem;
+    background - color: #375a7f;
+    border: 0;
+    border - radius: 1rem;
+    -webkit - transition: background - color 0.15s ease -in -out, border - color 0.15s ease -in -out, -webkit - box - shadow 0.15s ease -in -out;
+    transition: background - color 0.15s ease -in -out, border - color 0.15s ease -in -out, -webkit - box - shadow 0.15s ease -in -out;
+    transition: background - color 0.15s ease -in -out, border - color 0.15s ease -in -out, box - shadow 0.15s ease -in -out;
+    transition: background - color 0.15s ease -in -out, border - color 0.15s ease -in -out, box - shadow 0.15s ease -in -out, -webkit - box - shadow 0.15s ease -in -out;
+    appearance: none;
+}
+
+@media screen and(prefers - reduced - motion: reduce) {
+  .custom - range:: -ms - thumb {
+        -webkit - transition: none;
+        transition: none;
+    }
+}
+
+.custom - range:: -ms - thumb: active {
+    background - color: #97b3d2;
+}
+
+.custom - range:: -ms - track {
+    width: 100 %;
+    height: 0.5rem;
+    color: transparent;
+    cursor: pointer;
+    background - color: transparent;
+    border - color: transparent;
+    border - width: 0.5rem;
+}
+
+.custom - range:: -ms - fill - lower {
+    background - color: #dee2e6;
+    border - radius: 1rem;
+}
+
+.custom - range:: -ms - fill - upper {
+    margin - right: 15px;
+    background - color: #dee2e6;
+    border - radius: 1rem;
+}
+
+.custom - control - label:: before,
+.custom - file - label,
+.custom - select {
+    -webkit - transition: background - color 0.15s ease -in -out, border - color 0.15s ease -in -out, -webkit - box - shadow 0.15s ease -in -out;
+    transition: background - color 0.15s ease -in -out, border - color 0.15s ease -in -out, -webkit - box - shadow 0.15s ease -in -out;
+    transition: background - color 0.15s ease -in -out, border - color 0.15s ease -in -out, box - shadow 0.15s ease -in -out;
+    transition: background - color 0.15s ease -in -out, border - color 0.15s ease -in -out, box - shadow 0.15s ease -in -out, -webkit - box - shadow 0.15s ease -in -out;
+}
+
+@media screen and(prefers - reduced - motion: reduce) {
+  .custom - control - label:: before,
+  .custom - file - label,
+  .custom - select {
+        -webkit - transition: none;
+        transition: none;
+    }
+}
+
+.nav {
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+    -ms - flex - wrap: wrap;
+    flex - wrap: wrap;
+    padding - left: 0;
+    margin - bottom: 0;
+    list - style: none;
+}
+
+.nav - link {
+    display: block;
+    padding: 0.5rem 2rem;
+}
+
+.nav - link: hover, .nav - link: focus {
+    text - decoration: none;
+}
+
+.nav - link.disabled {
+    color: #adb5bd;
+}
+
+.nav - tabs {
+    border - bottom: 1px solid #444;
+}
+
+.nav - tabs.nav - item {
+    margin - bottom: -1px;
+}
+
+.nav - tabs.nav - link {
+    border: 1px solid transparent;
+    border - top - left - radius: 0.25rem;
+    border - top - right - radius: 0.25rem;
+}
+
+.nav - tabs.nav - link: hover, .nav - tabs.nav - link: focus {
+    border - color: #444 #444 transparent;
+}
+
+.nav - tabs.nav - link.disabled {
+    color: #adb5bd;
+    background - color: transparent;
+    border - color: transparent;
+}
+
+.nav - tabs.nav - link.active,
+.nav - tabs.nav - item.show.nav - link {
+    color: #fff;
+    background - color: #222;
+    border - color: #444 #444 transparent;
+}
+
+.nav - tabs.dropdown - menu {
+    margin - top: -1px;
+    border - top - left - radius: 0;
+    border - top - right - radius: 0;
+}
+
+.nav - pills.nav - link {
+    border - radius: 0.25rem;
+}
+
+.nav - pills.nav - link.active,
+.nav - pills.show > .nav - link {
+    color: #fff;
+    background - color: #375a7f;
+}
+
+.nav - fill.nav - item {
+    -webkit - box - flex: 1;
+    -ms - flex: 1 1 auto;
+    flex: 1 1 auto;
+    text - align: center;
+}
+
+.nav - justified.nav - item {
+    -ms - flex - preferred - size: 0;
+    flex - basis: 0;
+    -webkit - box - flex: 1;
+    -ms - flex - positive: 1;
+    flex - grow: 1;
+    text - align: center;
+}
+
+.tab - content > .tab - pane {
+    display: none;
+}
+
+.tab - content > .active {
+    display: block;
+}
+
+.navbar {
+    position: relative;
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+    -ms - flex - wrap: wrap;
+    flex - wrap: wrap;
+    -webkit - box - align: center;
+    -ms - flex - align: center;
+    align - items: center;
+    -webkit - box - pack: justify;
+    -ms - flex - pack: justify;
+    justify - content: space - between;
+    padding: 1rem 1rem;
+}
+
+.navbar > .container,
+.navbar > .container - fluid {
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+    -ms - flex - wrap: wrap;
+    flex - wrap: wrap;
+    -webkit - box - align: center;
+    -ms - flex - align: center;
+    align - items: center;
+    -webkit - box - pack: justify;
+    -ms - flex - pack: justify;
+    justify - content: space - between;
+}
+
+.navbar - brand {
+    display: inline - block;
+    padding - top: 0.32421875rem;
+    padding - bottom: 0.32421875rem;
+    margin - right: 1rem;
+    font - size: 1.171875rem;
+    line - height: inherit;
+    white - space: nowrap;
+}
+
+.navbar - brand: hover, .navbar - brand: focus {
+    text - decoration: none;
+}
+
+.navbar - nav {
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+    -webkit - box - orient: vertical;
+    -webkit - box - direction: normal;
+    -ms - flex - direction: column;
+    flex - direction: column;
+    padding - left: 0;
+    margin - bottom: 0;
+    list - style: none;
+}
+
+.navbar - nav.nav - link {
+    padding - right: 0;
+    padding - left: 0;
+}
+
+.navbar - nav.dropdown - menu {
+    position: static;
+    float: none;
+}
+
+.navbar - text {
+    display: inline - block;
+    padding - top: 0.5rem;
+    padding - bottom: 0.5rem;
+}
+
+.navbar - collapse {
+    -ms - flex - preferred - size: 100 %;
+    flex - basis: 100 %;
+    -webkit - box - flex: 1;
+    -ms - flex - positive: 1;
+    flex - grow: 1;
+    -webkit - box - align: center;
+    -ms - flex - align: center;
+    align - items: center;
+}
+
+.navbar - toggler {
+    padding: 0.25rem 0.75rem;
+    font - size: 1.171875rem;
+    line - height: 1;
+    background - color: transparent;
+    border: 1px solid transparent;
+    border - radius: 0.25rem;
+}
+
+.navbar - toggler: hover, .navbar - toggler: focus {
+    text - decoration: none;
+}
+
+.navbar - toggler: not(: disabled): not(.disabled) {
+    cursor: pointer;
+}
+
+.navbar - toggler - icon {
+    display: inline - block;
+    width: 1.5em;
+    height: 1.5em;
+    vertical - align: middle;
+    content: "";
+    background: no - repeat center center;
+    background - size: 100 % 100 %;
+}
+
+@media(max - width: 575.98px) {
+  .navbar - expand - sm > .container,
+  .navbar - expand - sm > .container - fluid {
+        padding - right: 0;
+        padding - left: 0;
+    }
+}
+
+@media(min - width: 576px) {
+  .navbar - expand - sm {
+        -webkit - box - orient: horizontal;
+        -webkit - box - direction: normal;
+        -ms - flex - flow: row nowrap;
+        flex - flow: row nowrap;
+        -webkit - box - pack: start;
+        -ms - flex - pack: start;
+        justify - content: flex - start;
+    }
+  .navbar - expand - sm.navbar - nav {
+        -webkit - box - orient: horizontal;
+        -webkit - box - direction: normal;
+        -ms - flex - direction: row;
+        flex - direction: row;
+    }
+  .navbar - expand - sm.navbar - nav.dropdown - menu {
+        position: absolute;
+    }
+  .navbar - expand - sm.navbar - nav.nav - link {
+        padding - right: 0.5rem;
+        padding - left: 0.5rem;
+    }
+  .navbar - expand - sm > .container,
+  .navbar - expand - sm > .container - fluid {
+        -ms - flex - wrap: nowrap;
+        flex - wrap: nowrap;
+    }
+  .navbar - expand - sm.navbar - collapse {
+        display: -webkit - box!important;
+        display: -ms - flexbox!important;
+        display: flex!important;
+        -ms - flex - preferred - size: auto;
+        flex - basis: auto;
+    }
+  .navbar - expand - sm.navbar - toggler {
+        display: none;
+    }
+}
+
+@media(max - width: 767.98px) {
+  .navbar - expand - md > .container,
+  .navbar - expand - md > .container - fluid {
+        padding - right: 0;
+        padding - left: 0;
+    }
+}
+
+@media(min - width: 768px) {
+  .navbar - expand - md {
+        -webkit - box - orient: horizontal;
+        -webkit - box - direction: normal;
+        -ms - flex - flow: row nowrap;
+        flex - flow: row nowrap;
+        -webkit - box - pack: start;
+        -ms - flex - pack: start;
+        justify - content: flex - start;
+    }
+  .navbar - expand - md.navbar - nav {
+        -webkit - box - orient: horizontal;
+        -webkit - box - direction: normal;
+        -ms - flex - direction: row;
+        flex - direction: row;
+    }
+  .navbar - expand - md.navbar - nav.dropdown - menu {
+        position: absolute;
+    }
+  .navbar - expand - md.navbar - nav.nav - link {
+        padding - right: 0.5rem;
+        padding - left: 0.5rem;
+    }
+  .navbar - expand - md > .container,
+  .navbar - expand - md > .container - fluid {
+        -ms - flex - wrap: nowrap;
+        flex - wrap: nowrap;
+    }
+  .navbar - expand - md.navbar - collapse {
+        display: -webkit - box!important;
+        display: -ms - flexbox!important;
+        display: flex!important;
+        -ms - flex - preferred - size: auto;
+        flex - basis: auto;
+    }
+  .navbar - expand - md.navbar - toggler {
+        display: none;
+    }
+}
+
+@media(max - width: 991.98px) {
+  .navbar - expand - lg > .container,
+  .navbar - expand - lg > .container - fluid {
+        padding - right: 0;
+        padding - left: 0;
+    }
+}
+
+@media(min - width: 992px) {
+  .navbar - expand - lg {
+        -webkit - box - orient: horizontal;
+        -webkit - box - direction: normal;
+        -ms - flex - flow: row nowrap;
+        flex - flow: row nowrap;
+        -webkit - box - pack: start;
+        -ms - flex - pack: start;
+        justify - content: flex - start;
+    }
+  .navbar - expand - lg.navbar - nav {
+        -webkit - box - orient: horizontal;
+        -webkit - box - direction: normal;
+        -ms - flex - direction: row;
+        flex - direction: row;
+    }
+  .navbar - expand - lg.navbar - nav.dropdown - menu {
+        position: absolute;
+    }
+  .navbar - expand - lg.navbar - nav.nav - link {
+        padding - right: 0.5rem;
+        padding - left: 0.5rem;
+    }
+  .navbar - expand - lg > .container,
+  .navbar - expand - lg > .container - fluid {
+        -ms - flex - wrap: nowrap;
+        flex - wrap: nowrap;
+    }
+  .navbar - expand - lg.navbar - collapse {
+        display: -webkit - box!important;
+        display: -ms - flexbox!important;
+        display: flex!important;
+        -ms - flex - preferred - size: auto;
+        flex - basis: auto;
+    }
+  .navbar - expand - lg.navbar - toggler {
+        display: none;
+    }
+}
+
+@media(max - width: 1199.98px) {
+  .navbar - expand - xl > .container,
+  .navbar - expand - xl > .container - fluid {
+        padding - right: 0;
+        padding - left: 0;
+    }
+}
+
+@media(min - width: 1200px) {
+  .navbar - expand - xl {
+        -webkit - box - orient: horizontal;
+        -webkit - box - direction: normal;
+        -ms - flex - flow: row nowrap;
+        flex - flow: row nowrap;
+        -webkit - box - pack: start;
+        -ms - flex - pack: start;
+        justify - content: flex - start;
+    }
+  .navbar - expand - xl.navbar - nav {
+        -webkit - box - orient: horizontal;
+        -webkit - box - direction: normal;
+        -ms - flex - direction: row;
+        flex - direction: row;
+    }
+  .navbar - expand - xl.navbar - nav.dropdown - menu {
+        position: absolute;
+    }
+  .navbar - expand - xl.navbar - nav.nav - link {
+        padding - right: 0.5rem;
+        padding - left: 0.5rem;
+    }
+  .navbar - expand - xl > .container,
+  .navbar - expand - xl > .container - fluid {
+        -ms - flex - wrap: nowrap;
+        flex - wrap: nowrap;
+    }
+  .navbar - expand - xl.navbar - collapse {
+        display: -webkit - box!important;
+        display: -ms - flexbox!important;
+        display: flex!important;
+        -ms - flex - preferred - size: auto;
+        flex - basis: auto;
+    }
+  .navbar - expand - xl.navbar - toggler {
+        display: none;
+    }
+}
+
+.navbar - expand {
+    -webkit - box - orient: horizontal;
+    -webkit - box - direction: normal;
+    -ms - flex - flow: row nowrap;
+    flex - flow: row nowrap;
+    -webkit - box - pack: start;
+    -ms - flex - pack: start;
+    justify - content: flex - start;
+}
+
+.navbar - expand > .container,
+.navbar - expand > .container - fluid {
+    padding - right: 0;
+    padding - left: 0;
+}
+
+.navbar - expand.navbar - nav {
+    -webkit - box - orient: horizontal;
+    -webkit - box - direction: normal;
+    -ms - flex - direction: row;
+    flex - direction: row;
+}
+
+.navbar - expand.navbar - nav.dropdown - menu {
+    position: absolute;
+}
+
+.navbar - expand.navbar - nav.nav - link {
+    padding - right: 0.5rem;
+    padding - left: 0.5rem;
+}
+
+.navbar - expand > .container,
+.navbar - expand > .container - fluid {
+    -ms - flex - wrap: nowrap;
+    flex - wrap: nowrap;
+}
+
+.navbar - expand.navbar - collapse {
+    display: -webkit - box!important;
+    display: -ms - flexbox!important;
+    display: flex!important;
+    -ms - flex - preferred - size: auto;
+    flex - basis: auto;
+}
+
+.navbar - expand.navbar - toggler {
+    display: none;
+}
+
+.navbar - light.navbar - brand {
+    color: #fff;
+}
+
+.navbar - light.navbar - brand: hover, .navbar - light.navbar - brand: focus {
+    color: #fff;
+}
+
+.navbar - light.navbar - nav.nav - link {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar - light.navbar - nav.nav - link: hover, .navbar - light.navbar - nav.nav - link: focus {
+    color: #fff;
+}
+
+.navbar - light.navbar - nav.nav - link.disabled {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.navbar - light.navbar - nav.show > .nav - link,
+.navbar - light.navbar - nav.active > .nav - link,
+.navbar - light.navbar - nav.nav - link.show,
+.navbar - light.navbar - nav.nav - link.active {
+    color: #fff;
+}
+
+.navbar - light.navbar - toggler {
+    color: rgba(255, 255, 255, 0.5);
+    border - color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar - light.navbar - toggler - icon {
+    background - image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar - light.navbar - text {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar - light.navbar - text a {
+    color: #fff;
+}
+
+.navbar - light.navbar - text a: hover, .navbar - light.navbar - text a: focus {
+    color: #fff;
+}
+
+.navbar - dark.navbar - brand {
+    color: #fff;
+}
+
+.navbar - dark.navbar - brand: hover, .navbar - dark.navbar - brand: focus {
+    color: #fff;
+}
+
+.navbar - dark.navbar - nav.nav - link {
+    color: #fff;
+}
+
+.navbar - dark.navbar - nav.nav - link: hover, .navbar - dark.navbar - nav.nav - link: focus {
+    color: #00bc8c;
+}
+
+.navbar - dark.navbar - nav.nav - link.disabled {
+    color: rgba(255, 255, 255, 0.25);
+}
+
+.navbar - dark.navbar - nav.show > .nav - link,
+.navbar - dark.navbar - nav.active > .nav - link,
+.navbar - dark.navbar - nav.nav - link.show,
+.navbar - dark.navbar - nav.nav - link.active {
+    color: #fff;
+}
+
+.navbar - dark.navbar - toggler {
+    color: #fff;
+    border - color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar - dark.navbar - toggler - icon {
+    background - image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar - dark.navbar - text {
+    color: #fff;
+}
+
+.navbar - dark.navbar - text a {
+    color: #fff;
+}
+
+.navbar - dark.navbar - text a: hover, .navbar - dark.navbar - text a: focus {
+    color: #fff;
+}
+
+.card {
+    position: relative;
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+    -webkit - box - orient: vertical;
+    -webkit - box - direction: normal;
+    -ms - flex - direction: column;
+    flex - direction: column;
+    min - width: 0;
+    word - wrap: break-word;
+    background - color: #303030;
+    background - clip: border - box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border - radius: 0.25rem;
+}
+
+.card > hr {
+    margin - right: 0;
+    margin - left: 0;
+}
+
+.card > .list - group: first - child.list - group - item: first - child {
+    border - top - left - radius: 0.25rem;
+    border - top - right - radius: 0.25rem;
+}
+
+.card > .list - group: last - child.list - group - item: last - child {
+    border - bottom - right - radius: 0.25rem;
+    border - bottom - left - radius: 0.25rem;
+}
+
+.card - body {
+    -webkit - box - flex: 1;
+    -ms - flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+
+.card - title {
+    margin - bottom: 0.75rem;
+}
+
+.card - subtitle {
+    margin - top: -0.375rem;
+    margin - bottom: 0;
+}
+
+.card - text: last - child {
+    margin - bottom: 0;
+}
+
+.card - link: hover {
+    text - decoration: none;
+}
+
+.card - link + .card - link {
+    margin - left: 1.25rem;
+}
+
+.card - header {
+    padding: 0.75rem 1.25rem;
+    margin - bottom: 0;
+    background - color: #444;
+    border - bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.card - header: first - child {
+    border - radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+}
+
+.card - header + .list - group.list - group - item: first - child {
+    border - top: 0;
+}
+
+.card - footer {
+    padding: 0.75rem 1.25rem;
+    background - color: #444;
+    border - top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.card - footer: last - child {
+    border - radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px);
+}
+
+.card - header - tabs {
+    margin - right: -0.625rem;
+    margin - bottom: -0.75rem;
+    margin - left: -0.625rem;
+    border - bottom: 0;
+}
+
+.card - header - pills {
+    margin - right: -0.625rem;
+    margin - left: -0.625rem;
+}
+
+.card - img - overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1.25rem;
+}
+
+.card - img {
+    width: 100 %;
+    border - radius: calc(0.25rem - 1px);
+}
+
+.card - img - top {
+    width: 100 %;
+    border - top - left - radius: calc(0.25rem - 1px);
+    border - top - right - radius: calc(0.25rem - 1px);
+}
+
+.card - img - bottom {
+    width: 100 %;
+    border - bottom - right - radius: calc(0.25rem - 1px);
+    border - bottom - left - radius: calc(0.25rem - 1px);
+}
+
+.card - deck {
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+    -webkit - box - orient: vertical;
+    -webkit - box - direction: normal;
+    -ms - flex - direction: column;
+    flex - direction: column;
+}
+
+.card - deck.card {
+    margin - bottom: 15px;
+}
+
+@media(min - width: 576px) {
+  .card - deck {
+        -webkit - box - orient: horizontal;
+        -webkit - box - direction: normal;
+        -ms - flex - flow: row wrap;
+        flex - flow: row wrap;
+        margin - right: -15px;
+        margin - left: -15px;
+    }
+  .card - deck.card {
+        display: -webkit - box;
+        display: -ms - flexbox;
+        display: flex;
+        -webkit - box - flex: 1;
+        -ms - flex: 1 0 0 %;
+        flex: 1 0 0 %;
+        -webkit - box - orient: vertical;
+        -webkit - box - direction: normal;
+        -ms - flex - direction: column;
+        flex - direction: column;
+        margin - right: 15px;
+        margin - bottom: 0;
+        margin - left: 15px;
+    }
+}
+
+.card - group {
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+    -webkit - box - orient: vertical;
+    -webkit - box - direction: normal;
+    -ms - flex - direction: column;
+    flex - direction: column;
+}
+
+.card - group > .card {
+    margin - bottom: 15px;
+}
+
+@media(min - width: 576px) {
+  .card - group {
+        -webkit - box - orient: horizontal;
+        -webkit - box - direction: normal;
+        -ms - flex - flow: row wrap;
+        flex - flow: row wrap;
+    }
+  .card - group > .card {
+        -webkit - box - flex: 1;
+        -ms - flex: 1 0 0 %;
+        flex: 1 0 0 %;
+        margin - bottom: 0;
+    }
+  .card - group > .card + .card {
+        margin - left: 0;
+        border - left: 0;
+    }
+  .card - group > .card: first - child {
+        border - top - right - radius: 0;
+        border - bottom - right - radius: 0;
+    }
+  .card - group > .card: first - child.card - img - top,
+  .card - group > .card: first - child.card - header {
+        border - top - right - radius: 0;
+    }
+  .card - group > .card: first - child.card - img - bottom,
+  .card - group > .card: first - child.card - footer {
+        border - bottom - right - radius: 0;
+    }
+  .card - group > .card: last - child {
+        border - top - left - radius: 0;
+        border - bottom - left - radius: 0;
+    }
+  .card - group > .card: last - child.card - img - top,
+  .card - group > .card: last - child.card - header {
+        border - top - left - radius: 0;
+    }
+  .card - group > .card: last - child.card - img - bottom,
+  .card - group > .card: last - child.card - footer {
+        border - bottom - left - radius: 0;
+    }
+  .card - group > .card: only - child {
+        border - radius: 0.25rem;
+    }
+  .card - group > .card: only - child.card - img - top,
+  .card - group > .card: only - child.card - header {
+        border - top - left - radius: 0.25rem;
+        border - top - right - radius: 0.25rem;
+    }
+  .card - group > .card: only - child.card - img - bottom,
+  .card - group > .card: only - child.card - footer {
+        border - bottom - right - radius: 0.25rem;
+        border - bottom - left - radius: 0.25rem;
+    }
+  .card - group > .card: not(: first - child): not(: last - child): not(: only - child) {
+        border - radius: 0;
+    }
+  .card - group > .card: not(: first - child): not(: last - child): not(: only - child).card - img - top,
+  .card - group > .card: not(: first - child): not(: last - child): not(: only - child).card - img - bottom,
+  .card - group > .card: not(: first - child): not(: last - child): not(: only - child).card - header,
+  .card - group > .card: not(: first - child): not(: last - child): not(: only - child).card - footer {
+        border - radius: 0;
+    }
+}
+
+.card - columns.card {
+    margin - bottom: 0.75rem;
+}
+
+@media(min - width: 576px) {
+  .card - columns {
+        -webkit - column - count: 3;
+        column - count: 3;
+        -webkit - column - gap: 1.25rem;
+        column - gap: 1.25rem;
+        orphans: 1;
+        widows: 1;
+    }
+  .card - columns.card {
+        display: inline - block;
+        width: 100 %;
+    }
+}
+
+.accordion.card: not(: first - of - type): not(: last - of - type) {
+    border - bottom: 0;
+    border - radius: 0;
+}
+
+.accordion.card: not(: first - of - type).card - header: first - child {
+    border - radius: 0;
+}
+
+.accordion.card: first - of - type {
+    border - bottom: 0;
+    border - bottom - right - radius: 0;
+    border - bottom - left - radius: 0;
+}
+
+.accordion.card: last - of - type {
+    border - top - left - radius: 0;
+    border - top - right - radius: 0;
+}
+
+.breadcrumb {
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+    -ms - flex - wrap: wrap;
+    flex - wrap: wrap;
+    padding: 0.75rem 1rem;
+    margin - bottom: 1rem;
+    list - style: none;
+    background - color: #444;
+    border - radius: 0.25rem;
+}
+
+.breadcrumb - item + .breadcrumb - item {
+    padding - left: 0.5rem;
+}
+
+.breadcrumb - item + .breadcrumb - item:: before {
+    display: inline - block;
+    padding - right: 0.5rem;
+    color: #999;
+    content: "/";
+}
+
+.breadcrumb - item + .breadcrumb - item: hover:: before {
+    text - decoration: underline;
+}
+
+.breadcrumb - item + .breadcrumb - item: hover:: before {
+    text - decoration: none;
+}
+
+.breadcrumb - item.active {
+    color: #999;
+}
+
+.pagination {
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+    padding - left: 0;
+    list - style: none;
+    border - radius: 0.25rem;
+}
+
+.page - link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin - left: 0;
+    line - height: 1.25;
+    color: #fff;
+    background - color: #00bc8c;
+    border: 0 solid transparent;
+}
+
+.page - link: hover {
+    z - index: 2;
+    color: #fff;
+    text - decoration: none;
+    background - color: #00efb2;
+    border - color: transparent;
+}
+
+.page - link: focus {
+    z - index: 2;
+    outline: 0;
+    -webkit - box - shadow: 0 0 0 0.2rem rgba(55, 90, 127, 0.25);
+    box - shadow: 0 0 0 0.2rem rgba(55, 90, 127, 0.25);
+}
+
+.page - link: not(: disabled): not(.disabled) {
+    cursor: pointer;
+}
+
+.page - item: first - child.page - link {
+    margin - left: 0;
+    border - top - left - radius: 0.25rem;
+    border - bottom - left - radius: 0.25rem;
+}
+
+.page - item: last - child.page - link {
+    border - top - right - radius: 0.25rem;
+    border - bottom - right - radius: 0.25rem;
+}
+
+.page - item.active.page - link {
+    z - index: 1;
+    color: #fff;
+    background - color: #00efb2;
+    border - color: transparent;
+}
+
+.page - item.disabled.page - link {
+    color: #fff;
+    pointer - events: none;
+    cursor: auto;
+    background - color: #007053;
+    border - color: transparent;
+}
+
+.pagination - lg.page - link {
+    padding: 0.75rem 1.5rem;
+    font - size: 1.171875rem;
+    line - height: 1.5;
+}
+
+.pagination - lg.page - item: first - child.page - link {
+    border - top - left - radius: 0.3rem;
+    border - bottom - left - radius: 0.3rem;
+}
+
+.pagination - lg.page - item: last - child.page - link {
+    border - top - right - radius: 0.3rem;
+    border - bottom - right - radius: 0.3rem;
+}
+
+.pagination - sm.page - link {
+    padding: 0.25rem 0.5rem;
+    font - size: 0.8203125rem;
+    line - height: 1.5;
+}
+
+.pagination - sm.page - item: first - child.page - link {
+    border - top - left - radius: 0.2rem;
+    border - bottom - left - radius: 0.2rem;
+}
+
+.pagination - sm.page - item: last - child.page - link {
+    border - top - right - radius: 0.2rem;
+    border - bottom - right - radius: 0.2rem;
+}
+
+.badge {
+    display: inline - block;
+    padding: 0.25em 0.4em;
+    font - size: 75 %;
+    font - weight: 700;
+    line - height: 1;
+    text - align: center;
+    white - space: nowrap;
+    vertical - align: baseline;
+    border - radius: 0.25rem;
+}
+
+.badge: empty {
+    display: none;
+}
+
+.btn.badge {
+    position: relative;
+    top: -1px;
+}
+
+.badge - pill {
+    padding - right: 0.6em;
+    padding - left: 0.6em;
+    border - radius: 10rem;
+}
+
+.badge - primary {
+    color: #fff;
+    background - color: #375a7f;
+}
+
+.badge - primary[href]: hover, .badge - primary[href]: focus {
+    color: #fff;
+    text - decoration: none;
+    background - color: #28415b;
+}
+
+.badge - secondary {
+    color: #fff;
+    background - color: #444;
+}
+
+.badge - secondary[href]: hover, .badge - secondary[href]: focus {
+    color: #fff;
+    text - decoration: none;
+    background - color: #2b2a2a;
+}
+
+.badge - success {
+    color: #fff;
+    background - color: #00bc8c;
+}
+
+.badge - success[href]: hover, .badge - success[href]: focus {
+    color: #fff;
+    text - decoration: none;
+    background - color: #008966;
+}
+
+.badge - info {
+    color: #fff;
+    background - color: #3498DB;
+}
+
+.badge - info[href]: hover, .badge - info[href]: focus {
+    color: #fff;
+    text - decoration: none;
+    background - color: #217dbb;
+}
+
+.badge - warning {
+    color: #fff;
+    background - color: #F39C12;
+}
+
+.badge - warning[href]: hover, .badge - warning[href]: focus {
+    color: #fff;
+    text - decoration: none;
+    background - color: #c87f0a;
+}
+
+.badge - danger {
+    color: #fff;
+    background - color: #E74C3C;
+}
+
+.badge - danger[href]: hover, .badge - danger[href]: focus {
+    color: #fff;
+    text - decoration: none;
+    background - color: #d62c1a;
+}
+
+.badge - light {
+    color: #fff;
+    background - color: #303030;
+}
+
+.badge - light[href]: hover, .badge - light[href]: focus {
+    color: #fff;
+    text - decoration: none;
+    background - color: #171616;
+}
+
+.badge - dark {
+    color: #222;
+    background - color: #adb5bd;
+}
+
+.badge - dark[href]: hover, .badge - dark[href]: focus {
+    color: #222;
+    text - decoration: none;
+    background - color: #919ca6;
+}
+
+.jumbotron {
+    padding: 2rem 1rem;
+    margin - bottom: 2rem;
+    background - color: #303030;
+    border - radius: 0.3rem;
+}
+
+@media(min - width: 576px) {
+  .jumbotron {
+        padding: 4rem 2rem;
+    }
+}
+
+.jumbotron - fluid {
+    padding - right: 0;
+    padding - left: 0;
+    border - radius: 0;
+}
+
+.alert {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin - bottom: 1rem;
+    border: 1px solid transparent;
+    border - radius: 0.25rem;
+}
+
+.alert - heading {
+    color: inherit;
+}
+
+.alert - link {
+    font - weight: 700;
+}
+
+.alert - dismissible {
+    padding - right: 3.90625rem;
+}
+
+.alert - dismissible.close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.75rem 1.25rem;
+    color: inherit;
+}
+
+.alert - primary {
+    color: #1d2f42;
+    background - color: #d7dee5;
+    border - color: #c7d1db;
+}
+
+.alert - primary hr {
+    border - top - color: #b7c4d1;
+}
+
+.alert - primary.alert - link {
+    color: #0d161f;
+}
+
+.alert - secondary {
+    color: #232323;
+    background - color: #dadada;
+    border - color: #cbcbcb;
+}
+
+.alert - secondary hr {
+    border - top - color: #bebebe;
+}
+
+.alert - secondary.alert - link {
+    color: #0a0909;
+}
+
+.alert - success {
+    color: #006249;
+    background - color: #ccf2e8;
+    border - color: #b8ecdf;
+}
+
+.alert - success hr {
+    border - top - color: #a4e7d6;
+}
+
+.alert - success.alert - link {
+    color: #002f23;
+}
+
+.alert - info {
+    color: #1b4f72;
+    background - color: #d6eaf8;
+    border - color: #c6e2f5;
+}
+
+.alert - info hr {
+    border - top - color: #b0d7f1;
+}
+
+.alert - info.alert - link {
+    color: #113249;
+}
+
+.alert - warning {
+    color: #7e5109;
+    background - color: #fdebd0;
+    border - color: #fce3bd;
+}
+
+.alert - warning hr {
+    border - top - color: #fbd9a5;
+}
+
+.alert - warning.alert - link {
+    color: #4e3206;
+}
+
+.alert - danger {
+    color: #78281f;
+    background - color: #fadbd8;
+    border - color: #f8cdc8;
+}
+
+.alert - danger hr {
+    border - top - color: #f5b8b1;
+}
+
+.alert - danger.alert - link {
+    color: #4f1a15;
+}
+
+.alert - light {
+    color: #191919;
+    background - color: #d6d6d6;
+    border - color: #c5c5c5;
+}
+
+.alert - light hr {
+    border - top - color: #b8b8b8;
+}
+
+.alert - light.alert - link {
+    color: black;
+}
+
+.alert - dark {
+    color: #5a5e62;
+    background - color: #eff0f2;
+    border - color: #e8eaed;
+}
+
+.alert - dark hr {
+    border - top - color: #dadde2;
+}
+
+.alert - dark.alert - link {
+    color: #424547;
+}
+
+@-webkit - keyframes progress - bar - stripes {
+    from {
+        background - position: 0.625rem 0;
+    }
+    to {
+        background - position: 0 0;
+    }
+}
+
+@keyframes progress - bar - stripes {
+    from {
+        background - position: 0.625rem 0;
+    }
+    to {
+        background - position: 0 0;
+    }
+}
+
+.progress {
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+    height: 0.625rem;
+    overflow: hidden;
+    font - size: 0.625rem;
+    background - color: #444;
+    border - radius: 0.25rem;
+}
+
+.progress - bar {
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+    -webkit - box - orient: vertical;
+    -webkit - box - direction: normal;
+    -ms - flex - direction: column;
+    flex - direction: column;
+    -webkit - box - pack: center;
+    -ms - flex - pack: center;
+    justify - content: center;
+    color: #fff;
+    text - align: center;
+    white - space: nowrap;
+    background - color: #375a7f;
+    -webkit - transition: width 0.6s ease;
+    transition: width 0.6s ease;
+}
+
+@media screen and(prefers - reduced - motion: reduce) {
+  .progress - bar {
+        -webkit - transition: none;
+        transition: none;
+    }
+}
+
+.progress - bar - striped {
+    background - image: linear - gradient(45deg, rgba(255, 255, 255, 0.15) 25 %, transparent 25 %, transparent 50 %, rgba(255, 255, 255, 0.15) 50 %, rgba(255, 255, 255, 0.15) 75 %, transparent 75 %, transparent);
+    background - size: 0.625rem 0.625rem;
+}
+
+.progress - bar - animated {
+    -webkit - animation: progress - bar - stripes 1s linear infinite;
+    animation: progress - bar - stripes 1s linear infinite;
+}
+
+.media {
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+    -webkit - box - align: start;
+    -ms - flex - align: start;
+    align - items: flex - start;
+}
+
+.media - body {
+    -webkit - box - flex: 1;
+    -ms - flex: 1;
+    flex: 1;
+}
+
+.list - group {
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+    -webkit - box - orient: vertical;
+    -webkit - box - direction: normal;
+    -ms - flex - direction: column;
+    flex - direction: column;
+    padding - left: 0;
+    margin - bottom: 0;
+}
+
+.list - group - item - action {
+    width: 100 %;
+    color: #444;
+    text - align: inherit;
+}
+
+.list - group - item - action: hover, .list - group - item - action: focus {
+    color: #444;
+    text - decoration: none;
+    background - color: #444;
+}
+
+.list - group - item - action: active {
+    color: #fff;
+    background - color: #ebebeb;
+}
+
+.list - group - item {
+    position: relative;
+    display: block;
+    padding: 0.75rem 1.25rem;
+    margin - bottom: -1px;
+    background - color: #303030;
+    border: 1px solid #444;
+}
+
+.list - group - item: first - child {
+    border - top - left - radius: 0.25rem;
+    border - top - right - radius: 0.25rem;
+}
+
+.list - group - item: last - child {
+    margin - bottom: 0;
+    border - bottom - right - radius: 0.25rem;
+    border - bottom - left - radius: 0.25rem;
+}
+
+.list - group - item: hover, .list - group - item: focus {
+    z - index: 1;
+    text - decoration: none;
+}
+
+.list - group - item.disabled, .list - group - item: disabled {
+    color: #999;
+    background - color: #303030;
+}
+
+.list - group - item.active {
+    z - index: 2;
+    color: #fff;
+    background - color: #375a7f;
+    border - color: #375a7f;
+}
+
+.list - group - flush.list - group - item {
+    border - right: 0;
+    border - left: 0;
+    border - radius: 0;
+}
+
+.list - group - flush: first - child.list - group - item: first - child {
+    border - top: 0;
+}
+
+.list - group - flush: last - child.list - group - item: last - child {
+    border - bottom: 0;
+}
+
+.list - group - item - primary {
+    color: #1d2f42;
+    background - color: #c7d1db;
+}
+
+.list - group - item - primary.list - group - item - action: hover, .list - group - item - primary.list - group - item - action: focus {
+    color: #1d2f42;
+    background - color: #b7c4d1;
+}
+
+.list - group - item - primary.list - group - item - action.active {
+    color: #fff;
+    background - color: #1d2f42;
+    border - color: #1d2f42;
+}
+
+.list - group - item - secondary {
+    color: #232323;
+    background - color: #cbcbcb;
+}
+
+.list - group - item - secondary.list - group - item - action: hover, .list - group - item - secondary.list - group - item - action: focus {
+    color: #232323;
+    background - color: #bebebe;
+}
+
+.list - group - item - secondary.list - group - item - action.active {
+    color: #fff;
+    background - color: #232323;
+    border - color: #232323;
+}
+
+.list - group - item - success {
+    color: #006249;
+    background - color: #b8ecdf;
+}
+
+.list - group - item - success.list - group - item - action: hover, .list - group - item - success.list - group - item - action: focus {
+    color: #006249;
+    background - color: #a4e7d6;
+}
+
+.list - group - item - success.list - group - item - action.active {
+    color: #fff;
+    background - color: #006249;
+    border - color: #006249;
+}
+
+.list - group - item - info {
+    color: #1b4f72;
+    background - color: #c6e2f5;
+}
+
+.list - group - item - info.list - group - item - action: hover, .list - group - item - info.list - group - item - action: focus {
+    color: #1b4f72;
+    background - color: #b0d7f1;
+}
+
+.list - group - item - info.list - group - item - action.active {
+    color: #fff;
+    background - color: #1b4f72;
+    border - color: #1b4f72;
+}
+
+.list - group - item - warning {
+    color: #7e5109;
+    background - color: #fce3bd;
+}
+
+.list - group - item - warning.list - group - item - action: hover, .list - group - item - warning.list - group - item - action: focus {
+    color: #7e5109;
+    background - color: #fbd9a5;
+}
+
+.list - group - item - warning.list - group - item - action.active {
+    color: #fff;
+    background - color: #7e5109;
+    border - color: #7e5109;
+}
+
+.list - group - item - danger {
+    color: #78281f;
+    background - color: #f8cdc8;
+}
+
+.list - group - item - danger.list - group - item - action: hover, .list - group - item - danger.list - group - item - action: focus {
+    color: #78281f;
+    background - color: #f5b8b1;
+}
+
+.list - group - item - danger.list - group - item - action.active {
+    color: #fff;
+    background - color: #78281f;
+    border - color: #78281f;
+}
+
+.list - group - item - light {
+    color: #191919;
+    background - color: #c5c5c5;
+}
+
+.list - group - item - light.list - group - item - action: hover, .list - group - item - light.list - group - item - action: focus {
+    color: #191919;
+    background - color: #b8b8b8;
+}
+
+.list - group - item - light.list - group - item - action.active {
+    color: #fff;
+    background - color: #191919;
+    border - color: #191919;
+}
+
+.list - group - item - dark {
+    color: #5a5e62;
+    background - color: #e8eaed;
+}
+
+.list - group - item - dark.list - group - item - action: hover, .list - group - item - dark.list - group - item - action: focus {
+    color: #5a5e62;
+    background - color: #dadde2;
+}
+
+.list - group - item - dark.list - group - item - action.active {
+    color: #fff;
+    background - color: #5a5e62;
+    border - color: #5a5e62;
+}
+
+.close {
+    float: right;
+    font - size: 1.40625rem;
+    font - weight: 700;
+    line - height: 1;
+    color: #fff;
+    text - shadow: none;
+    opacity: .5;
+}
+
+.close: not(: disabled): not(.disabled) {
+    cursor: pointer;
+}
+
+.close: not(: disabled): not(.disabled): hover, .close: not(: disabled): not(.disabled): focus {
+    color: #fff;
+    text - decoration: none;
+    opacity: .75;
+}
+
+button.close {
+    padding: 0;
+    background - color: transparent;
+    border: 0;
+    -webkit - appearance: none;
+}
+
+.modal - open {
+    overflow: hidden;
+}
+
+.modal - open.modal {
+    overflow - x: hidden;
+    overflow - y: auto;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z - index: 1050;
+    display: none;
+    overflow: hidden;
+    outline: 0;
+}
+
+.modal - dialog {
+    position: relative;
+    width: auto;
+    margin: 0.5rem;
+    pointer - events: none;
+}
+
+.modal.fade.modal - dialog {
+    -webkit - transition: -webkit - transform 0.3s ease - out;
+    transition: -webkit - transform 0.3s ease - out;
+    transition: transform 0.3s ease - out;
+    transition: transform 0.3s ease - out, -webkit - transform 0.3s ease - out;
+    -webkit - transform: translate(0, -25 %);
+    transform: translate(0, -25 %);
+}
+
+@media screen and(prefers - reduced - motion: reduce) {
+  .modal.fade.modal - dialog {
+        -webkit - transition: none;
+        transition: none;
+    }
+}
+
+.modal.show.modal - dialog {
+    -webkit - transform: translate(0, 0);
+    transform: translate(0, 0);
+}
+
+.modal - dialog - centered {
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+    -webkit - box - align: center;
+    -ms - flex - align: center;
+    align - items: center;
+    min - height: calc(100 % - (0.5rem * 2));
+}
+
+.modal - dialog - centered:: before {
+    display: block;
+    height: calc(100vh - (0.5rem * 2));
+    content: "";
+}
+
+.modal - content {
+    position: relative;
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+    -webkit - box - orient: vertical;
+    -webkit - box - direction: normal;
+    -ms - flex - direction: column;
+    flex - direction: column;
+    width: 100 %;
+    pointer - events: auto;
+    background - color: #303030;
+    background - clip: padding - box;
+    border: 1px solid #444;
+    border - radius: 0.3rem;
+    outline: 0;
+}
+
+.modal - backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z - index: 1040;
+    background - color: #000;
+}
+
+.modal - backdrop.fade {
+    opacity: 0;
+}
+
+.modal - backdrop.show {
+    opacity: 0.5;
+}
+
+.modal - header {
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+    -webkit - box - align: start;
+    -ms - flex - align: start;
+    align - items: flex - start;
+    -webkit - box - pack: justify;
+    -ms - flex - pack: justify;
+    justify - content: space - between;
+    padding: 1rem;
+    border - bottom: 1px solid #444;
+    border - top - left - radius: 0.3rem;
+    border - top - right - radius: 0.3rem;
+}
+
+.modal - header.close {
+    padding: 1rem;
+    margin: -1rem - 1rem - 1rem auto;
+}
+
+.modal - title {
+    margin - bottom: 0;
+    line - height: 1.5;
+}
+
+.modal - body {
+    position: relative;
+    -webkit - box - flex: 1;
+    -ms - flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1rem;
+}
+
+.modal - footer {
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+    -webkit - box - align: center;
+    -ms - flex - align: center;
+    align - items: center;
+    -webkit - box - pack: end;
+    -ms - flex - pack: end;
+    justify - content: flex - end;
+    padding: 1rem;
+    border - top: 1px solid #444;
+}
+
+.modal - footer > : not(: first - child) {
+    margin - left: .25rem;
+}
+
+.modal - footer > : not(: last - child) {
+    margin - right: .25rem;
+}
+
+.modal - scrollbar - measure {
+    position: absolute;
+    top: -9999px;
+    width: 50px;
+    height: 50px;
+    overflow: scroll;
+}
+
+@media(min - width: 576px) {
+  .modal - dialog {
+        max - width: 500px;
+        margin: 1.75rem auto;
+    }
+  .modal - dialog - centered {
+        min - height: calc(100 % - (1.75rem * 2));
+    }
+  .modal - dialog - centered:: before {
+        height: calc(100vh - (1.75rem * 2));
+    }
+  .modal - sm {
+        max - width: 300px;
+    }
+}
+
+@media(min - width: 992px) {
+  .modal - lg {
+        max - width: 800px;
+    }
+}
+
+.tooltip {
+    position: absolute;
+    z - index: 1070;
+    display: block;
+    margin: 0;
+    font - family: "Lato", -apple - system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans - serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font - style: normal;
+    font - weight: 400;
+    line - height: 1.5;
+    text - align: left;
+    text - align: start;
+    text - decoration: none;
+    text - shadow: none;
+    text - transform: none;
+    letter - spacing: normal;
+    word -break: normal;
+    word - spacing: normal;
+    white - space: normal;
+    line -break: auto;
+    font - size: 0.8203125rem;
+    word - wrap: break-word;
+    opacity: 0;
+}
+
+.tooltip.show {
+    opacity: 0.9;
+}
+
+.tooltip.arrow {
+    position: absolute;
+    display: block;
+    width: 0.8rem;
+    height: 0.4rem;
+}
+
+.tooltip.arrow:: before {
+    position: absolute;
+    content: "";
+    border - color: transparent;
+    border - style: solid;
+}
+
+.bs - tooltip - top, .bs - tooltip - auto[x - placement^="top"] {
+    padding: 0.4rem 0;
+}
+
+.bs - tooltip - top.arrow, .bs - tooltip - auto[x - placement^="top"] .arrow {
+    bottom: 0;
+}
+
+.bs - tooltip - top.arrow:: before, .bs - tooltip - auto[x - placement^="top"] .arrow:: before {
+    top: 0;
+    border - width: 0.4rem 0.4rem 0;
+    border - top - color: #000;
+}
+
+.bs - tooltip - right, .bs - tooltip - auto[x - placement^="right"] {
+    padding: 0 0.4rem;
+}
+
+.bs - tooltip - right.arrow, .bs - tooltip - auto[x - placement^="right"] .arrow {
+    left: 0;
+    width: 0.4rem;
+    height: 0.8rem;
+}
+
+.bs - tooltip - right.arrow:: before, .bs - tooltip - auto[x - placement^="right"] .arrow:: before {
+    right: 0;
+    border - width: 0.4rem 0.4rem 0.4rem 0;
+    border - right - color: #000;
+}
+
+.bs - tooltip - bottom, .bs - tooltip - auto[x - placement^="bottom"] {
+    padding: 0.4rem 0;
+}
+
+.bs - tooltip - bottom.arrow, .bs - tooltip - auto[x - placement^="bottom"] .arrow {
+    top: 0;
+}
+
+.bs - tooltip - bottom.arrow:: before, .bs - tooltip - auto[x - placement^="bottom"] .arrow:: before {
+    bottom: 0;
+    border - width: 0 0.4rem 0.4rem;
+    border - bottom - color: #000;
+}
+
+.bs - tooltip - left, .bs - tooltip - auto[x - placement^="left"] {
+    padding: 0 0.4rem;
+}
+
+.bs - tooltip - left.arrow, .bs - tooltip - auto[x - placement^="left"] .arrow {
+    right: 0;
+    width: 0.4rem;
+    height: 0.8rem;
+}
+
+.bs - tooltip - left.arrow:: before, .bs - tooltip - auto[x - placement^="left"] .arrow:: before {
+    left: 0;
+    border - width: 0.4rem 0 0.4rem 0.4rem;
+    border - left - color: #000;
+}
+
+.tooltip - inner {
+    max - width: 200px;
+    padding: 0.25rem 0.5rem;
+    color: #fff;
+    text - align: center;
+    background - color: #000;
+    border - radius: 0.25rem;
+}
+
+.popover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z - index: 1060;
+    display: block;
+    max - width: 276px;
+    font - family: "Lato", -apple - system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans - serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font - style: normal;
+    font - weight: 400;
+    line - height: 1.5;
+    text - align: left;
+    text - align: start;
+    text - decoration: none;
+    text - shadow: none;
+    text - transform: none;
+    letter - spacing: normal;
+    word -break: normal;
+    word - spacing: normal;
+    white - space: normal;
+    line -break: auto;
+    font - size: 0.8203125rem;
+    word - wrap: break-word;
+    background - color: #303030;
+    background - clip: padding - box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border - radius: 0.3rem;
+}
+
+.popover.arrow {
+    position: absolute;
+    display: block;
+    width: 1rem;
+    height: 0.5rem;
+    margin: 0 0.3rem;
+}
+
+.popover.arrow:: before, .popover.arrow:: after {
+    position: absolute;
+    display: block;
+    content: "";
+    border - color: transparent;
+    border - style: solid;
+}
+
+.bs - popover - top, .bs - popover - auto[x - placement^="top"] {
+    margin - bottom: 0.5rem;
+}
+
+.bs - popover - top.arrow, .bs - popover - auto[x - placement^="top"] .arrow {
+    bottom: calc((0.5rem + 1px) * -1);
+}
+
+.bs - popover - top.arrow:: before, .bs - popover - auto[x - placement^="top"] .arrow:: before,
+.bs - popover - top.arrow:: after, .bs - popover - auto[x - placement^="top"] .arrow:: after {
+    border - width: 0.5rem 0.5rem 0;
+}
+
+.bs - popover - top.arrow:: before, .bs - popover - auto[x - placement^="top"] .arrow:: before {
+    bottom: 0;
+    border - top - color: rgba(0, 0, 0, 0.25);
+}
+
+.bs - popover - top.arrow:: after, .bs - popover - auto[x - placement^="top"] .arrow:: after {
+    bottom: 1px;
+    border - top - color: #303030;
+}
+
+.bs - popover - right, .bs - popover - auto[x - placement^="right"] {
+    margin - left: 0.5rem;
+}
+
+.bs - popover - right.arrow, .bs - popover - auto[x - placement^="right"] .arrow {
+    left: calc((0.5rem + 1px) * -1);
+    width: 0.5rem;
+    height: 1rem;
+    margin: 0.3rem 0;
+}
+
+.bs - popover - right.arrow:: before, .bs - popover - auto[x - placement^="right"] .arrow:: before,
+.bs - popover - right.arrow:: after, .bs - popover - auto[x - placement^="right"] .arrow:: after {
+    border - width: 0.5rem 0.5rem 0.5rem 0;
+}
+
+.bs - popover - right.arrow:: before, .bs - popover - auto[x - placement^="right"] .arrow:: before {
+    left: 0;
+    border - right - color: rgba(0, 0, 0, 0.25);
+}
+
+.bs - popover - right.arrow:: after, .bs - popover - auto[x - placement^="right"] .arrow:: after {
+    left: 1px;
+    border - right - color: #303030;
+}
+
+.bs - popover - bottom, .bs - popover - auto[x - placement^="bottom"] {
+    margin - top: 0.5rem;
+}
+
+.bs - popover - bottom.arrow, .bs - popover - auto[x - placement^="bottom"] .arrow {
+    top: calc((0.5rem + 1px) * -1);
+}
+
+.bs - popover - bottom.arrow:: before, .bs - popover - auto[x - placement^="bottom"] .arrow:: before,
+.bs - popover - bottom.arrow:: after, .bs - popover - auto[x - placement^="bottom"] .arrow:: after {
+    border - width: 0 0.5rem 0.5rem 0.5rem;
+}
+
+.bs - popover - bottom.arrow:: before, .bs - popover - auto[x - placement^="bottom"] .arrow:: before {
+    top: 0;
+    border - bottom - color: rgba(0, 0, 0, 0.25);
+}
+
+.bs - popover - bottom.arrow:: after, .bs - popover - auto[x - placement^="bottom"] .arrow:: after {
+    top: 1px;
+    border - bottom - color: #303030;
+}
+
+.bs - popover - bottom.popover - header:: before, .bs - popover - auto[x - placement^="bottom"] .popover - header:: before {
+    position: absolute;
+    top: 0;
+    left: 50 %;
+    display: block;
+    width: 1rem;
+    margin - left: -0.5rem;
+    content: "";
+    border - bottom: 1px solid #444;
+}
+
+.bs - popover - left, .bs - popover - auto[x - placement^="left"] {
+    margin - right: 0.5rem;
+}
+
+.bs - popover - left.arrow, .bs - popover - auto[x - placement^="left"] .arrow {
+    right: calc((0.5rem + 1px) * -1);
+    width: 0.5rem;
+    height: 1rem;
+    margin: 0.3rem 0;
+}
+
+.bs - popover - left.arrow:: before, .bs - popover - auto[x - placement^="left"] .arrow:: before,
+.bs - popover - left.arrow:: after, .bs - popover - auto[x - placement^="left"] .arrow:: after {
+    border - width: 0.5rem 0 0.5rem 0.5rem;
+}
+
+.bs - popover - left.arrow:: before, .bs - popover - auto[x - placement^="left"] .arrow:: before {
+    right: 0;
+    border - left - color: rgba(0, 0, 0, 0.25);
+}
+
+.bs - popover - left.arrow:: after, .bs - popover - auto[x - placement^="left"] .arrow:: after {
+    right: 1px;
+    border - left - color: #303030;
+}
+
+.popover - header {
+    padding: 0.5rem 0.75rem;
+    margin - bottom: 0;
+    font - size: 0.9375rem;
+    color: inherit;
+    background - color: #444;
+    border - bottom: 1px solid #373737;
+    border - top - left - radius: calc(0.3rem - 1px);
+    border - top - right - radius: calc(0.3rem - 1px);
+}
+
+.popover - header: empty {
+    display: none;
+}
+
+.popover - body {
+    padding: 0.5rem 0.75rem;
+    color: #fff;
+}
+
+.carousel {
+    position: relative;
+}
+
+.carousel - inner {
+    position: relative;
+    width: 100 %;
+    overflow: hidden;
+}
+
+.carousel - item {
+    position: relative;
+    display: none;
+    -webkit - box - align: center;
+    -ms - flex - align: center;
+    align - items: center;
+    width: 100 %;
+    -webkit - backface - visibility: hidden;
+    backface - visibility: hidden;
+    -webkit - perspective: 1000px;
+    perspective: 1000px;
+}
+
+.carousel - item.active,
+.carousel - item - next,
+.carousel - item - prev {
+    display: block;
+    -webkit - transition: -webkit - transform 0.6s ease;
+    transition: -webkit - transform 0.6s ease;
+    transition: transform 0.6s ease;
+    transition: transform 0.6s ease, -webkit - transform 0.6s ease;
+}
+
+@media screen and(prefers - reduced - motion: reduce) {
+  .carousel - item.active,
+  .carousel - item - next,
+  .carousel - item - prev {
+        -webkit - transition: none;
+        transition: none;
+    }
+}
+
+.carousel - item - next,
+.carousel - item - prev {
+    position: absolute;
+    top: 0;
+}
+
+.carousel - item - next.carousel - item - left,
+.carousel - item - prev.carousel - item - right {
+    -webkit - transform: translateX(0);
+    transform: translateX(0);
+}
+
+@supports((-webkit - transform - style: preserve - 3d) or(transform - style: preserve - 3d)) {
+  .carousel - item - next.carousel - item - left,
+  .carousel - item - prev.carousel - item - right {
+        -webkit - transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.carousel - item - next,
+.active.carousel - item - right {
+    -webkit - transform: translateX(100 %);
+    transform: translateX(100 %);
+}
+
+@supports((-webkit - transform - style: preserve - 3d) or(transform - style: preserve - 3d)) {
+  .carousel - item - next,
+  .active.carousel - item - right {
+        -webkit - transform: translate3d(100 %, 0, 0);
+        transform: translate3d(100 %, 0, 0);
+    }
+}
+
+.carousel - item - prev,
+.active.carousel - item - left {
+    -webkit - transform: translateX(-100 %);
+    transform: translateX(-100 %);
+}
+
+@supports((-webkit - transform - style: preserve - 3d) or(transform - style: preserve - 3d)) {
+  .carousel - item - prev,
+  .active.carousel - item - left {
+        -webkit - transform: translate3d(-100 %, 0, 0);
+        transform: translate3d(-100 %, 0, 0);
+    }
+}
+
+.carousel - fade.carousel - item {
+    opacity: 0;
+    -webkit - transition - duration: .6s;
+    transition - duration: .6s;
+    -webkit - transition - property: opacity;
+    transition - property: opacity;
+}
+
+.carousel - fade.carousel - item.active,
+.carousel - fade.carousel - item - next.carousel - item - left,
+.carousel - fade.carousel - item - prev.carousel - item - right {
+    opacity: 1;
+}
+
+.carousel - fade.active.carousel - item - left,
+.carousel - fade.active.carousel - item - right {
+    opacity: 0;
+}
+
+.carousel - fade.carousel - item - next,
+.carousel - fade.carousel - item - prev,
+.carousel - fade.carousel - item.active,
+.carousel - fade.active.carousel - item - left,
+.carousel - fade.active.carousel - item - prev {
+    -webkit - transform: translateX(0);
+    transform: translateX(0);
+}
+
+@supports((-webkit - transform - style: preserve - 3d) or(transform - style: preserve - 3d)) {
+  .carousel - fade.carousel - item - next,
+  .carousel - fade.carousel - item - prev,
+  .carousel - fade.carousel - item.active,
+  .carousel - fade.active.carousel - item - left,
+  .carousel - fade.active.carousel - item - prev {
+        -webkit - transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.carousel - control - prev,
+.carousel - control - next {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+    -webkit - box - align: center;
+    -ms - flex - align: center;
+    align - items: center;
+    -webkit - box - pack: center;
+    -ms - flex - pack: center;
+    justify - content: center;
+    width: 15 %;
+    color: #fff;
+    text - align: center;
+    opacity: 0.5;
+}
+
+.carousel - control - prev: hover, .carousel - control - prev: focus,
+.carousel - control - next: hover,
+.carousel - control - next: focus {
+    color: #fff;
+    text - decoration: none;
+    outline: 0;
+    opacity: .9;
+}
+
+.carousel - control - prev {
+    left: 0;
+}
+
+.carousel - control - next {
+    right: 0;
+}
+
+.carousel - control - prev - icon,
+.carousel - control - next - icon {
+    display: inline - block;
+    width: 20px;
+    height: 20px;
+    background: transparent no - repeat center center;
+    background - size: 100 % 100 %;
+}
+
+.carousel - control - prev - icon {
+    background - image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+}
+
+.carousel - control - next - icon {
+    background - image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+}
+
+.carousel - indicators {
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+    left: 0;
+    z - index: 15;
+    display: -webkit - box;
+    display: -ms - flexbox;
+    display: flex;
+    -webkit - box - pack: center;
+    -ms - flex - pack: center;
+    justify - content: center;
+    padding - left: 0;
+    margin - right: 15 %;
+    margin - left: 15 %;
+    list - style: none;
+}
+
+.carousel - indicators li {
+    position: relative;
+    -webkit - box - flex: 0;
+    -ms - flex: 0 1 auto;
+    flex: 0 1 auto;
+    width: 30px;
+    height: 3px;
+    margin - right: 3px;
+    margin - left: 3px;
+    text - indent: -999px;
+    cursor: pointer;
+    background - color: rgba(255, 255, 255, 0.5);
+}
+
+.carousel - indicators li:: before {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    display: inline - block;
+    width: 100 %;
+    height: 10px;
+    content: "";
+}
+
+.carousel - indicators li:: after {
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    display: inline - block;
+    width: 100 %;
+    height: 10px;
+    content: "";
+}
+
+.carousel - indicators.active {
+    background - color: #fff;
+}
+
+.carousel - caption {
+    position: absolute;
+    right: 15 %;
+    bottom: 20px;
+    left: 15 %;
+    z - index: 10;
+    padding - top: 20px;
+    padding - bottom: 20px;
+    color: #fff;
+    text - align: center;
+}
+
+.align - baseline {
+    vertical - align: baseline!important;
+}
+
+.align - top {
+    vertical - align: top!important;
+}
+
+.align - middle {
+    vertical - align: middle!important;
+}
+
+.align - bottom {
+    vertical - align: bottom!important;
+}
+
+.align - text - bottom {
+    vertical - align: text - bottom!important;
+}
+
+.align - text - top {
+    vertical - align: text - top!important;
+}
+
+.bg - primary {
+    background - color: #375a7f!important;
+}
+
+a.bg - primary: hover, a.bg - primary: focus,
+    button.bg - primary: hover,
+        button.bg - primary: focus {
+    background - color: #28415b!important;
+}
+
+.bg - secondary {
+    background - color: #444!important;
+}
+
+a.bg - secondary: hover, a.bg - secondary: focus,
+    button.bg - secondary: hover,
+        button.bg - secondary: focus {
+    background - color: #2b2a2a!important;
+}
+
+.bg - success {
+    background - color: #00bc8c!important;
+}
+
+a.bg - success: hover, a.bg - success: focus,
+    button.bg - success: hover,
+        button.bg - success: focus {
+    background - color: #008966!important;
+}
+
+.bg - info {
+    background - color: #3498DB!important;
+}
+
+a.bg - info: hover, a.bg - info: focus,
+    button.bg - info: hover,
+        button.bg - info: focus {
+    background - color: #217dbb!important;
+}
+
+.bg - warning {
+    background - color: #F39C12!important;
+}
+
+a.bg - warning: hover, a.bg - warning: focus,
+    button.bg - warning: hover,
+        button.bg - warning: focus {
+    background - color: #c87f0a!important;
+}
+
+.bg - danger {
+    background - color: #E74C3C!important;
+}
+
+a.bg - danger: hover, a.bg - danger: focus,
+    button.bg - danger: hover,
+        button.bg - danger: focus {
+    background - color: #d62c1a!important;
+}
+
+.bg - light {
+    background - color: #303030!important;
+}
+
+a.bg - light: hover, a.bg - light: focus,
+    button.bg - light: hover,
+        button.bg - light: focus {
+    background - color: #171616!important;
+}
+
+.bg - dark {
+    background - color: #adb5bd!important;
+}
+
+a.bg - dark: hover, a.bg - dark: focus,
+    button.bg - dark: hover,
+        button.bg - dark: focus {
+    background - color: #919ca6!important;
+}
+
+.bg - white {
+    background - color: #fff!important;
+}
+
+.bg - transparent {
+    background - color: transparent!important;
+}
+
+.border {
+    border: 1px solid #dee2e6!important;
+}
+
+.border - top {
+    border - top: 1px solid #dee2e6!important;
+}
+
+.border - right {
+    border - right: 1px solid #dee2e6!important;
+}
+
+.border - bottom {
+    border - bottom: 1px solid #dee2e6!important;
+}
+
+.border - left {
+    border - left: 1px solid #dee2e6!important;
+}
+
+.border - 0 {
+    border: 0!important;
+}
+
+.border - top - 0 {
+    border - top: 0!important;
+}
+
+.border - right - 0 {
+    border - right: 0!important;
+}
+
+.border - bottom - 0 {
+    border - bottom: 0!important;
+}
+
+.border - left - 0 {
+    border - left: 0!important;
+}
+
+.border - primary {
+    border - color: #375a7f!important;
+}
+
+.border - secondary {
+    border - color: #444!important;
+}
+
+.border - success {
+    border - color: #00bc8c!important;
+}
+
+.border - info {
+    border - color: #3498DB!important;
+}
+
+.border - warning {
+    border - color: #F39C12!important;
+}
+
+.border - danger {
+    border - color: #E74C3C!important;
+}
+
+.border - light {
+    border - color: #303030!important;
+}
+
+.border - dark {
+    border - color: #adb5bd!important;
+}
+
+.border - white {
+    border - color: #fff!important;
+}
+
+.rounded {
+    border - radius: 0.25rem!important;
+}
+
+.rounded - top {
+    border - top - left - radius: 0.25rem!important;
+    border - top - right - radius: 0.25rem!important;
+}
+
+.rounded - right {
+    border - top - right - radius: 0.25rem!important;
+    border - bottom - right - radius: 0.25rem!important;
+}
+
+.rounded - bottom {
+    border - bottom - right - radius: 0.25rem!important;
+    border - bottom - left - radius: 0.25rem!important;
+}
+
+.rounded - left {
+    border - top - left - radius: 0.25rem!important;
+    border - bottom - left - radius: 0.25rem!important;
+}
+
+.rounded - circle {
+    border - radius: 50 % !important;
+}
+
+.rounded - 0 {
+    border - radius: 0!important;
+}
+
+.clearfix:: after {
+    display: block;
+    clear: both;
+    content: "";
+}
+
+.d - none {
+    display: none!important;
+}
+
+.d - inline {
+    display: inline!important;
+}
+
+.d - inline - block {
+    display: inline - block!important;
+}
+
+.d - block {
+    display: block!important;
+}
+
+.d - table {
+    display: table!important;
+}
+
+.d - table - row {
+    display: table - row!important;
+}
+
+.d - table - cell {
+    display: table - cell!important;
+}
+
+.d - flex {
+    display: -webkit - box!important;
+    display: -ms - flexbox!important;
+    display: flex!important;
+}
+
+.d - inline - flex {
+    display: -webkit - inline - box!important;
+    display: -ms - inline - flexbox!important;
+    display: inline - flex!important;
+}
+
+@media(min - width: 576px) {
+  .d - sm - none {
+        display: none!important;
+    }
+  .d - sm - inline {
+        display: inline!important;
+    }
+  .d - sm - inline - block {
+        display: inline - block!important;
+    }
+  .d - sm - block {
+        display: block!important;
+    }
+  .d - sm - table {
+        display: table!important;
+    }
+  .d - sm - table - row {
+        display: table - row!important;
+    }
+  .d - sm - table - cell {
+        display: table - cell!important;
+    }
+  .d - sm - flex {
+        display: -webkit - box!important;
+        display: -ms - flexbox!important;
+        display: flex!important;
+    }
+  .d - sm - inline - flex {
+        display: -webkit - inline - box!important;
+        display: -ms - inline - flexbox!important;
+        display: inline - flex!important;
+    }
+}
+
+@media(min - width: 768px) {
+  .d - md - none {
+        display: none!important;
+    }
+  .d - md - inline {
+        display: inline!important;
+    }
+  .d - md - inline - block {
+        display: inline - block!important;
+    }
+  .d - md - block {
+        display: block!important;
+    }
+  .d - md - table {
+        display: table!important;
+    }
+  .d - md - table - row {
+        display: table - row!important;
+    }
+  .d - md - table - cell {
+        display: table - cell!important;
+    }
+  .d - md - flex {
+        display: -webkit - box!important;
+        display: -ms - flexbox!important;
+        display: flex!important;
+    }
+  .d - md - inline - flex {
+        display: -webkit - inline - box!important;
+        display: -ms - inline - flexbox!important;
+        display: inline - flex!important;
+    }
+}
+
+@media(min - width: 992px) {
+  .d - lg - none {
+        display: none!important;
+    }
+  .d - lg - inline {
+        display: inline!important;
+    }
+  .d - lg - inline - block {
+        display: inline - block!important;
+    }
+  .d - lg - block {
+        display: block!important;
+    }
+  .d - lg - table {
+        display: table!important;
+    }
+  .d - lg - table - row {
+        display: table - row!important;
+    }
+  .d - lg - table - cell {
+        display: table - cell!important;
+    }
+  .d - lg - flex {
+        display: -webkit - box!important;
+        display: -ms - flexbox!important;
+        display: flex!important;
+    }
+  .d - lg - inline - flex {
+        display: -webkit - inline - box!important;
+        display: -ms - inline - flexbox!important;
+        display: inline - flex!important;
+    }
+}
+
+@media(min - width: 1200px) {
+  .d - xl - none {
+        display: none!important;
+    }
+  .d - xl - inline {
+        display: inline!important;
+    }
+  .d - xl - inline - block {
+        display: inline - block!important;
+    }
+  .d - xl - block {
+        display: block!important;
+    }
+  .d - xl - table {
+        display: table!important;
+    }
+  .d - xl - table - row {
+        display: table - row!important;
+    }
+  .d - xl - table - cell {
+        display: table - cell!important;
+    }
+  .d - xl - flex {
+        display: -webkit - box!important;
+        display: -ms - flexbox!important;
+        display: flex!important;
+    }
+  .d - xl - inline - flex {
+        display: -webkit - inline - box!important;
+        display: -ms - inline - flexbox!important;
+        display: inline - flex!important;
+    }
+}
+
+@media print {
+  .d - print - none {
+        display: none!important;
+    }
+  .d - print - inline {
+        display: inline!important;
+    }
+  .d - print - inline - block {
+        display: inline - block!important;
+    }
+  .d - print - block {
+        display: block!important;
+    }
+  .d - print - table {
+        display: table!important;
+    }
+  .d - print - table - row {
+        display: table - row!important;
+    }
+  .d - print - table - cell {
+        display: table - cell!important;
+    }
+  .d - print - flex {
+        display: -webkit - box!important;
+        display: -ms - flexbox!important;
+        display: flex!important;
+    }
+  .d - print - inline - flex {
+        display: -webkit - inline - box!important;
+        display: -ms - inline - flexbox!important;
+        display: inline - flex!important;
+    }
+}
+
+.embed - responsive {
+    position: relative;
+    display: block;
+    width: 100 %;
+    padding: 0;
+    overflow: hidden;
+}
+
+.embed - responsive:: before {
+    display: block;
+    content: "";
+}
+
+.embed - responsive.embed - responsive - item,
+.embed - responsive iframe,
+.embed - responsive embed,
+.embed - responsive object,
+.embed - responsive video {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100 %;
+    height: 100 %;
+    border: 0;
+}
+
+.embed - responsive - 21by9:: before {
+    padding - top: 42.8571428571 %;
+}
+
+.embed - responsive - 16by9:: before {
+    padding - top: 56.25 %;
+}
+
+.embed - responsive - 4by3:: before {
+    padding - top: 75 %;
+}
+
+.embed - responsive - 1by1:: before {
+    padding - top: 100 %;
+}
+
+.flex - row {
+    -webkit - box - orient: horizontal!important;
+    -webkit - box - direction: normal!important;
+    -ms - flex - direction: row!important;
+    flex - direction: row!important;
+}
+
+.flex - column {
+    -webkit - box - orient: vertical!important;
+    -webkit - box - direction: normal!important;
+    -ms - flex - direction: column!important;
+    flex - direction: column!important;
+}
+
+.flex - row - reverse {
+    -webkit - box - orient: horizontal!important;
+    -webkit - box - direction: reverse!important;
+    -ms - flex - direction: row - reverse!important;
+    flex - direction: row - reverse!important;
+}
+
+.flex - column - reverse {
+    -webkit - box - orient: vertical!important;
+    -webkit - box - direction: reverse!important;
+    -ms - flex - direction: column - reverse!important;
+    flex - direction: column - reverse!important;
+}
+
+.flex - wrap {
+    -ms - flex - wrap: wrap!important;
+    flex - wrap: wrap!important;
+}
+
+.flex - nowrap {
+    -ms - flex - wrap: nowrap!important;
+    flex - wrap: nowrap!important;
+}
+
+.flex - wrap - reverse {
+    -ms - flex - wrap: wrap - reverse!important;
+    flex - wrap: wrap - reverse!important;
+}
+
+.flex - fill {
+    -webkit - box - flex: 1!important;
+    -ms - flex: 1 1 auto!important;
+    flex: 1 1 auto!important;
+}
+
+.flex - grow - 0 {
+    -webkit - box - flex: 0!important;
+    -ms - flex - positive: 0!important;
+    flex - grow: 0!important;
+}
+
+.flex - grow - 1 {
+    -webkit - box - flex: 1!important;
+    -ms - flex - positive: 1!important;
+    flex - grow: 1!important;
+}
+
+.flex - shrink - 0 {
+    -ms - flex - negative: 0!important;
+    flex - shrink: 0!important;
+}
+
+.flex - shrink - 1 {
+    -ms - flex - negative: 1!important;
+    flex - shrink: 1!important;
+}
+
+.justify - content - start {
+    -webkit - box - pack: start!important;
+    -ms - flex - pack: start!important;
+    justify - content: flex - start!important;
+}
+
+.justify - content - end {
+    -webkit - box - pack: end!important;
+    -ms - flex - pack: end!important;
+    justify - content: flex - end!important;
+}
+
+.justify - content - center {
+    -webkit - box - pack: center!important;
+    -ms - flex - pack: center!important;
+    justify - content: center!important;
+}
+
+.justify - content - between {
+    -webkit - box - pack: justify!important;
+    -ms - flex - pack: justify!important;
+    justify - content: space - between!important;
+}
+
+.justify - content - around {
+    -ms - flex - pack: distribute!important;
+    justify - content: space - around!important;
+}
+
+.align - items - start {
+    -webkit - box - align: start!important;
+    -ms - flex - align: start!important;
+    align - items: flex - start!important;
+}
+
+.align - items - end {
+    -webkit - box - align: end!important;
+    -ms - flex - align: end!important;
+    align - items: flex - end!important;
+}
+
+.align - items - center {
+    -webkit - box - align: center!important;
+    -ms - flex - align: center!important;
+    align - items: center!important;
+}
+
+.align - items - baseline {
+    -webkit - box - align: baseline!important;
+    -ms - flex - align: baseline!important;
+    align - items: baseline!important;
+}
+
+.align - items - stretch {
+    -webkit - box - align: stretch!important;
+    -ms - flex - align: stretch!important;
+    align - items: stretch!important;
+}
+
+.align - content - start {
+    -ms - flex - line - pack: start!important;
+    align - content: flex - start!important;
+}
+
+.align - content - end {
+    -ms - flex - line - pack: end!important;
+    align - content: flex - end!important;
+}
+
+.align - content - center {
+    -ms - flex - line - pack: center!important;
+    align - content: center!important;
+}
+
+.align - content - between {
+    -ms - flex - line - pack: justify!important;
+    align - content: space - between!important;
+}
+
+.align - content - around {
+    -ms - flex - line - pack: distribute!important;
+    align - content: space - around!important;
+}
+
+.align - content - stretch {
+    -ms - flex - line - pack: stretch!important;
+    align - content: stretch!important;
+}
+
+.align - self - auto {
+    -ms - flex - item - align: auto!important;
+    align - self: auto!important;
+}
+
+.align - self - start {
+    -ms - flex - item - align: start!important;
+    align - self: flex - start!important;
+}
+
+.align - self - end {
+    -ms - flex - item - align: end!important;
+    align - self: flex - end!important;
+}
+
+.align - self - center {
+    -ms - flex - item - align: center!important;
+    align - self: center!important;
+}
+
+.align - self - baseline {
+    -ms - flex - item - align: baseline!important;
+    align - self: baseline!important;
+}
+
+.align - self - stretch {
+    -ms - flex - item - align: stretch!important;
+    align - self: stretch!important;
+}
+
+@media(min - width: 576px) {
+  .flex - sm - row {
+        -webkit - box - orient: horizontal!important;
+        -webkit - box - direction: normal!important;
+        -ms - flex - direction: row!important;
+        flex - direction: row!important;
+    }
+  .flex - sm - column {
+        -webkit - box - orient: vertical!important;
+        -webkit - box - direction: normal!important;
+        -ms - flex - direction: column!important;
+        flex - direction: column!important;
+    }
+  .flex - sm - row - reverse {
+        -webkit - box - orient: horizontal!important;
+        -webkit - box - direction: reverse!important;
+        -ms - flex - direction: row - reverse!important;
+        flex - direction: row - reverse!important;
+    }
+  .flex - sm - column - reverse {
+        -webkit - box - orient: vertical!important;
+        -webkit - box - direction: reverse!important;
+        -ms - flex - direction: column - reverse!important;
+        flex - direction: column - reverse!important;
+    }
+  .flex - sm - wrap {
+        -ms - flex - wrap: wrap!important;
+        flex - wrap: wrap!important;
+    }
+  .flex - sm - nowrap {
+        -ms - flex - wrap: nowrap!important;
+        flex - wrap: nowrap!important;
+    }
+  .flex - sm - wrap - reverse {
+        -ms - flex - wrap: wrap - reverse!important;
+        flex - wrap: wrap - reverse!important;
+    }
+  .flex - sm - fill {
+        -webkit - box - flex: 1!important;
+        -ms - flex: 1 1 auto!important;
+        flex: 1 1 auto!important;
+    }
+  .flex - sm - grow - 0 {
+        -webkit - box - flex: 0!important;
+        -ms - flex - positive: 0!important;
+        flex - grow: 0!important;
+    }
+  .flex - sm - grow - 1 {
+        -webkit - box - flex: 1!important;
+        -ms - flex - positive: 1!important;
+        flex - grow: 1!important;
+    }
+  .flex - sm - shrink - 0 {
+        -ms - flex - negative: 0!important;
+        flex - shrink: 0!important;
+    }
+  .flex - sm - shrink - 1 {
+        -ms - flex - negative: 1!important;
+        flex - shrink: 1!important;
+    }
+  .justify - content - sm - start {
+        -webkit - box - pack: start!important;
+        -ms - flex - pack: start!important;
+        justify - content: flex - start!important;
+    }
+  .justify - content - sm - end {
+        -webkit - box - pack: end!important;
+        -ms - flex - pack: end!important;
+        justify - content: flex - end!important;
+    }
+  .justify - content - sm - center {
+        -webkit - box - pack: center!important;
+        -ms - flex - pack: center!important;
+        justify - content: center!important;
+    }
+  .justify - content - sm - between {
+        -webkit - box - pack: justify!important;
+        -ms - flex - pack: justify!important;
+        justify - content: space - between!important;
+    }
+  .justify - content - sm - around {
+        -ms - flex - pack: distribute!important;
+        justify - content: space - around!important;
+    }
+  .align - items - sm - start {
+        -webkit - box - align: start!important;
+        -ms - flex - align: start!important;
+        align - items: flex - start!important;
+    }
+  .align - items - sm - end {
+        -webkit - box - align: end!important;
+        -ms - flex - align: end!important;
+        align - items: flex - end!important;
+    }
+  .align - items - sm - center {
+        -webkit - box - align: center!important;
+        -ms - flex - align: center!important;
+        align - items: center!important;
+    }
+  .align - items - sm - baseline {
+        -webkit - box - align: baseline!important;
+        -ms - flex - align: baseline!important;
+        align - items: baseline!important;
+    }
+  .align - items - sm - stretch {
+        -webkit - box - align: stretch!important;
+        -ms - flex - align: stretch!important;
+        align - items: stretch!important;
+    }
+  .align - content - sm - start {
+        -ms - flex - line - pack: start!important;
+        align - content: flex - start!important;
+    }
+  .align - content - sm - end {
+        -ms - flex - line - pack: end!important;
+        align - content: flex - end!important;
+    }
+  .align - content - sm - center {
+        -ms - flex - line - pack: center!important;
+        align - content: center!important;
+    }
+  .align - content - sm - between {
+        -ms - flex - line - pack: justify!important;
+        align - content: space - between!important;
+    }
+  .align - content - sm - around {
+        -ms - flex - line - pack: distribute!important;
+        align - content: space - around!important;
+    }
+  .align - content - sm - stretch {
+        -ms - flex - line - pack: stretch!important;
+        align - content: stretch!important;
+    }
+  .align - self - sm - auto {
+        -ms - flex - item - align: auto!important;
+        align - self: auto!important;
+    }
+  .align - self - sm - start {
+        -ms - flex - item - align: start!important;
+        align - self: flex - start!important;
+    }
+  .align - self - sm - end {
+        -ms - flex - item - align: end!important;
+        align - self: flex - end!important;
+    }
+  .align - self - sm - center {
+        -ms - flex - item - align: center!important;
+        align - self: center!important;
+    }
+  .align - self - sm - baseline {
+        -ms - flex - item - align: baseline!important;
+        align - self: baseline!important;
+    }
+  .align - self - sm - stretch {
+        -ms - flex - item - align: stretch!important;
+        align - self: stretch!important;
+    }
+}
+
+@media(min - width: 768px) {
+  .flex - md - row {
+        -webkit - box - orient: horizontal!important;
+        -webkit - box - direction: normal!important;
+        -ms - flex - direction: row!important;
+        flex - direction: row!important;
+    }
+  .flex - md - column {
+        -webkit - box - orient: vertical!important;
+        -webkit - box - direction: normal!important;
+        -ms - flex - direction: column!important;
+        flex - direction: column!important;
+    }
+  .flex - md - row - reverse {
+        -webkit - box - orient: horizontal!important;
+        -webkit - box - direction: reverse!important;
+        -ms - flex - direction: row - reverse!important;
+        flex - direction: row - reverse!important;
+    }
+  .flex - md - column - reverse {
+        -webkit - box - orient: vertical!important;
+        -webkit - box - direction: reverse!important;
+        -ms - flex - direction: column - reverse!important;
+        flex - direction: column - reverse!important;
+    }
+  .flex - md - wrap {
+        -ms - flex - wrap: wrap!important;
+        flex - wrap: wrap!important;
+    }
+  .flex - md - nowrap {
+        -ms - flex - wrap: nowrap!important;
+        flex - wrap: nowrap!important;
+    }
+  .flex - md - wrap - reverse {
+        -ms - flex - wrap: wrap - reverse!important;
+        flex - wrap: wrap - reverse!important;
+    }
+  .flex - md - fill {
+        -webkit - box - flex: 1!important;
+        -ms - flex: 1 1 auto!important;
+        flex: 1 1 auto!important;
+    }
+  .flex - md - grow - 0 {
+        -webkit - box - flex: 0!important;
+        -ms - flex - positive: 0!important;
+        flex - grow: 0!important;
+    }
+  .flex - md - grow - 1 {
+        -webkit - box - flex: 1!important;
+        -ms - flex - positive: 1!important;
+        flex - grow: 1!important;
+    }
+  .flex - md - shrink - 0 {
+        -ms - flex - negative: 0!important;
+        flex - shrink: 0!important;
+    }
+  .flex - md - shrink - 1 {
+        -ms - flex - negative: 1!important;
+        flex - shrink: 1!important;
+    }
+  .justify - content - md - start {
+        -webkit - box - pack: start!important;
+        -ms - flex - pack: start!important;
+        justify - content: flex - start!important;
+    }
+  .justify - content - md - end {
+        -webkit - box - pack: end!important;
+        -ms - flex - pack: end!important;
+        justify - content: flex - end!important;
+    }
+  .justify - content - md - center {
+        -webkit - box - pack: center!important;
+        -ms - flex - pack: center!important;
+        justify - content: center!important;
+    }
+  .justify - content - md - between {
+        -webkit - box - pack: justify!important;
+        -ms - flex - pack: justify!important;
+        justify - content: space - between!important;
+    }
+  .justify - content - md - around {
+        -ms - flex - pack: distribute!important;
+        justify - content: space - around!important;
+    }
+  .align - items - md - start {
+        -webkit - box - align: start!important;
+        -ms - flex - align: start!important;
+        align - items: flex - start!important;
+    }
+  .align - items - md - end {
+        -webkit - box - align: end!important;
+        -ms - flex - align: end!important;
+        align - items: flex - end!important;
+    }
+  .align - items - md - center {
+        -webkit - box - align: center!important;
+        -ms - flex - align: center!important;
+        align - items: center!important;
+    }
+  .align - items - md - baseline {
+        -webkit - box - align: baseline!important;
+        -ms - flex - align: baseline!important;
+        align - items: baseline!important;
+    }
+  .align - items - md - stretch {
+        -webkit - box - align: stretch!important;
+        -ms - flex - align: stretch!important;
+        align - items: stretch!important;
+    }
+  .align - content - md - start {
+        -ms - flex - line - pack: start!important;
+        align - content: flex - start!important;
+    }
+  .align - content - md - end {
+        -ms - flex - line - pack: end!important;
+        align - content: flex - end!important;
+    }
+  .align - content - md - center {
+        -ms - flex - line - pack: center!important;
+        align - content: center!important;
+    }
+  .align - content - md - between {
+        -ms - flex - line - pack: justify!important;
+        align - content: space - between!important;
+    }
+  .align - content - md - around {
+        -ms - flex - line - pack: distribute!important;
+        align - content: space - around!important;
+    }
+  .align - content - md - stretch {
+        -ms - flex - line - pack: stretch!important;
+        align - content: stretch!important;
+    }
+  .align - self - md - auto {
+        -ms - flex - item - align: auto!important;
+        align - self: auto!important;
+    }
+  .align - self - md - start {
+        -ms - flex - item - align: start!important;
+        align - self: flex - start!important;
+    }
+  .align - self - md - end {
+        -ms - flex - item - align: end!important;
+        align - self: flex - end!important;
+    }
+  .align - self - md - center {
+        -ms - flex - item - align: center!important;
+        align - self: center!important;
+    }
+  .align - self - md - baseline {
+        -ms - flex - item - align: baseline!important;
+        align - self: baseline!important;
+    }
+  .align - self - md - stretch {
+        -ms - flex - item - align: stretch!important;
+        align - self: stretch!important;
+    }
+}
+
+@media(min - width: 992px) {
+  .flex - lg - row {
+        -webkit - box - orient: horizontal!important;
+        -webkit - box - direction: normal!important;
+        -ms - flex - direction: row!important;
+        flex - direction: row!important;
+    }
+  .flex - lg - column {
+        -webkit - box - orient: vertical!important;
+        -webkit - box - direction: normal!important;
+        -ms - flex - direction: column!important;
+        flex - direction: column!important;
+    }
+  .flex - lg - row - reverse {
+        -webkit - box - orient: horizontal!important;
+        -webkit - box - direction: reverse!important;
+        -ms - flex - direction: row - reverse!important;
+        flex - direction: row - reverse!important;
+    }
+  .flex - lg - column - reverse {
+        -webkit - box - orient: vertical!important;
+        -webkit - box - direction: reverse!important;
+        -ms - flex - direction: column - reverse!important;
+        flex - direction: column - reverse!important;
+    }
+  .flex - lg - wrap {
+        -ms - flex - wrap: wrap!important;
+        flex - wrap: wrap!important;
+    }
+  .flex - lg - nowrap {
+        -ms - flex - wrap: nowrap!important;
+        flex - wrap: nowrap!important;
+    }
+  .flex - lg - wrap - reverse {
+        -ms - flex - wrap: wrap - reverse!important;
+        flex - wrap: wrap - reverse!important;
+    }
+  .flex - lg - fill {
+        -webkit - box - flex: 1!important;
+        -ms - flex: 1 1 auto!important;
+        flex: 1 1 auto!important;
+    }
+  .flex - lg - grow - 0 {
+        -webkit - box - flex: 0!important;
+        -ms - flex - positive: 0!important;
+        flex - grow: 0!important;
+    }
+  .flex - lg - grow - 1 {
+        -webkit - box - flex: 1!important;
+        -ms - flex - positive: 1!important;
+        flex - grow: 1!important;
+    }
+  .flex - lg - shrink - 0 {
+        -ms - flex - negative: 0!important;
+        flex - shrink: 0!important;
+    }
+  .flex - lg - shrink - 1 {
+        -ms - flex - negative: 1!important;
+        flex - shrink: 1!important;
+    }
+  .justify - content - lg - start {
+        -webkit - box - pack: start!important;
+        -ms - flex - pack: start!important;
+        justify - content: flex - start!important;
+    }
+  .justify - content - lg - end {
+        -webkit - box - pack: end!important;
+        -ms - flex - pack: end!important;
+        justify - content: flex - end!important;
+    }
+  .justify - content - lg - center {
+        -webkit - box - pack: center!important;
+        -ms - flex - pack: center!important;
+        justify - content: center!important;
+    }
+  .justify - content - lg - between {
+        -webkit - box - pack: justify!important;
+        -ms - flex - pack: justify!important;
+        justify - content: space - between!important;
+    }
+  .justify - content - lg - around {
+        -ms - flex - pack: distribute!important;
+        justify - content: space - around!important;
+    }
+  .align - items - lg - start {
+        -webkit - box - align: start!important;
+        -ms - flex - align: start!important;
+        align - items: flex - start!important;
+    }
+  .align - items - lg - end {
+        -webkit - box - align: end!important;
+        -ms - flex - align: end!important;
+        align - items: flex - end!important;
+    }
+  .align - items - lg - center {
+        -webkit - box - align: center!important;
+        -ms - flex - align: center!important;
+        align - items: center!important;
+    }
+  .align - items - lg - baseline {
+        -webkit - box - align: baseline!important;
+        -ms - flex - align: baseline!important;
+        align - items: baseline!important;
+    }
+  .align - items - lg - stretch {
+        -webkit - box - align: stretch!important;
+        -ms - flex - align: stretch!important;
+        align - items: stretch!important;
+    }
+  .align - content - lg - start {
+        -ms - flex - line - pack: start!important;
+        align - content: flex - start!important;
+    }
+  .align - content - lg - end {
+        -ms - flex - line - pack: end!important;
+        align - content: flex - end!important;
+    }
+  .align - content - lg - center {
+        -ms - flex - line - pack: center!important;
+        align - content: center!important;
+    }
+  .align - content - lg - between {
+        -ms - flex - line - pack: justify!important;
+        align - content: space - between!important;
+    }
+  .align - content - lg - around {
+        -ms - flex - line - pack: distribute!important;
+        align - content: space - around!important;
+    }
+  .align - content - lg - stretch {
+        -ms - flex - line - pack: stretch!important;
+        align - content: stretch!important;
+    }
+  .align - self - lg - auto {
+        -ms - flex - item - align: auto!important;
+        align - self: auto!important;
+    }
+  .align - self - lg - start {
+        -ms - flex - item - align: start!important;
+        align - self: flex - start!important;
+    }
+  .align - self - lg - end {
+        -ms - flex - item - align: end!important;
+        align - self: flex - end!important;
+    }
+  .align - self - lg - center {
+        -ms - flex - item - align: center!important;
+        align - self: center!important;
+    }
+  .align - self - lg - baseline {
+        -ms - flex - item - align: baseline!important;
+        align - self: baseline!important;
+    }
+  .align - self - lg - stretch {
+        -ms - flex - item - align: stretch!important;
+        align - self: stretch!important;
+    }
+}
+
+@media(min - width: 1200px) {
+  .flex - xl - row {
+        -webkit - box - orient: horizontal!important;
+        -webkit - box - direction: normal!important;
+        -ms - flex - direction: row!important;
+        flex - direction: row!important;
+    }
+  .flex - xl - column {
+        -webkit - box - orient: vertical!important;
+        -webkit - box - direction: normal!important;
+        -ms - flex - direction: column!important;
+        flex - direction: column!important;
+    }
+  .flex - xl - row - reverse {
+        -webkit - box - orient: horizontal!important;
+        -webkit - box - direction: reverse!important;
+        -ms - flex - direction: row - reverse!important;
+        flex - direction: row - reverse!important;
+    }
+  .flex - xl - column - reverse {
+        -webkit - box - orient: vertical!important;
+        -webkit - box - direction: reverse!important;
+        -ms - flex - direction: column - reverse!important;
+        flex - direction: column - reverse!important;
+    }
+  .flex - xl - wrap {
+        -ms - flex - wrap: wrap!important;
+        flex - wrap: wrap!important;
+    }
+  .flex - xl - nowrap {
+        -ms - flex - wrap: nowrap!important;
+        flex - wrap: nowrap!important;
+    }
+  .flex - xl - wrap - reverse {
+        -ms - flex - wrap: wrap - reverse!important;
+        flex - wrap: wrap - reverse!important;
+    }
+  .flex - xl - fill {
+        -webkit - box - flex: 1!important;
+        -ms - flex: 1 1 auto!important;
+        flex: 1 1 auto!important;
+    }
+  .flex - xl - grow - 0 {
+        -webkit - box - flex: 0!important;
+        -ms - flex - positive: 0!important;
+        flex - grow: 0!important;
+    }
+  .flex - xl - grow - 1 {
+        -webkit - box - flex: 1!important;
+        -ms - flex - positive: 1!important;
+        flex - grow: 1!important;
+    }
+  .flex - xl - shrink - 0 {
+        -ms - flex - negative: 0!important;
+        flex - shrink: 0!important;
+    }
+  .flex - xl - shrink - 1 {
+        -ms - flex - negative: 1!important;
+        flex - shrink: 1!important;
+    }
+  .justify - content - xl - start {
+        -webkit - box - pack: start!important;
+        -ms - flex - pack: start!important;
+        justify - content: flex - start!important;
+    }
+  .justify - content - xl - end {
+        -webkit - box - pack: end!important;
+        -ms - flex - pack: end!important;
+        justify - content: flex - end!important;
+    }
+  .justify - content - xl - center {
+        -webkit - box - pack: center!important;
+        -ms - flex - pack: center!important;
+        justify - content: center!important;
+    }
+  .justify - content - xl - between {
+        -webkit - box - pack: justify!important;
+        -ms - flex - pack: justify!important;
+        justify - content: space - between!important;
+    }
+  .justify - content - xl - around {
+        -ms - flex - pack: distribute!important;
+        justify - content: space - around!important;
+    }
+  .align - items - xl - start {
+        -webkit - box - align: start!important;
+        -ms - flex - align: start!important;
+        align - items: flex - start!important;
+    }
+  .align - items - xl - end {
+        -webkit - box - align: end!important;
+        -ms - flex - align: end!important;
+        align - items: flex - end!important;
+    }
+  .align - items - xl - center {
+        -webkit - box - align: center!important;
+        -ms - flex - align: center!important;
+        align - items: center!important;
+    }
+  .align - items - xl - baseline {
+        -webkit - box - align: baseline!important;
+        -ms - flex - align: baseline!important;
+        align - items: baseline!important;
+    }
+  .align - items - xl - stretch {
+        -webkit - box - align: stretch!important;
+        -ms - flex - align: stretch!important;
+        align - items: stretch!important;
+    }
+  .align - content - xl - start {
+        -ms - flex - line - pack: start!important;
+        align - content: flex - start!important;
+    }
+  .align - content - xl - end {
+        -ms - flex - line - pack: end!important;
+        align - content: flex - end!important;
+    }
+  .align - content - xl - center {
+        -ms - flex - line - pack: center!important;
+        align - content: center!important;
+    }
+  .align - content - xl - between {
+        -ms - flex - line - pack: justify!important;
+        align - content: space - between!important;
+    }
+  .align - content - xl - around {
+        -ms - flex - line - pack: distribute!important;
+        align - content: space - around!important;
+    }
+  .align - content - xl - stretch {
+        -ms - flex - line - pack: stretch!important;
+        align - content: stretch!important;
+    }
+  .align - self - xl - auto {
+        -ms - flex - item - align: auto!important;
+        align - self: auto!important;
+    }
+  .align - self - xl - start {
+        -ms - flex - item - align: start!important;
+        align - self: flex - start!important;
+    }
+  .align - self - xl - end {
+        -ms - flex - item - align: end!important;
+        align - self: flex - end!important;
+    }
+  .align - self - xl - center {
+        -ms - flex - item - align: center!important;
+        align - self: center!important;
+    }
+  .align - self - xl - baseline {
+        -ms - flex - item - align: baseline!important;
+        align - self: baseline!important;
+    }
+  .align - self - xl - stretch {
+        -ms - flex - item - align: stretch!important;
+        align - self: stretch!important;
+    }
+}
+
+.float - left {
+    float: left!important;
+}
+
+.float - right {
+    float: right!important;
+}
+
+.float - none {
+    float: none!important;
+}
+
+@media(min - width: 576px) {
+  .float - sm - left {
+        float: left!important;
+    }
+  .float - sm - right {
+        float: right!important;
+    }
+  .float - sm - none {
+        float: none!important;
+    }
+}
+
+@media(min - width: 768px) {
+  .float - md - left {
+        float: left!important;
+    }
+  .float - md - right {
+        float: right!important;
+    }
+  .float - md - none {
+        float: none!important;
+    }
+}
+
+@media(min - width: 992px) {
+  .float - lg - left {
+        float: left!important;
+    }
+  .float - lg - right {
+        float: right!important;
+    }
+  .float - lg - none {
+        float: none!important;
+    }
+}
+
+@media(min - width: 1200px) {
+  .float - xl - left {
+        float: left!important;
+    }
+  .float - xl - right {
+        float: right!important;
+    }
+  .float - xl - none {
+        float: none!important;
+    }
+}
+
+.position - static {
+    position: static!important;
+}
+
+.position - relative {
+    position: relative!important;
+}
+
+.position - absolute {
+    position: absolute!important;
+}
+
+.position - fixed {
+    position: fixed!important;
+}
+
+.position - sticky {
+    position: -webkit - sticky!important;
+    position: sticky!important;
+}
+
+.fixed - top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z - index: 1030;
+}
+
+.fixed - bottom {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z - index: 1030;
+}
+
+@supports((position: -webkit - sticky) or(position: sticky)) {
+  .sticky - top {
+        position: -webkit - sticky;
+        position: sticky;
+        top: 0;
+        z - index: 1020;
+    }
+}
+
+.sr - only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white - space: nowrap;
+    border: 0;
+}
+
+.sr - only - focusable: active, .sr - only - focusable: focus {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white - space: normal;
+}
+
+.shadow - sm {
+    -webkit - box - shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)!important;
+    box - shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)!important;
+}
+
+.shadow {
+    -webkit - box - shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15)!important;
+    box - shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15)!important;
+}
+
+.shadow - lg {
+    -webkit - box - shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175)!important;
+    box - shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175)!important;
+}
+
+.shadow - none {
+    -webkit - box - shadow: none!important;
+    box - shadow: none!important;
+}
+
+.w - 25 {
+    width: 25 % !important;
+}
+
+.w - 50 {
+    width: 50 % !important;
+}
+
+.w - 75 {
+    width: 75 % !important;
+}
+
+.w - 100 {
+    width: 100 % !important;
+}
+
+.w - auto {
+    width: auto!important;
+}
+
+.h - 25 {
+    height: 25 % !important;
+}
+
+.h - 50 {
+    height: 50 % !important;
+}
+
+.h - 75 {
+    height: 75 % !important;
+}
+
+.h - 100 {
+    height: 100 % !important;
+}
+
+.h - auto {
+    height: auto!important;
+}
+
+.mw - 100 {
+    max - width: 100 % !important;
+}
+
+.mh - 100 {
+    max - height: 100 % !important;
+}
+
+.m - 0 {
+    margin: 0!important;
+}
+
+.mt - 0,
+.my - 0 {
+    margin - top: 0!important;
+}
+
+.mr - 0,
+.mx - 0 {
+    margin - right: 0!important;
+}
+
+.mb - 0,
+.my - 0 {
+    margin - bottom: 0!important;
+}
+
+.ml - 0,
+.mx - 0 {
+    margin - left: 0!important;
+}
+
+.m - 1 {
+    margin: 0.25rem!important;
+}
+
+.mt - 1,
+.my - 1 {
+    margin - top: 0.25rem!important;
+}
+
+.mr - 1,
+.mx - 1 {
+    margin - right: 0.25rem!important;
+}
+
+.mb - 1,
+.my - 1 {
+    margin - bottom: 0.25rem!important;
+}
+
+.ml - 1,
+.mx - 1 {
+    margin - left: 0.25rem!important;
+}
+
+.m - 2 {
+    margin: 0.5rem!important;
+}
+
+.mt - 2,
+.my - 2 {
+    margin - top: 0.5rem!important;
+}
+
+.mr - 2,
+.mx - 2 {
+    margin - right: 0.5rem!important;
+}
+
+.mb - 2,
+.my - 2 {
+    margin - bottom: 0.5rem!important;
+}
+
+.ml - 2,
+.mx - 2 {
+    margin - left: 0.5rem!important;
+}
+
+.m - 3 {
+    margin: 1rem!important;
+}
+
+.mt - 3,
+.my - 3 {
+    margin - top: 1rem!important;
+}
+
+.mr - 3,
+.mx - 3 {
+    margin - right: 1rem!important;
+}
+
+.mb - 3,
+.my - 3 {
+    margin - bottom: 1rem!important;
+}
+
+.ml - 3,
+.mx - 3 {
+    margin - left: 1rem!important;
+}
+
+.m - 4 {
+    margin: 1.5rem!important;
+}
+
+.mt - 4,
+.my - 4 {
+    margin - top: 1.5rem!important;
+}
+
+.mr - 4,
+.mx - 4 {
+    margin - right: 1.5rem!important;
+}
+
+.mb - 4,
+.my - 4 {
+    margin - bottom: 1.5rem!important;
+}
+
+.ml - 4,
+.mx - 4 {
+    margin - left: 1.5rem!important;
+}
+
+.m - 5 {
+    margin: 3rem!important;
+}
+
+.mt - 5,
+.my - 5 {
+    margin - top: 3rem!important;
+}
+
+.mr - 5,
+.mx - 5 {
+    margin - right: 3rem!important;
+}
+
+.mb - 5,
+.my - 5 {
+    margin - bottom: 3rem!important;
+}
+
+.ml - 5,
+.mx - 5 {
+    margin - left: 3rem!important;
+}
+
+.p - 0 {
+    padding: 0!important;
+}
+
+.pt - 0,
+.py - 0 {
+    padding - top: 0!important;
+}
+
+.pr - 0,
+.px - 0 {
+    padding - right: 0!important;
+}
+
+.pb - 0,
+.py - 0 {
+    padding - bottom: 0!important;
+}
+
+.pl - 0,
+.px - 0 {
+    padding - left: 0!important;
+}
+
+.p - 1 {
+    padding: 0.25rem!important;
+}
+
+.pt - 1,
+.py - 1 {
+    padding - top: 0.25rem!important;
+}
+
+.pr - 1,
+.px - 1 {
+    padding - right: 0.25rem!important;
+}
+
+.pb - 1,
+.py - 1 {
+    padding - bottom: 0.25rem!important;
+}
+
+.pl - 1,
+.px - 1 {
+    padding - left: 0.25rem!important;
+}
+
+.p - 2 {
+    padding: 0.5rem!important;
+}
+
+.pt - 2,
+.py - 2 {
+    padding - top: 0.5rem!important;
+}
+
+.pr - 2,
+.px - 2 {
+    padding - right: 0.5rem!important;
+}
+
+.pb - 2,
+.py - 2 {
+    padding - bottom: 0.5rem!important;
+}
+
+.pl - 2,
+.px - 2 {
+    padding - left: 0.5rem!important;
+}
+
+.p - 3 {
+    padding: 1rem!important;
+}
+
+.pt - 3,
+.py - 3 {
+    padding - top: 1rem!important;
+}
+
+.pr - 3,
+.px - 3 {
+    padding - right: 1rem!important;
+}
+
+.pb - 3,
+.py - 3 {
+    padding - bottom: 1rem!important;
+}
+
+.pl - 3,
+.px - 3 {
+    padding - left: 1rem!important;
+}
+
+.p - 4 {
+    padding: 1.5rem!important;
+}
+
+.pt - 4,
+.py - 4 {
+    padding - top: 1.5rem!important;
+}
+
+.pr - 4,
+.px - 4 {
+    padding - right: 1.5rem!important;
+}
+
+.pb - 4,
+.py - 4 {
+    padding - bottom: 1.5rem!important;
+}
+
+.pl - 4,
+.px - 4 {
+    padding - left: 1.5rem!important;
+}
+
+.p - 5 {
+    padding: 3rem!important;
+}
+
+.pt - 5,
+.py - 5 {
+    padding - top: 3rem!important;
+}
+
+.pr - 5,
+.px - 5 {
+    padding - right: 3rem!important;
+}
+
+.pb - 5,
+.py - 5 {
+    padding - bottom: 3rem!important;
+}
+
+.pl - 5,
+.px - 5 {
+    padding - left: 3rem!important;
+}
+
+.m - auto {
+    margin: auto!important;
+}
+
+.mt - auto,
+.my - auto {
+    margin - top: auto!important;
+}
+
+.mr - auto,
+.mx - auto {
+    margin - right: auto!important;
+}
+
+.mb - auto,
+.my - auto {
+    margin - bottom: auto!important;
+}
+
+.ml - auto,
+.mx - auto {
+    margin - left: auto!important;
+}
+
+@media(min - width: 576px) {
+  .m - sm - 0 {
+        margin: 0!important;
+    }
+  .mt - sm - 0,
+  .my - sm - 0 {
+        margin - top: 0!important;
+    }
+  .mr - sm - 0,
+  .mx - sm - 0 {
+        margin - right: 0!important;
+    }
+  .mb - sm - 0,
+  .my - sm - 0 {
+        margin - bottom: 0!important;
+    }
+  .ml - sm - 0,
+  .mx - sm - 0 {
+        margin - left: 0!important;
+    }
+  .m - sm - 1 {
+        margin: 0.25rem!important;
+    }
+  .mt - sm - 1,
+  .my - sm - 1 {
+        margin - top: 0.25rem!important;
+    }
+  .mr - sm - 1,
+  .mx - sm - 1 {
+        margin - right: 0.25rem!important;
+    }
+  .mb - sm - 1,
+  .my - sm - 1 {
+        margin - bottom: 0.25rem!important;
+    }
+  .ml - sm - 1,
+  .mx - sm - 1 {
+        margin - left: 0.25rem!important;
+    }
+  .m - sm - 2 {
+        margin: 0.5rem!important;
+    }
+  .mt - sm - 2,
+  .my - sm - 2 {
+        margin - top: 0.5rem!important;
+    }
+  .mr - sm - 2,
+  .mx - sm - 2 {
+        margin - right: 0.5rem!important;
+    }
+  .mb - sm - 2,
+  .my - sm - 2 {
+        margin - bottom: 0.5rem!important;
+    }
+  .ml - sm - 2,
+  .mx - sm - 2 {
+        margin - left: 0.5rem!important;
+    }
+  .m - sm - 3 {
+        margin: 1rem!important;
+    }
+  .mt - sm - 3,
+  .my - sm - 3 {
+        margin - top: 1rem!important;
+    }
+  .mr - sm - 3,
+  .mx - sm - 3 {
+        margin - right: 1rem!important;
+    }
+  .mb - sm - 3,
+  .my - sm - 3 {
+        margin - bottom: 1rem!important;
+    }
+  .ml - sm - 3,
+  .mx - sm - 3 {
+        margin - left: 1rem!important;
+    }
+  .m - sm - 4 {
+        margin: 1.5rem!important;
+    }
+  .mt - sm - 4,
+  .my - sm - 4 {
+        margin - top: 1.5rem!important;
+    }
+  .mr - sm - 4,
+  .mx - sm - 4 {
+        margin - right: 1.5rem!important;
+    }
+  .mb - sm - 4,
+  .my - sm - 4 {
+        margin - bottom: 1.5rem!important;
+    }
+  .ml - sm - 4,
+  .mx - sm - 4 {
+        margin - left: 1.5rem!important;
+    }
+  .m - sm - 5 {
+        margin: 3rem!important;
+    }
+  .mt - sm - 5,
+  .my - sm - 5 {
+        margin - top: 3rem!important;
+    }
+  .mr - sm - 5,
+  .mx - sm - 5 {
+        margin - right: 3rem!important;
+    }
+  .mb - sm - 5,
+  .my - sm - 5 {
+        margin - bottom: 3rem!important;
+    }
+  .ml - sm - 5,
+  .mx - sm - 5 {
+        margin - left: 3rem!important;
+    }
+  .p - sm - 0 {
+        padding: 0!important;
+    }
+  .pt - sm - 0,
+  .py - sm - 0 {
+        padding - top: 0!important;
+    }
+  .pr - sm - 0,
+  .px - sm - 0 {
+        padding - right: 0!important;
+    }
+  .pb - sm - 0,
+  .py - sm - 0 {
+        padding - bottom: 0!important;
+    }
+  .pl - sm - 0,
+  .px - sm - 0 {
+        padding - left: 0!important;
+    }
+  .p - sm - 1 {
+        padding: 0.25rem!important;
+    }
+  .pt - sm - 1,
+  .py - sm - 1 {
+        padding - top: 0.25rem!important;
+    }
+  .pr - sm - 1,
+  .px - sm - 1 {
+        padding - right: 0.25rem!important;
+    }
+  .pb - sm - 1,
+  .py - sm - 1 {
+        padding - bottom: 0.25rem!important;
+    }
+  .pl - sm - 1,
+  .px - sm - 1 {
+        padding - left: 0.25rem!important;
+    }
+  .p - sm - 2 {
+        padding: 0.5rem!important;
+    }
+  .pt - sm - 2,
+  .py - sm - 2 {
+        padding - top: 0.5rem!important;
+    }
+  .pr - sm - 2,
+  .px - sm - 2 {
+        padding - right: 0.5rem!important;
+    }
+  .pb - sm - 2,
+  .py - sm - 2 {
+        padding - bottom: 0.5rem!important;
+    }
+  .pl - sm - 2,
+  .px - sm - 2 {
+        padding - left: 0.5rem!important;
+    }
+  .p - sm - 3 {
+        padding: 1rem!important;
+    }
+  .pt - sm - 3,
+  .py - sm - 3 {
+        padding - top: 1rem!important;
+    }
+  .pr - sm - 3,
+  .px - sm - 3 {
+        padding - right: 1rem!important;
+    }
+  .pb - sm - 3,
+  .py - sm - 3 {
+        padding - bottom: 1rem!important;
+    }
+  .pl - sm - 3,
+  .px - sm - 3 {
+        padding - left: 1rem!important;
+    }
+  .p - sm - 4 {
+        padding: 1.5rem!important;
+    }
+  .pt - sm - 4,
+  .py - sm - 4 {
+        padding - top: 1.5rem!important;
+    }
+  .pr - sm - 4,
+  .px - sm - 4 {
+        padding - right: 1.5rem!important;
+    }
+  .pb - sm - 4,
+  .py - sm - 4 {
+        padding - bottom: 1.5rem!important;
+    }
+  .pl - sm - 4,
+  .px - sm - 4 {
+        padding - left: 1.5rem!important;
+    }
+  .p - sm - 5 {
+        padding: 3rem!important;
+    }
+  .pt - sm - 5,
+  .py - sm - 5 {
+        padding - top: 3rem!important;
+    }
+  .pr - sm - 5,
+  .px - sm - 5 {
+        padding - right: 3rem!important;
+    }
+  .pb - sm - 5,
+  .py - sm - 5 {
+        padding - bottom: 3rem!important;
+    }
+  .pl - sm - 5,
+  .px - sm - 5 {
+        padding - left: 3rem!important;
+    }
+  .m - sm - auto {
+        margin: auto!important;
+    }
+  .mt - sm - auto,
+  .my - sm - auto {
+        margin - top: auto!important;
+    }
+  .mr - sm - auto,
+  .mx - sm - auto {
+        margin - right: auto!important;
+    }
+  .mb - sm - auto,
+  .my - sm - auto {
+        margin - bottom: auto!important;
+    }
+  .ml - sm - auto,
+  .mx - sm - auto {
+        margin - left: auto!important;
+    }
+}
+
+@media(min - width: 768px) {
+  .m - md - 0 {
+        margin: 0!important;
+    }
+  .mt - md - 0,
+  .my - md - 0 {
+        margin - top: 0!important;
+    }
+  .mr - md - 0,
+  .mx - md - 0 {
+        margin - right: 0!important;
+    }
+  .mb - md - 0,
+  .my - md - 0 {
+        margin - bottom: 0!important;
+    }
+  .ml - md - 0,
+  .mx - md - 0 {
+        margin - left: 0!important;
+    }
+  .m - md - 1 {
+        margin: 0.25rem!important;
+    }
+  .mt - md - 1,
+  .my - md - 1 {
+        margin - top: 0.25rem!important;
+    }
+  .mr - md - 1,
+  .mx - md - 1 {
+        margin - right: 0.25rem!important;
+    }
+  .mb - md - 1,
+  .my - md - 1 {
+        margin - bottom: 0.25rem!important;
+    }
+  .ml - md - 1,
+  .mx - md - 1 {
+        margin - left: 0.25rem!important;
+    }
+  .m - md - 2 {
+        margin: 0.5rem!important;
+    }
+  .mt - md - 2,
+  .my - md - 2 {
+        margin - top: 0.5rem!important;
+    }
+  .mr - md - 2,
+  .mx - md - 2 {
+        margin - right: 0.5rem!important;
+    }
+  .mb - md - 2,
+  .my - md - 2 {
+        margin - bottom: 0.5rem!important;
+    }
+  .ml - md - 2,
+  .mx - md - 2 {
+        margin - left: 0.5rem!important;
+    }
+  .m - md - 3 {
+        margin: 1rem!important;
+    }
+  .mt - md - 3,
+  .my - md - 3 {
+        margin - top: 1rem!important;
+    }
+  .mr - md - 3,
+  .mx - md - 3 {
+        margin - right: 1rem!important;
+    }
+  .mb - md - 3,
+  .my - md - 3 {
+        margin - bottom: 1rem!important;
+    }
+  .ml - md - 3,
+  .mx - md - 3 {
+        margin - left: 1rem!important;
+    }
+  .m - md - 4 {
+        margin: 1.5rem!important;
+    }
+  .mt - md - 4,
+  .my - md - 4 {
+        margin - top: 1.5rem!important;
+    }
+  .mr - md - 4,
+  .mx - md - 4 {
+        margin - right: 1.5rem!important;
+    }
+  .mb - md - 4,
+  .my - md - 4 {
+        margin - bottom: 1.5rem!important;
+    }
+  .ml - md - 4,
+  .mx - md - 4 {
+        margin - left: 1.5rem!important;
+    }
+  .m - md - 5 {
+        margin: 3rem!important;
+    }
+  .mt - md - 5,
+  .my - md - 5 {
+        margin - top: 3rem!important;
+    }
+  .mr - md - 5,
+  .mx - md - 5 {
+        margin - right: 3rem!important;
+    }
+  .mb - md - 5,
+  .my - md - 5 {
+        margin - bottom: 3rem!important;
+    }
+  .ml - md - 5,
+  .mx - md - 5 {
+        margin - left: 3rem!important;
+    }
+  .p - md - 0 {
+        padding: 0!important;
+    }
+  .pt - md - 0,
+  .py - md - 0 {
+        padding - top: 0!important;
+    }
+  .pr - md - 0,
+  .px - md - 0 {
+        padding - right: 0!important;
+    }
+  .pb - md - 0,
+  .py - md - 0 {
+        padding - bottom: 0!important;
+    }
+  .pl - md - 0,
+  .px - md - 0 {
+        padding - left: 0!important;
+    }
+  .p - md - 1 {
+        padding: 0.25rem!important;
+    }
+  .pt - md - 1,
+  .py - md - 1 {
+        padding - top: 0.25rem!important;
+    }
+  .pr - md - 1,
+  .px - md - 1 {
+        padding - right: 0.25rem!important;
+    }
+  .pb - md - 1,
+  .py - md - 1 {
+        padding - bottom: 0.25rem!important;
+    }
+  .pl - md - 1,
+  .px - md - 1 {
+        padding - left: 0.25rem!important;
+    }
+  .p - md - 2 {
+        padding: 0.5rem!important;
+    }
+  .pt - md - 2,
+  .py - md - 2 {
+        padding - top: 0.5rem!important;
+    }
+  .pr - md - 2,
+  .px - md - 2 {
+        padding - right: 0.5rem!important;
+    }
+  .pb - md - 2,
+  .py - md - 2 {
+        padding - bottom: 0.5rem!important;
+    }
+  .pl - md - 2,
+  .px - md - 2 {
+        padding - left: 0.5rem!important;
+    }
+  .p - md - 3 {
+        padding: 1rem!important;
+    }
+  .pt - md - 3,
+  .py - md - 3 {
+        padding - top: 1rem!important;
+    }
+  .pr - md - 3,
+  .px - md - 3 {
+        padding - right: 1rem!important;
+    }
+  .pb - md - 3,
+  .py - md - 3 {
+        padding - bottom: 1rem!important;
+    }
+  .pl - md - 3,
+  .px - md - 3 {
+        padding - left: 1rem!important;
+    }
+  .p - md - 4 {
+        padding: 1.5rem!important;
+    }
+  .pt - md - 4,
+  .py - md - 4 {
+        padding - top: 1.5rem!important;
+    }
+  .pr - md - 4,
+  .px - md - 4 {
+        padding - right: 1.5rem!important;
+    }
+  .pb - md - 4,
+  .py - md - 4 {
+        padding - bottom: 1.5rem!important;
+    }
+  .pl - md - 4,
+  .px - md - 4 {
+        padding - left: 1.5rem!important;
+    }
+  .p - md - 5 {
+        padding: 3rem!important;
+    }
+  .pt - md - 5,
+  .py - md - 5 {
+        padding - top: 3rem!important;
+    }
+  .pr - md - 5,
+  .px - md - 5 {
+        padding - right: 3rem!important;
+    }
+  .pb - md - 5,
+  .py - md - 5 {
+        padding - bottom: 3rem!important;
+    }
+  .pl - md - 5,
+  .px - md - 5 {
+        padding - left: 3rem!important;
+    }
+  .m - md - auto {
+        margin: auto!important;
+    }
+  .mt - md - auto,
+  .my - md - auto {
+        margin - top: auto!important;
+    }
+  .mr - md - auto,
+  .mx - md - auto {
+        margin - right: auto!important;
+    }
+  .mb - md - auto,
+  .my - md - auto {
+        margin - bottom: auto!important;
+    }
+  .ml - md - auto,
+  .mx - md - auto {
+        margin - left: auto!important;
+    }
+}
+
+@media(min - width: 992px) {
+  .m - lg - 0 {
+        margin: 0!important;
+    }
+  .mt - lg - 0,
+  .my - lg - 0 {
+        margin - top: 0!important;
+    }
+  .mr - lg - 0,
+  .mx - lg - 0 {
+        margin - right: 0!important;
+    }
+  .mb - lg - 0,
+  .my - lg - 0 {
+        margin - bottom: 0!important;
+    }
+  .ml - lg - 0,
+  .mx - lg - 0 {
+        margin - left: 0!important;
+    }
+  .m - lg - 1 {
+        margin: 0.25rem!important;
+    }
+  .mt - lg - 1,
+  .my - lg - 1 {
+        margin - top: 0.25rem!important;
+    }
+  .mr - lg - 1,
+  .mx - lg - 1 {
+        margin - right: 0.25rem!important;
+    }
+  .mb - lg - 1,
+  .my - lg - 1 {
+        margin - bottom: 0.25rem!important;
+    }
+  .ml - lg - 1,
+  .mx - lg - 1 {
+        margin - left: 0.25rem!important;
+    }
+  .m - lg - 2 {
+        margin: 0.5rem!important;
+    }
+  .mt - lg - 2,
+  .my - lg - 2 {
+        margin - top: 0.5rem!important;
+    }
+  .mr - lg - 2,
+  .mx - lg - 2 {
+        margin - right: 0.5rem!important;
+    }
+  .mb - lg - 2,
+  .my - lg - 2 {
+        margin - bottom: 0.5rem!important;
+    }
+  .ml - lg - 2,
+  .mx - lg - 2 {
+        margin - left: 0.5rem!important;
+    }
+  .m - lg - 3 {
+        margin: 1rem!important;
+    }
+  .mt - lg - 3,
+  .my - lg - 3 {
+        margin - top: 1rem!important;
+    }
+  .mr - lg - 3,
+  .mx - lg - 3 {
+        margin - right: 1rem!important;
+    }
+  .mb - lg - 3,
+  .my - lg - 3 {
+        margin - bottom: 1rem!important;
+    }
+  .ml - lg - 3,
+  .mx - lg - 3 {
+        margin - left: 1rem!important;
+    }
+  .m - lg - 4 {
+        margin: 1.5rem!important;
+    }
+  .mt - lg - 4,
+  .my - lg - 4 {
+        margin - top: 1.5rem!important;
+    }
+  .mr - lg - 4,
+  .mx - lg - 4 {
+        margin - right: 1.5rem!important;
+    }
+  .mb - lg - 4,
+  .my - lg - 4 {
+        margin - bottom: 1.5rem!important;
+    }
+  .ml - lg - 4,
+  .mx - lg - 4 {
+        margin - left: 1.5rem!important;
+    }
+  .m - lg - 5 {
+        margin: 3rem!important;
+    }
+  .mt - lg - 5,
+  .my - lg - 5 {
+        margin - top: 3rem!important;
+    }
+  .mr - lg - 5,
+  .mx - lg - 5 {
+        margin - right: 3rem!important;
+    }
+  .mb - lg - 5,
+  .my - lg - 5 {
+        margin - bottom: 3rem!important;
+    }
+  .ml - lg - 5,
+  .mx - lg - 5 {
+        margin - left: 3rem!important;
+    }
+  .p - lg - 0 {
+        padding: 0!important;
+    }
+  .pt - lg - 0,
+  .py - lg - 0 {
+        padding - top: 0!important;
+    }
+  .pr - lg - 0,
+  .px - lg - 0 {
+        padding - right: 0!important;
+    }
+  .pb - lg - 0,
+  .py - lg - 0 {
+        padding - bottom: 0!important;
+    }
+  .pl - lg - 0,
+  .px - lg - 0 {
+        padding - left: 0!important;
+    }
+  .p - lg - 1 {
+        padding: 0.25rem!important;
+    }
+  .pt - lg - 1,
+  .py - lg - 1 {
+        padding - top: 0.25rem!important;
+    }
+  .pr - lg - 1,
+  .px - lg - 1 {
+        padding - right: 0.25rem!important;
+    }
+  .pb - lg - 1,
+  .py - lg - 1 {
+        padding - bottom: 0.25rem!important;
+    }
+  .pl - lg - 1,
+  .px - lg - 1 {
+        padding - left: 0.25rem!important;
+    }
+  .p - lg - 2 {
+        padding: 0.5rem!important;
+    }
+  .pt - lg - 2,
+  .py - lg - 2 {
+        padding - top: 0.5rem!important;
+    }
+  .pr - lg - 2,
+  .px - lg - 2 {
+        padding - right: 0.5rem!important;
+    }
+  .pb - lg - 2,
+  .py - lg - 2 {
+        padding - bottom: 0.5rem!important;
+    }
+  .pl - lg - 2,
+  .px - lg - 2 {
+        padding - left: 0.5rem!important;
+    }
+  .p - lg - 3 {
+        padding: 1rem!important;
+    }
+  .pt - lg - 3,
+  .py - lg - 3 {
+        padding - top: 1rem!important;
+    }
+  .pr - lg - 3,
+  .px - lg - 3 {
+        padding - right: 1rem!important;
+    }
+  .pb - lg - 3,
+  .py - lg - 3 {
+        padding - bottom: 1rem!important;
+    }
+  .pl - lg - 3,
+  .px - lg - 3 {
+        padding - left: 1rem!important;
+    }
+  .p - lg - 4 {
+        padding: 1.5rem!important;
+    }
+  .pt - lg - 4,
+  .py - lg - 4 {
+        padding - top: 1.5rem!important;
+    }
+  .pr - lg - 4,
+  .px - lg - 4 {
+        padding - right: 1.5rem!important;
+    }
+  .pb - lg - 4,
+  .py - lg - 4 {
+        padding - bottom: 1.5rem!important;
+    }
+  .pl - lg - 4,
+  .px - lg - 4 {
+        padding - left: 1.5rem!important;
+    }
+  .p - lg - 5 {
+        padding: 3rem!important;
+    }
+  .pt - lg - 5,
+  .py - lg - 5 {
+        padding - top: 3rem!important;
+    }
+  .pr - lg - 5,
+  .px - lg - 5 {
+        padding - right: 3rem!important;
+    }
+  .pb - lg - 5,
+  .py - lg - 5 {
+        padding - bottom: 3rem!important;
+    }
+  .pl - lg - 5,
+  .px - lg - 5 {
+        padding - left: 3rem!important;
+    }
+  .m - lg - auto {
+        margin: auto!important;
+    }
+  .mt - lg - auto,
+  .my - lg - auto {
+        margin - top: auto!important;
+    }
+  .mr - lg - auto,
+  .mx - lg - auto {
+        margin - right: auto!important;
+    }
+  .mb - lg - auto,
+  .my - lg - auto {
+        margin - bottom: auto!important;
+    }
+  .ml - lg - auto,
+  .mx - lg - auto {
+        margin - left: auto!important;
+    }
+}
+
+@media(min - width: 1200px) {
+  .m - xl - 0 {
+        margin: 0!important;
+    }
+  .mt - xl - 0,
+  .my - xl - 0 {
+        margin - top: 0!important;
+    }
+  .mr - xl - 0,
+  .mx - xl - 0 {
+        margin - right: 0!important;
+    }
+  .mb - xl - 0,
+  .my - xl - 0 {
+        margin - bottom: 0!important;
+    }
+  .ml - xl - 0,
+  .mx - xl - 0 {
+        margin - left: 0!important;
+    }
+  .m - xl - 1 {
+        margin: 0.25rem!important;
+    }
+  .mt - xl - 1,
+  .my - xl - 1 {
+        margin - top: 0.25rem!important;
+    }
+  .mr - xl - 1,
+  .mx - xl - 1 {
+        margin - right: 0.25rem!important;
+    }
+  .mb - xl - 1,
+  .my - xl - 1 {
+        margin - bottom: 0.25rem!important;
+    }
+  .ml - xl - 1,
+  .mx - xl - 1 {
+        margin - left: 0.25rem!important;
+    }
+  .m - xl - 2 {
+        margin: 0.5rem!important;
+    }
+  .mt - xl - 2,
+  .my - xl - 2 {
+        margin - top: 0.5rem!important;
+    }
+  .mr - xl - 2,
+  .mx - xl - 2 {
+        margin - right: 0.5rem!important;
+    }
+  .mb - xl - 2,
+  .my - xl - 2 {
+        margin - bottom: 0.5rem!important;
+    }
+  .ml - xl - 2,
+  .mx - xl - 2 {
+        margin - left: 0.5rem!important;
+    }
+  .m - xl - 3 {
+        margin: 1rem!important;
+    }
+  .mt - xl - 3,
+  .my - xl - 3 {
+        margin - top: 1rem!important;
+    }
+  .mr - xl - 3,
+  .mx - xl - 3 {
+        margin - right: 1rem!important;
+    }
+  .mb - xl - 3,
+  .my - xl - 3 {
+        margin - bottom: 1rem!important;
+    }
+  .ml - xl - 3,
+  .mx - xl - 3 {
+        margin - left: 1rem!important;
+    }
+  .m - xl - 4 {
+        margin: 1.5rem!important;
+    }
+  .mt - xl - 4,
+  .my - xl - 4 {
+        margin - top: 1.5rem!important;
+    }
+  .mr - xl - 4,
+  .mx - xl - 4 {
+        margin - right: 1.5rem!important;
+    }
+  .mb - xl - 4,
+  .my - xl - 4 {
+        margin - bottom: 1.5rem!important;
+    }
+  .ml - xl - 4,
+  .mx - xl - 4 {
+        margin - left: 1.5rem!important;
+    }
+  .m - xl - 5 {
+        margin: 3rem!important;
+    }
+  .mt - xl - 5,
+  .my - xl - 5 {
+        margin - top: 3rem!important;
+    }
+  .mr - xl - 5,
+  .mx - xl - 5 {
+        margin - right: 3rem!important;
+    }
+  .mb - xl - 5,
+  .my - xl - 5 {
+        margin - bottom: 3rem!important;
+    }
+  .ml - xl - 5,
+  .mx - xl - 5 {
+        margin - left: 3rem!important;
+    }
+  .p - xl - 0 {
+        padding: 0!important;
+    }
+  .pt - xl - 0,
+  .py - xl - 0 {
+        padding - top: 0!important;
+    }
+  .pr - xl - 0,
+  .px - xl - 0 {
+        padding - right: 0!important;
+    }
+  .pb - xl - 0,
+  .py - xl - 0 {
+        padding - bottom: 0!important;
+    }
+  .pl - xl - 0,
+  .px - xl - 0 {
+        padding - left: 0!important;
+    }
+  .p - xl - 1 {
+        padding: 0.25rem!important;
+    }
+  .pt - xl - 1,
+  .py - xl - 1 {
+        padding - top: 0.25rem!important;
+    }
+  .pr - xl - 1,
+  .px - xl - 1 {
+        padding - right: 0.25rem!important;
+    }
+  .pb - xl - 1,
+  .py - xl - 1 {
+        padding - bottom: 0.25rem!important;
+    }
+  .pl - xl - 1,
+  .px - xl - 1 {
+        padding - left: 0.25rem!important;
+    }
+  .p - xl - 2 {
+        padding: 0.5rem!important;
+    }
+  .pt - xl - 2,
+  .py - xl - 2 {
+        padding - top: 0.5rem!important;
+    }
+  .pr - xl - 2,
+  .px - xl - 2 {
+        padding - right: 0.5rem!important;
+    }
+  .pb - xl - 2,
+  .py - xl - 2 {
+        padding - bottom: 0.5rem!important;
+    }
+  .pl - xl - 2,
+  .px - xl - 2 {
+        padding - left: 0.5rem!important;
+    }
+  .p - xl - 3 {
+        padding: 1rem!important;
+    }
+  .pt - xl - 3,
+  .py - xl - 3 {
+        padding - top: 1rem!important;
+    }
+  .pr - xl - 3,
+  .px - xl - 3 {
+        padding - right: 1rem!important;
+    }
+  .pb - xl - 3,
+  .py - xl - 3 {
+        padding - bottom: 1rem!important;
+    }
+  .pl - xl - 3,
+  .px - xl - 3 {
+        padding - left: 1rem!important;
+    }
+  .p - xl - 4 {
+        padding: 1.5rem!important;
+    }
+  .pt - xl - 4,
+  .py - xl - 4 {
+        padding - top: 1.5rem!important;
+    }
+  .pr - xl - 4,
+  .px - xl - 4 {
+        padding - right: 1.5rem!important;
+    }
+  .pb - xl - 4,
+  .py - xl - 4 {
+        padding - bottom: 1.5rem!important;
+    }
+  .pl - xl - 4,
+  .px - xl - 4 {
+        padding - left: 1.5rem!important;
+    }
+  .p - xl - 5 {
+        padding: 3rem!important;
+    }
+  .pt - xl - 5,
+  .py - xl - 5 {
+        padding - top: 3rem!important;
+    }
+  .pr - xl - 5,
+  .px - xl - 5 {
+        padding - right: 3rem!important;
+    }
+  .pb - xl - 5,
+  .py - xl - 5 {
+        padding - bottom: 3rem!important;
+    }
+  .pl - xl - 5,
+  .px - xl - 5 {
+        padding - left: 3rem!important;
+    }
+  .m - xl - auto {
+        margin: auto!important;
+    }
+  .mt - xl - auto,
+  .my - xl - auto {
+        margin - top: auto!important;
+    }
+  .mr - xl - auto,
+  .mx - xl - auto {
+        margin - right: auto!important;
+    }
+  .mb - xl - auto,
+  .my - xl - auto {
+        margin - bottom: auto!important;
+    }
+  .ml - xl - auto,
+  .mx - xl - auto {
+        margin - left: auto!important;
+    }
+}
+
+.text - monospace {
+    font - family: SFMono - Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.text - justify {
+    text - align: justify!important;
+}
+
+.text - nowrap {
+    white - space: nowrap!important;
+}
+
+.text - truncate {
+    overflow: hidden;
+    text - overflow: ellipsis;
+    white - space: nowrap;
+}
+
+.text - left {
+    text - align: left!important;
+}
+
+.text - right {
+    text - align: right!important;
+}
+
+.text - center {
+    text - align: center!important;
+}
+
+@media(min - width: 576px) {
+  .text - sm - left {
+        text - align: left!important;
+    }
+  .text - sm - right {
+        text - align: right!important;
+    }
+  .text - sm - center {
+        text - align: center!important;
+    }
+}
+
+@media(min - width: 768px) {
+  .text - md - left {
+        text - align: left!important;
+    }
+  .text - md - right {
+        text - align: right!important;
+    }
+  .text - md - center {
+        text - align: center!important;
+    }
+}
+
+@media(min - width: 992px) {
+  .text - lg - left {
+        text - align: left!important;
+    }
+  .text - lg - right {
+        text - align: right!important;
+    }
+  .text - lg - center {
+        text - align: center!important;
+    }
+}
+
+@media(min - width: 1200px) {
+  .text - xl - left {
+        text - align: left!important;
+    }
+  .text - xl - right {
+        text - align: right!important;
+    }
+  .text - xl - center {
+        text - align: center!important;
+    }
+}
+
+.text - lowercase {
+    text - transform: lowercase!important;
+}
+
+.text - uppercase {
+    text - transform: uppercase!important;
+}
+
+.text - capitalize {
+    text - transform: capitalize!important;
+}
+
+.font - weight - light {
+    font - weight: 300!important;
+}
+
+.font - weight - normal {
+    font - weight: 400!important;
+}
+
+.font - weight - bold {
+    font - weight: 700!important;
+}
+
+.font - italic {
+    font - style: italic!important;
+}
+
+.text - white {
+    color: #fff!important;
+}
+
+.text - primary {
+    color: #375a7f!important;
+}
+
+a.text - primary: hover, a.text - primary: focus {
+    color: #28415b!important;
+}
+
+.text - secondary {
+    color: #444!important;
+}
+
+a.text - secondary: hover, a.text - secondary: focus {
+    color: #2b2a2a!important;
+}
+
+.text - success {
+    color: #00bc8c!important;
+}
+
+a.text - success: hover, a.text - success: focus {
+    color: #008966!important;
+}
+
+.text - info {
+    color: #3498DB!important;
+}
+
+a.text - info: hover, a.text - info: focus {
+    color: #217dbb!important;
+}
+
+.text - warning {
+    color: #F39C12!important;
+}
+
+a.text - warning: hover, a.text - warning: focus {
+    color: #c87f0a!important;
+}
+
+.text - danger {
+    color: #E74C3C!important;
+}
+
+a.text - danger: hover, a.text - danger: focus {
+    color: #d62c1a!important;
+}
+
+.text - light {
+    color: #303030!important;
+}
+
+a.text - light: hover, a.text - light: focus {
+    color: #171616!important;
+}
+
+.text - dark {
+    color: #adb5bd!important;
+}
+
+a.text - dark: hover, a.text - dark: focus {
+    color: #919ca6!important;
+}
+
+.text - body {
+    color: #fff!important;
+}
+
+.text - muted {
+    color: #999!important;
+}
+
+.text - black - 50 {
+    color: rgba(0, 0, 0, 0.5)!important;
+}
+
+.text - white - 50 {
+    color: rgba(255, 255, 255, 0.5)!important;
+}
+
+.text - hide {
+    font: 0 / 0 a;
+    color: transparent;
+    text - shadow: none;
+    background - color: transparent;
+    border: 0;
+}
+
+.visible {
+    visibility: visible!important;
+}
+
+.invisible {
+    visibility: hidden!important;
+}
+
+@media print {
+  *,
+  *:: before,
+  *:: after {
+        text - shadow: none!important;
+        -webkit - box - shadow: none!important;
+        box - shadow: none!important;
+    }
+    a: not(.btn) {
+        text - decoration: underline;
+    }
+    abbr[title]:: after {
+        content: " (" attr(title) ")";
+    }
+    pre {
+        white - space: pre - wrap!important;
+    }
+    pre,
+        blockquote {
+        border: 1px solid #adb5bd;
+        page -break-inside: avoid;
+    }
+    thead {
+        display: table - header - group;
+    }
+    tr,
+        img {
+        page -break-inside: avoid;
+    }
+    p,
+        h2,
+        h3 {
+        orphans: 3;
+        widows: 3;
+    }
+    h2,
+        h3 {
+        page -break-after: avoid;
+    }
+    @page {
+        size: a3;
+    }
+    body {
+        min - width: 992px!important;
+    }
+  .container {
+        min - width: 992px!important;
+    }
+  .navbar {
+        display: none;
+    }
+  .badge {
+        border: 1px solid #000;
+    }
+  .table {
+        border - collapse: collapse!important;
+    }
+  .table td,
+  .table th {
+        background - color: #fff!important;
+    }
+  .table - bordered th,
+  .table - bordered td {
+        border: 1px solid #dee2e6!important;
+    }
+  .table - dark {
+        color: inherit;
+    }
+  .table - dark th,
+  .table - dark td,
+  .table - dark thead th,
+  .table - dark tbody + tbody {
+        border - color: #444;
+    }
+  .table.thead - dark th {
+        color: inherit;
+        border - color: #444;
+    }
+}
+
+.bg - primary.navbar - nav.active > .nav - link {
+    color: #00bc8c!important;
+}
+
+.bg - dark {
+    background - color: #00bc8c!important;
+}
+
+.bg - dark.navbar - dark.navbar - nav.nav - link: focus,
+.bg - dark.navbar - dark.navbar - nav.nav - link: hover,
+.bg - dark.navbar - dark.navbar - nav.active > .nav - link {
+    color: #375a7f!important;
+}
+
+.blockquote - footer {
+    color: #999;
+}
+
+.table - primary, .table - primary > th, .table - primary > td {
+    background - color: #375a7f;
+}
+
+.table - secondary, .table - secondary > th, .table - secondary > td {
+    background - color: #444;
+}
+
+.table - light, .table - light > th, .table - light > td {
+    background - color: #303030;
+}
+
+.table - dark, .table - dark > th, .table - dark > td {
+    background - color: #adb5bd;
+}
+
+.table - success, .table - success > th, .table - success > td {
+    background - color: #00bc8c;
+}
+
+.table - info, .table - info > th, .table - info > td {
+    background - color: #3498DB;
+}
+
+.table - danger, .table - danger > th, .table - danger > td {
+    background - color: #E74C3C;
+}
+
+.table - warning, .table - warning > th, .table - warning > td {
+    background - color: #F39C12;
+}
+
+.table - active, .table - active > th, .table - active > td {
+    background - color: rgba(0, 0, 0, 0.075);
+}
+
+.table - hover.table - primary: hover, .table - hover.table - primary: hover > th, .table - hover.table - primary: hover > td {
+    background - color: #2f4d6d;
+}
+
+.table - hover.table - secondary: hover, .table - hover.table - secondary: hover > th, .table - hover.table - secondary: hover > td {
+    background - color: #373737;
+}
+
+.table - hover.table - light: hover, .table - hover.table - light: hover > th, .table - hover.table - light: hover > td {
+    background - color: #232323;
+}
+
+.table - hover.table - dark: hover, .table - hover.table - dark: hover > th, .table - hover.table - dark: hover > td {
+    background - color: #9fa8b2;
+}
+
+.table - hover.table - success: hover, .table - hover.table - success: hover > th, .table - hover.table - success: hover > td {
+    background - color: #00a379;
+}
+
+.table - hover.table - info: hover, .table - hover.table - info: hover > th, .table - hover.table - info: hover > td {
+    background - color: #258cd1;
+}
+
+.table - hover.table - danger: hover, .table - hover.table - danger: hover > th, .table - hover.table - danger: hover > td {
+    background - color: #e43725;
+}
+
+.table - hover.table - warning: hover, .table - hover.table - warning: hover > th, .table - hover.table - warning: hover > td {
+    background - color: #e08e0b;
+}
+
+.table - hover.table - active: hover, .table - hover.table - active: hover > th, .table - hover.table - active: hover > td {
+    background - color: rgba(0, 0, 0, 0.075);
+}
+
+.input - group - addon {
+    color: #fff;
+}
+
+.nav - tabs.nav - link,
+.nav - tabs.nav - link.active,
+.nav - tabs.nav - link.active: focus,
+.nav - tabs.nav - link.active: hover,
+.nav - tabs.nav - item.open.nav - link,
+.nav - tabs.nav - item.open.nav - link: focus,
+.nav - tabs.nav - item.open.nav - link: hover,
+.nav - pills.nav - link,
+.nav - pills.nav - link.active,
+.nav - pills.nav - link.active: focus,
+.nav - pills.nav - link.active: hover,
+.nav - pills.nav - item.open.nav - link,
+.nav - pills.nav - item.open.nav - link: focus,
+.nav - pills.nav - item.open.nav - link: hover {
+    color: #fff;
+}
+
+.breadcrumb a {
+    color: #fff;
+}
+
+.pagination a: hover {
+    text - decoration: none;
+}
+
+.close {
+    opacity: 0.4;
+}
+
+.close: hover, .close: focus {
+    opacity: 1;
+}
+
+.alert {
+    border: none;
+    color: #fff;
+}
+
+.alert a,
+.alert.alert - link {
+    color: #fff;
+    text - decoration: underline;
+}
+
+.alert - primary {
+    background - color: #375a7f;
+}
+
+.alert - secondary {
+    background - color: #444;
+}
+
+.alert - success {
+    background - color: #00bc8c;
+}
+
+.alert - info {
+    background - color: #3498DB;
+}
+
+.alert - warning {
+    background - color: #F39C12;
+}
+
+.alert - danger {
+    background - color: #E74C3C;
+}
+
+.alert - light {
+    background - color: #303030;
+}
+
+.alert - dark {
+    background - color: #adb5bd;
+}
+
+.list - group - item - action {
+    color: #fff;
+}
+
+.list - group - item - action: hover, .list - group - item - action: focus {
+    background - color: #444;
+    color: #fff;
+}
+
+.list - group - item - action.list - group - item - heading {
+    color: #fff;
+}

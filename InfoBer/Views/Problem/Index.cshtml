@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    List<Problem> problems = new List<Problem>();
+    problems = ViewBag.problems;
+    string error = ViewBag.error;
+    int i = 0;
+}
+<h2>Problems  <button type="button" class="btn btn-primary" onclick="location.href='/Problem/Publish';">Add Yours!</button></h2>
+@if (error != null)
+{
+    <div class="alert alert-dismissible alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4 class="alert-heading">Warning!</h4>
+        <p class="mb-0">@ViewBag.error</p>
+    </div>
+}
+<table class="table table-hover">
+    <caption>Click on it to take one!</caption>
+    <thead>
+        <tr>
+            <th scope="col">Problem</th>
+            <th scope="col">User</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Problem p in problems)
+        {
+            if (i % 2 == 0)
+            {
+                <tr onclick="location.href='/Problem/takeit?id=@p.Id';">
+                    <td>@p.ProblemTitle</td>
+                    <td>@p.Writer.Username</td>
+                </tr>
+            }
+            else
+            {
+                <tr class="table-secondary" onclick="location.href='/Problem/takeit?id=@p.Id';">
+                    <td>@p.ProblemTitle</td>
+                    <td>@p.Writer.Username</td>
+                </tr>
+            }
+            i++;
+        }
+    </tbody>
+</table>

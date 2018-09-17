@@ -1,0 +1,41 @@
+﻿@model InfoBer.Models.Problem
+
+@{
+    ViewData["Title"] = "Publish";
+}
+
+<h2>Publish</h2>
+
+<h4>Problem</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Publish" onsubmit="return Verif();">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProblemTitle" class="control-label">Explain your problem</label>
+                <input asp-for="ProblemTitle" id="Title" class="form-control" />
+                <small id="TitleError" class="form-text" style="display:none;color:red;">Please enter a explaination.</small>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<script>
+    function Verif() {
+        var test = true;
+        if (document.getElementById("Title").value === "") {
+            document.getElementById("TitleError").style.display = "block";
+            test = false;
+        }
+        return test;
+    };
+</script>
+<script>onload();</script>
+

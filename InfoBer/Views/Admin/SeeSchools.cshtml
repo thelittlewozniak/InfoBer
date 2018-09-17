@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Schools";
+    List<School> schools = ViewBag.schools;
+    int i = 0;
+}
+
+<h2>Schools <button type="button" class="btn btn-success" onclick="location.href='/Admin/AddSchool';">Add one</button></h2>
+
+<table class="table table-hover">
+    <caption>Click on it to have more information!</caption>
+    <thead>
+        <tr>
+            <th scope="col">Name of school:</th>
+            <th scope="col">Director</th>
+            <th scope="col">Adress</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (School s in schools)
+        {
+            if (i % 2 == 0)
+            {
+                <tr class="table-light" onclick="location.href='/Admin/School?id=@s.Id';">
+                    <th>@s.Name</th>
+                    <td>@s.Director</td>
+                    <td>@s.Adress</td>
+                </tr>
+            }
+            else
+            {
+                <tr class="table-dark" onclick="location.href='/Admin/School?id=@s.Id';">
+                    <th>@s.Name</th>
+                    <td>@s.Director</td>
+                    <td>@s.Adress</td>
+                </tr>
+            }
+            i++;
+        }
+
+    </tbody>
+</table>

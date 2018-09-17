@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewData["Title"] = "School";
+    School s = ViewBag.school;
+    int i = 0;
+}
+
+<h2>School</h2>
+<table class="table table-hover">
+    <tbody>
+        <tr>
+            <th scope="row">Name of school:</th>
+            <td>@s.Name</td>
+        </tr>
+        <tr>
+            <th scope="row">Director:</th>
+            <td>@s.Director</td>
+        </tr>
+        <tr>
+            <th scope="row">Address:</th>
+            <td>@s.Adress</td>
+        </tr>
+    </tbody>
+</table>
+<h2>Departements <button type="button" class="btn btn-success" onclick="location.href='/Admin/AddDepartement?school=@s.Id';">Add one</button></h2>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Name:</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Departement d in s.Departements)
+        {
+            if (i % 2 == 0)
+            {
+                <tr class="table-light">
+                    <th>@d.Name</th>
+                </tr>
+            }
+            else
+            {
+                <tr class="table-dark">
+                    <th>@d.Name</th>
+                </tr>
+            }
+            i++;
+        }
+
+    </tbody>
+</table>
+
+

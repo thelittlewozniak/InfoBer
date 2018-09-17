@@ -1,0 +1,123 @@
+﻿@model InfoBer.Models.User
+
+@{
+    ViewData["Title"] = "Create your account";
+    List<School> schools = ViewBag.schools;
+    List<Departement> departements = ViewBag.departements;
+    string error = ViewBag.error;
+}
+<script src="~/js/Select.js"></script>
+<h2>Fill this informations</h2>
+
+<h4>All data will not be use for other things than for the platform. Your data will be not sold or used by tier.</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @if (error != null)
+        {
+            <div class="alert alert-dismissible alert-warning">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <h4 class="alert-heading">Warning!</h4>
+                <p class="mb-0">@ViewBag.error</p>
+            </div>
+        }
+            <form asp-action="Create" onsubmit="return Verif();">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Username" class="control-label"></label>
+                    <input asp-for="Username" id="Username" class="form-control" />
+                    <small id="UsernameError" class="form-text" style="display:none;color:red;">Please enter a surname.</small>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input type="password" id="Password" asp-for="Password" class="form-control" />
+                    <small id="PasswordError" class="form-text" style="display:none;color:red;">Please enter a password.</small>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" id="Name" class="form-control" />
+                    <small id="NameError" class="form-text" style="display:none;color:red;">Please enter a name.</small>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Surname" class="control-label"></label>
+                    <input asp-for="Surname" id="Surname" class="form-control" />
+                    <small id="SurnameError" class="form-text" style="display:none;color:red;">Please enter a surname.</small>
+                </div>
+                <div class="form-group">
+                    <label asp-for="School" class="control-label"></label>
+                    <select class="form-control" asp-for="School" id="sel1" onchange="giveSelection(this.value)">
+                        <option></option>
+                        @foreach (School s in schools)
+                        {
+                            <option value="@s.Name">@s.Name</option>
+                        }
+                    </select>
+                    <small class="form-text text-muted">We add schools when they accept to be a part of the platform. Your school isn't already in? Contact us at nathan.pire@gmail.com</small>
+                    <small id="SchoolError" class="form-text" style="display:none;color:red;">Please enter a surname.</small>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Departement" class="control-label"></label>
+                    <select class="form-control" asp-for="Departement" id="sel2">
+                        <option></option>
+                        @foreach (Departement s in departements)
+                        {
+                            <option data-option="@s.School.Name" class="test" style="display:none;">@s.Name</option>
+                        }
+                    </select>
+                    <small id="DepartementError" class="form-text" style="display:none;color:red;">Please enter a departement.</small>
+
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" id="tou">
+                        I readed and I accept <a asp-controller="Home" asp-action="tou">the terms of use</a>
+                    </label>
+                    <small id="touError" class="form-text" style="display:none;color:red;">Please check this box.</small>
+                </div>
+                <br />
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to Login</a>
+</div>
+<script>
+    function Verif() {
+        var test = true;
+        if (document.getElementById("Name").value === "") {
+            document.getElementById("NameError").style.display = "block";
+            test = false;
+        }
+        if (document.getElementById("Surname").value === "") {
+            document.getElementById("SurnameError").style.display = "block";
+            test = false;
+        }
+        if (document.getElementById("Password").value ==="") {
+            document.getElementById("PasswordError").style.display = "block";
+            test = false;
+        }
+        if (document.getElementById("Username").value === "") {
+            document.getElementById("UsernameError").style.display = "block";
+            test = false;
+        }
+        if (document.getElementById("sel1").value === "") {
+            document.getElementById("SchoolError").style.display = "block";
+            test = false;
+        }
+        if (document.getElementById("sel2").value === "") {
+            document.getElementById("DepartementError").style.display = "block";
+            test = false;
+        }
+        if (document.getElementById("tou").checked !== true) {
+            document.getElementById("touError").style.display = "block";
+            test = false;
+        }
+        return test;
+    };
+</script>
+<script>onload();</script>
+

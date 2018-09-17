@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewData["Title"] = "SeeUsers";
+    List<User> users = ViewBag.users;
+    int i = 0;
+}
+
+<h2>Users</h2>
+
+<table class="table table-hover">
+    <caption>Click on it to have more information!</caption>
+    <thead>
+        <tr>
+            <th scope="col">username:</th>
+            <th scope="col">School:</th>
+            <th scope="col">Departement:</th>
+            <th scope="col">Admin:</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (User s in users)
+        {
+            if (i % 2 == 0)
+            {
+                <tr class="table-light" onclick="location.href='/Admin/seeuser?id=@s.Id';">
+                    <th>@s.Username</th>
+                    <td>@s.School.Name</td>
+                    <td>@s.Departement.Name</td>
+                    <td>@s.Admin</td>
+                </tr>
+            }
+            else
+            {
+                <tr class="table-dark" onclick="location.href='/Admin/seeuser?id=@s.Id';">
+                    <th>@s.Username</th>
+                    <td>@s.School.Name</td>
+                    <td>@s.Departement.Name</td>
+                    <td>@s.Admin</td>
+                </tr>
+            }
+            i++;
+        }
+
+    </tbody>
+</table>

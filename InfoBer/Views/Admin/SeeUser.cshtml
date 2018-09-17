@@ -1,0 +1,103 @@
+﻿@{
+    ViewData["Title"] = "User";
+    User s = ViewBag.user;
+    List<Problem> problems = ViewBag.problems;
+    int i = 0;
+}
+
+<h2>@s.Username @if(!s.Admin){<button type="button" class="btn btn-success" onclick="location.href='/Admin/UpgradeAdmin?id=@s.Id';">Upgrade to admin</button>}</h2>
+<table class="table table-hover">
+    <tbody>
+        <tr>
+            <th scope="row">Full name:</th>
+            <td>@s.Name @s.Surname</td>
+        </tr>
+        <tr>
+            <th scope="row">username:</th>
+            <td>@s.Username</td>
+        </tr>
+    </tbody>
+</table>
+@if (s.Ratings.Count > 0)
+{
+    <h3>Ratings:</h3>
+    <table class="table table-hover">
+        <tbody>
+            @foreach (Rating r in s.Ratings)
+            {
+                if (r.Result > 3.5)
+                {
+                    <tr class="table-success">
+                        <th scope="row">Rating:<br />Commentary:</th>
+                        <td>@r.Result<br />@r.Commentary</td>
+                    </tr>
+                }
+                else if (r.Result <= 3.5 && r.Result >= 2.5)
+                {
+                    <tr class="table-warning">
+                        <th scope="row">Rating:<br />Commentary:</th>
+                        <td>@r.Result<br />@r.Commentary</td>
+                    </tr>
+                }
+                else
+                {
+                    <tr class="table-danger">
+                        <th scope="row">Rating:<br />Commentary:</th>
+                        <td>@r.Result<br />@r.Commentary</td>
+                    </tr>
+
+                }
+            }
+        </tbody>
+    </table>
+}
+
+@if (problems.Count > 0)
+{
+    <h3>problems:</h3>
+    <table class="table table-hover">
+        <caption>Click on it to delete</caption>
+        <thead>
+            <tr>
+                <th scope="col">Title:</th>
+                <th scope="col">Taker:</th>
+                <th scope="col">Writer:</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Problem p in problems)
+            {
+                if (p.Taker != null)
+                {
+                    if (p.status == false)
+                    {
+                        <tr class="table-warning" onclick="location.href='/Admin/DeleteProblem?id=@p.Id';">
+                            <td>@p.ProblemTitle</td>
+                            <td>@p?.Taker?.Username</td>
+                            <td>@p.Writer.Username</td>
+                        </tr>
+                    }
+                    if (p.status == true)
+                    {
+                        <tr class="table-success" onclick="location.href='/Admin/DeleteProblem?id=@p.Id';">
+                            <td>@p.ProblemTitle</td>
+                            <td>@p?.Taker?.Username</td>
+                            <td>@p.Writer.Username</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                        <tr class="table-danger" onclick="location.href='/Admin/DeleteProblem?id=@p.Id';">
+                            <td>@p.ProblemTitle</td>
+                            <td>@p?.Taker?.Username</td>
+                            <td>@p.Writer.Username</td>
+                        </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
+
+
+
